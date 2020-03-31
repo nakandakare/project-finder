@@ -9,7 +9,6 @@ const Header = () => {
 
     const {pathname} = useLocation();
     const path = pathname.replace('/','');
-    console.log(path);
 
     return (
         <header className='header'>
@@ -45,9 +44,9 @@ const Header = () => {
                 </Link>
             </div>
             <div className='auth-options'>
-                <Link to='/login'>
+                <Link to='/signin'>
                     <Button className="login-button" color="primary">
-                        LOG IN
+                        SIGN IN
                     </Button>
                 </Link>
                 <Link to='/register'>

@@ -1,7 +1,7 @@
 import React from 'react';
 import './project-item.styles.scss';
 import { ReactComponent as Logo } from '../../assets/project-logo.svg'
-import FlagIcon from '../flag-icon-factory/flag-icon-factory';
+import FlagIcon from '../utils/flag-icon-factory/flag-icon-factory';
 import ReadMoreAndLess from 'react-read-more-less';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
@@ -53,31 +53,31 @@ const ProjectItem = () => {
                             <div className='first-column'>
                                 <div className='first-row'>
                                     <span className='span-add-margin'>Project Size</span>
-                                    <spa>1-5</spa>
+                                    <spa>Medium</spa>
                                 </div>
                                 <div className='second-row'>
                                     <span className='span-add-margin'>Looking For</span>
-                                    <spa>14-20</spa>
+                                    <spa>14-20 Member(s)</spa>
                                 </div>
                             </div>
                             <div className='second-column'>
                                 <div className='first-row'>
                                     <span className='span-add-margin'>Project Duration</span>
-                                    <spa>United States</spa>
+                                    <spa>3 Month</spa>
                                 </div>
                                 <div className='second-row'>
                                     <span className='span-add-margin'>Language</span>
-                                    <spa>EN</spa>
+                                    <spa>English</spa>
                                 </div>
                             </div>
                             <div className='third-column'>
                                 <div className='first-row'>
                                     <span className='span-add-margin'>Project Difficulty</span>
-                                    <spa>US Northeast, US Southeast</spa>
+                                    <spa>Complex</spa>
                                 </div>
                                 <div className='second-row'>
                                     <span className='span-add-margin'>Prog. Language</span>
-                                    <spa>Mon, Tue, Wed, Thu, Fri, Sat, Sun (Evening)</spa>
+                                    <spa>React, Node.js, MySQL</spa>
                                 </div>
                             </div>
                         </div>

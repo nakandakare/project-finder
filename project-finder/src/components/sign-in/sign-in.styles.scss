@@ -1,0 +1,53 @@
+.sign-in {
+    display: flex;
+    flex-direction: column;
+    width: 390px;
+    height: 500px;
+    position:absolute; 
+    left:0;
+    right:0;
+    top:0; 
+    bottom:0;
+    margin:auto;
+
+    .title{
+        font-size: 20px;
+        font-weight: 600;
+        line-height: 24px;
+        color: rgb(49, 69, 89);
+    }
+
+    .input-form {
+        padding: 25px 0 25px 0;
+    }
+
+    .input-email, .input-password{
+        padding: 16px 0 16px 0;
+    }
+    .input-section {
+        background-color: white;
+        width: 100%;
+    }
+
+    .sign-in-button button{
+        margin-top: 3px;
+        width: 100%;
+        padding: 10px;
+        background-color: #006FE2;
+    }
+
+    .forgot-password{
+        text-align: center;
+        padding: 18px 0 40px 0;      
+    }
+
+    .no-account {
+        text-align: center;
+    }
+
+    .register-button {
+        width: 100%;
+        padding: 10px;
+        background-color: #006FE2;
+    }
+}

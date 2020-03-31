@@ -4,6 +4,7 @@
     border-radius: 4px;
     display: flex;
     flex-direction: row;
+    margin-left: 18px;
 
     .sidebar{
     display: flex;
@@ -27,13 +28,13 @@
     .project-name, .project-description {
         display: flex;
         flex-direction: column;
-        padding: 0 0 16px 0;
+        padding: 0 0 12px 0;
     }
 
     .project-detail{
         display:flex;
         flex-direction: column;
-        padding:16px;
+        padding:16px 20px 16px 16px;
         width: 100%;
         
         .project-name-button-row{
