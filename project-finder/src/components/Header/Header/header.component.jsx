@@ -1,9 +1,9 @@
-import React from 'react';
+import React from './node_modules/react';
 import './header.styles.scss';
-import { Link } from 'react-router-dom';
+import { Link} from './node_modules/react-router-dom';
 import logo from '../../assets/logo.png';
-import Button from '@material-ui/core/Button';
-import { useLocation } from 'react-router-dom'
+import Button from './node_modules/@material-ui/core/Button';
+import { useLocation } from './node_modules/react-router-dom'
 
 const Header = () => {
 
@@ -51,7 +51,7 @@ const Header = () => {
                     </Button>
                 </Link>
                 <Link to='/register'>
-                    <Button className="register-button" size="medium" variant="contained" color="primary">
+                    <Button className="register-button" size="small" variant="contained" color="primary">
                         REGISTER
                     </Button>
                 </Link>

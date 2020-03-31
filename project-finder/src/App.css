@@ -3,3 +3,19 @@ a {
     color: black;
 }
 
+.header {
+  margin:0 !important;
+  padding:0 !important;
+  background-color: white;
+}
+
+.main-content{
+  height: 100vh;
+  background-color: #F2F6F9;
+}
+
+.content-wrapper{
+  width: 60%;
+  margin: 0 auto;
+}
+
