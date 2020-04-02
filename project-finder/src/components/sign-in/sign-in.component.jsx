@@ -1,34 +1,53 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './sign-in.styles.scss';
 import TextField from '@material-ui/core/TextField';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
 import {Link} from 'react-router-dom';
+import { connect } from 'react-redux';
+import {emailSignInStart} from '../../redux/user/user.actions';
 
-const SignIn = () => {
+const SignIn = ({emailSignIn}) => {
+
+    const [userCredentials, setCredentials] = useState({email: '', password: '', keepSignIn: false});
+
+    const { email, password, keepSignIn } = userCredentials;
+
+    const handleChange = event => {
+        const {value, name, checked} = event.target;
+        setCredentials({...userCredentials, [name]: value || checked});
+    }
+
+    const handleSubmit = event => {
+        event.preventDefault();
+        emailSignIn(email, password);
+    }
+
     return (
         <div className='sign-in'>
             <div className='title'>
                 Sign In
             </div>
-            <form className='input-form' noValidate autoComplete="off">
+            <form className='input-form' onSubmit={handleSubmit} noValidate autoComplete="off">
             <div className='input'>
                 <div className='input-email'>
-                <TextField className='input-section' id="outlined-basic" label="Email" variant="outlined" size="small" />
+                        <TextField className='input-section' onChange={handleChange} required name='email' id="outlined-basic" label="Email" variant="outlined" size="small" />
                 </div>
                 <div className='input-password'>
-                <TextField className='input-section' id="outlined-basic" label="Password" type="password" variant="outlined" size="small" />
+                        <TextField className='input-section' onChange={handleChange} required name='password' id="outlined-basic" label="Password" type="password" variant="outlined" size="small" />
                 </div>  
             </div>
             <div className='keep-check'>
-                <FormControlLabel
+                <FormControlLabel className='checkbox-label'
                     control={
                         <Checkbox
-                            //checked={state.checkedB}
-                            //onChange={handleChange}
-                            name="checkedB"
+                            checked={userCredentials.keepSignIn}
+                            onChange={handleChange}
+                            name="keepSignIn"
                             color="primary"
+                            className='login-checkbox'
+                            size='small'
                         />
                     }
                     label="Keep me signed in"
@@ -40,7 +59,7 @@ const SignIn = () => {
                     </Button>
             </div>
             <div className='forgot-password'>
-                <span>Forgot your password?</span>
+                <span className='forgot-span'>Forgot your password?</span>
             </div>
             <div className='no-account'>
                     <span>If you don’t already have an account click the Register<br/> button below to create an account</span>
@@ -55,4 +74,7 @@ const SignIn = () => {
     )
 }
 
-export default SignIn;
+const mapDispatchToProps = dispatch => ({
+    emailSignIn: (email,password) => dispatch(emailSignInStart({email, password}))
+})
+export default connect(null,mapDispatchToProps)(SignIn);

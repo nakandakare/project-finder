@@ -1,4 +1,4 @@
-.sign-in {
+.register {
     display: flex;
     flex-direction: column;
     width: 390px;
@@ -18,51 +18,34 @@
     }
 
     .input-form {
-        padding: 25px 0 25px 0;
+        padding: 8px 0 25px 0;
     }
 
-    .input-email, .input-password{
+    .input{
         padding: 16px 0 16px 0;
     }
+
     .input-section {
         background-color: white;
         width: 100%;
     }
 
-    .sign-in-button button{
+    .register-button button{
         margin-top: 3px;
         width: 100%;
         padding: 10px;
         background-color: #006FE2;
     }
 
-    .forgot-password{
-        text-align: center;
-        padding: 18px 0 40px 0;      
-    }
-
     .no-account {
+        margin-top: 50px;
         text-align: center;
     }
 
-    .register-button {
+    .sign-in-button {
         width: 100%;
         padding: 10px;
         background-color: #006FE2;
     }
     
-    .checkbox-label {
-        size: 50px;
-    }
-
-    .forgot-password {
-        color: rgb(0, 126, 255);
-        font-size: 14px;
-        font-weight: 600;  
-        line-height: 16px;
-
-        .forgot-span {
-            cursor: pointer;
-        }
-    }
 }

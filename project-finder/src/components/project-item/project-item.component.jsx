@@ -10,7 +10,7 @@ const ProjectItem = () => {
 
     return (
         <div className='project-item'>
-            <div className='sidebar'>
+            <div className='project-sidebar'>
                 <span className='date'>Published MAR 30</span>
                 <Logo className='project-logo' />
             </div>
