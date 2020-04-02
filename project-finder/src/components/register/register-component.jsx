@@ -1,12 +1,12 @@
 import React, {useState} from 'react';
 import './register.styles.scss';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import Checkbox from '@material-ui/core/Checkbox';
 import Button from '@material-ui/core/Button';
+import {registerStart} from '../../redux/user/user.actions';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
  
-const Register = () => {
+const Register = ({registerStart}) => {
     const [userCredentials, setCredentials] = useState({ email: '', password: '', repassword: '',  name: ''});
 
     const { email, password, repassword , name } = userCredentials;
@@ -18,7 +18,10 @@ const Register = () => {
 
     const handleSubmit = event => {
         event.preventDefault();
-
+        if(password !== repassword){
+            return alert('The passwords you typed do not match');
+        }
+        registerStart(email, password, name);
     }
 
     return (
@@ -29,16 +32,16 @@ const Register = () => {
             <form className='input-form' onSubmit={handleSubmit} noValidate autoComplete="off">
                 <div className='input'>
                     <div className='input'>
-                        <TextField className='input-section' onChange={handleChange} required name='name' id="outlined-basic" label="Your Name" variant="outlined" size="small" />
+                        <TextField className='input-section' onChange={handleChange} required name='name' label="Your Name" variant="outlined" size="small" />
                     </div>
                     <div className='input'>
-                        <TextField className='input-section' onChange={handleChange} required name='email' id="outlined-basic" label="Email" variant="outlined" size="small" />
+                        <TextField className='input-section' onChange={handleChange} required name='email' autoComplete="username" label="Email" variant="outlined" size="small" />
                     </div>
                     <div className='input'>
-                        <TextField className='input-section' onChange={handleChange} required name='password' id="outlined-basic" label="Password" type="password" variant="outlined" size="small" />
+                        <TextField className='input-section' onChange={handleChange} required name='password' label="Password" type="password" autoComplete="new-password" variant="outlined" size="small" />
                     </div>
                     <div className='input'>
-                        <TextField className='input-section' onChange={handleChange} required name='repassword' id="outlined-basic" label="Password" type="password" variant="outlined" size="small" />
+                        <TextField className='input-section' onChange={handleChange} required name='repassword' label="Password" type="password" autoComplete="new-password" variant="outlined" size="small" />
                     </div>
                 </div>
                 <div className='register-button'>
@@ -59,4 +62,8 @@ const Register = () => {
     )
 }
 
-export default Register;
+const mapDispatchToProps = dispatch => ({
+    registerStart: (email, password, name) => dispatch(registerStart({email, password, name}))
+})
+
+export default connect(null, mapDispatchToProps)(Register);

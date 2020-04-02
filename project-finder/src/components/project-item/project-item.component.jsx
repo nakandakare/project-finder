@@ -53,31 +53,31 @@ const ProjectItem = () => {
                             <div className='first-column'>
                                 <div className='first-row'>
                                     <span className='span-add-margin'>Project Size</span>
-                                    <spa>Medium</spa>
+                                    <span>Medium</span>
                                 </div>
                                 <div className='second-row'>
                                     <span className='span-add-margin'>Looking For</span>
-                                    <spa>14-20 Member(s)</spa>
+                                    <span>14-20 Member(s)</span>
                                 </div>
                             </div>
                             <div className='second-column'>
                                 <div className='first-row'>
                                     <span className='span-add-margin'>Project Duration</span>
-                                    <spa>3 Month</spa>
+                                    <span>3 Month</span>
                                 </div>
                                 <div className='second-row'>
                                     <span className='span-add-margin'>Language</span>
-                                    <spa>English</spa>
+                                    <span>English</span>
                                 </div>
                             </div>
                             <div className='third-column'>
                                 <div className='first-row'>
                                     <span className='span-add-margin'>Project Difficulty</span>
-                                    <spa>Complex</spa>
+                                    <span>Complex</span>
                                 </div>
                                 <div className='second-row'>
                                     <span className='span-add-margin'>Prog. Language</span>
-                                    <spa>React, Node.js, MySQL</spa>
+                                    <span>React, Node.js, MySQL</span>
                                 </div>
                             </div>
                         </div>

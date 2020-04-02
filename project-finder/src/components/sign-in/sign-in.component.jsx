@@ -12,7 +12,7 @@ const SignIn = ({emailSignIn}) => {
 
     const [userCredentials, setCredentials] = useState({email: '', password: '', keepSignIn: false});
 
-    const { email, password, keepSignIn } = userCredentials;
+    const { email, password, /*keepSignIn*/ } = userCredentials;
 
     const handleChange = event => {
         const {value, name, checked} = event.target;
@@ -32,10 +32,10 @@ const SignIn = ({emailSignIn}) => {
             <form className='input-form' onSubmit={handleSubmit} noValidate autoComplete="off">
             <div className='input'>
                 <div className='input-email'>
-                        <TextField className='input-section' onChange={handleChange} required name='email' id="outlined-basic" label="Email" variant="outlined" size="small" />
+                        <TextField className='input-section' onChange={handleChange} required name='email' autoComplete="username" label="Email" variant="outlined" size="small" />
                 </div>
                 <div className='input-password'>
-                        <TextField className='input-section' onChange={handleChange} required name='password' id="outlined-basic" label="Password" type="password" variant="outlined" size="small" />
+                        <TextField className='input-section' onChange={handleChange} required name='password' autoComplete="new-password" label="Password" type="password" variant="outlined" size="small" />
                 </div>  
             </div>
             <div className='keep-check'>
