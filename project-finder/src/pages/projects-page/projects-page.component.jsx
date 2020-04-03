@@ -6,7 +6,7 @@ import Filter from '../../components/filter/filter.component';
 const ProjectsPage = () => {
     return(
         <div className='projects-page'>
-            <Filter/>
+            <Filter className='projects-filter'/>
             <ProjectItem/>        
         </div>
     )

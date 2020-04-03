@@ -3,13 +3,14 @@ import './header.styles.scss';
 import { Link } from 'react-router-dom';
 import logo from '../../assets/project-finder-logo.png';
 import Button from '@material-ui/core/Button';
-import {ReactComponent as LogoutLogo} from '../../assets/logout.svg' 
+import { Dropdown } from 'semantic-ui-react'
 import { useLocation } from 'react-router-dom'
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { connect } from 'react-redux';
 import { logoutStart} from '../../redux/user/user.actions';
+import { withRouter } from "react-router-dom";
 
-const Header = ({ currentUser, logoutStart }) => {
+const Header = ({ currentUser, logoutStart, history }) => {
     
     const { pathname } = useLocation();
     const path = pathname.replace('/', ''); 
@@ -22,7 +23,6 @@ const Header = ({ currentUser, logoutStart }) => {
         <header className='header'>
             <div className='logo'>
                 <Link to='/projects' className='logo'>
-                    <img className='logo-img' src={logo} alt='logo'></img>
                 </Link>
             </div>
             <div className='options'>
@@ -60,7 +60,14 @@ const Header = ({ currentUser, logoutStart }) => {
                         <span >{currentUser.name}</span>
                     </div>
                     <div className='logout-button'>
-                    <LogoutLogo onClick={startSignOut}/>
+                        <Dropdown direction='left' closeOnChange>
+                            <Dropdown.Menu >
+                                <Dropdown.Item icon='pencil alternate' text='Create Project' onClick={()=> history.push('/project-create')}/>
+                                <Dropdown.Item icon='bell' text='Notification' />
+                                <Dropdown.Divider />
+                                <Dropdown.Item icon='sign-out' text='Log Out' onClick={startSignOut} />
+                            </Dropdown.Menu>
+                        </Dropdown>
                     </div>
                 </div>
                 :
@@ -89,4 +96,4 @@ const mapDispatchToProps = (dispatch) => ({
     logoutStart: () => dispatch(logoutStart())
 })
 
-export default connect(mapStateToProps, mapDispatchToProps)(Header);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));

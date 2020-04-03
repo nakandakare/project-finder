@@ -10,12 +10,12 @@ a {
 }
 
 .main-content{
-  height: 93.223vh;
+  height: 100vh;
   background-color: #F2F6F9;
 }
 
 .content-wrapper{
-  max-width: 1050px;
+  max-width: 1150px;
   margin: 0 auto;
 }
 

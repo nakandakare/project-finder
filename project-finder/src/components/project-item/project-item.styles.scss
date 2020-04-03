@@ -1,12 +1,27 @@
-.project-item {
+.project {
+
+    padding-left: 16px;
+    padding-right: 16px;
+
+    .available-header {
+        margin-bottom: 36px;
+        margin-top: 8px;
+    .available-text{
+        Font-size: 20px;
+        Font-weight: 600;
+        color: rgb(49, 69, 89);
+        padding: 8px 0px 24px 18px;
+        }
+    }
+
+    .project-item {
     background-color: #fff;
     box-shadow: 0 4px 8px 0 rgba(49,69,89,0.16);
     border-radius: 4px;
     display: flex;
     flex-direction: row;
     width: 100%;
-    min-width: 650px;
-    margin-left: 18px;
+    max-width: 750px;
 
     .project-sidebar{
     display: flex;
@@ -119,5 +134,5 @@
         line-height: 16px;
         color: rgb(178, 197, 209);
     }
-}   
-
+    }   
+}

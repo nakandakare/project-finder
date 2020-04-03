@@ -6,13 +6,6 @@
     padding: 0 25px 0 25px;
     box-shadow: 0px 1px 5px 0px rgba(209,209,209,1);
 
-    .logo-img {
-    margin-top: 15px;
-    margin-left: 25px;
-    height:55%;
-    }
-    
-
     .options{
     height: 100%;
     display: flex;
@@ -48,18 +41,18 @@
         }
 
         .user-name {
-            margin-right: 40px;
+            margin-right: 10px;
             margin-bottom: 2px;
         }
 
         .logout-button{
-            padding: 4px;
-            margin-top: 4px;
             margin-right: 50px;
-        }
+            margin-bottom: 2px;
 
-        .logout-button:hover {
-            cursor: pointer;
+            .ui.dropdown .menu{
+                top: 38px;
+                left: -110px !important;
+            }
         }
     }
     

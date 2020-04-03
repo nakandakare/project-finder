@@ -6,6 +6,7 @@ import ProjectsPage from './pages/projects-page/projects-page.component';
 import SignInPage from './pages/sign-in-page/sign-in-page.component';
 import RegisterPage from './pages/register-page/register-page.component';
 import WithSpinner from './components/with-spinner/with-spinner.component';
+import ProjectCreatePage from './pages/project-create-page/project-create-page.component';
 import {checkUserSession} from './redux/user/user.actions';
 import {selectCurrentUser} from './redux/user/user.selectors';
 import {selectIsFetching} from './redux/user/user.selectors';
@@ -43,6 +44,7 @@ const App = ({currentUser, isFetching, checkUserSession}) => {
           <Route exact path='/projects' component={ProjectsPage} />
           <Route exact path='/signin' render={() => currentUser ? (<Redirect to='/projects' />) : (<SignInPageWithSpinner isLoading={isFetching}/>)} />
           <Route exact path='/register' render={() => currentUser ? (<Redirect to='/projects' />) : (<RegisterPageWithSpinner isLoading={isFetching} />)} />
+          <Route exact path='/project-create' component={ProjectCreatePage}/>
         </div>
       </div>
     </div>
