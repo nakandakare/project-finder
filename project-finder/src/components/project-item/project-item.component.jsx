@@ -1,7 +1,6 @@
 import React from 'react';
 import './project-item.styles.scss';
-import { ReactComponent as Logo } from '../../assets/project-logo.svg'
-import FlagIcon from '../utils/flag-icon-factory/flag-icon-factory';
+import FlagIcon from '../../utils/flag-icon-factory';
 import ReadMoreAndLess from 'react-read-more-less';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
@@ -11,14 +10,21 @@ const ProjectItem = () => {
     return (
         <div className='project-item'>
             <div className='project-sidebar'>
-                <span className='date'>Published MAR 30</span>
-                <Logo className='project-logo' />
+                <div className='user-section'>
+                    <div className='user-picture'>
+                        <img className='picture' src={'https://robohash.org/9'} alt='John Doe'></img>
+                    </div>
+                    <div className='user-name'>
+                        <span className='name'>Rebecca Smith</span>
+                        <FlagIcon code="us" />
+                    </div>
+                </div>
             </div>
             <div>
                 <div className='project-detail'>
                     <div className='project-name-button-row'>
                         <div className='project-name'>
-                            <span className='span-add-margin'>Project name: </span>
+                            <span className='project-label'>Project name: </span>
                             <span className='project-title'>Facebook</span>
                         </div>
                         <div className='apply-button'>
@@ -79,16 +85,6 @@ const ProjectItem = () => {
                                     <span className='span-add-margin'>Prog. Language</span>
                                     <span>React, Node.js, MySQL</span>
                                 </div>
-                            </div>
-                        </div>
-                        <div className='hr-div' />
-                        <div className='user-section'>
-                            <div className='user-picture'>
-                                <img className='picture' src={'https://hips.hearstapps.com/hmg-prod.s3.amazonaws.com/images/face-wash-2-1561136582.jpg'} alt='John Doe'></img>
-                            </div>
-                            <div className='user-name'>
-                                <FlagIcon code="us" />
-                                <span className='name'>Rebecca Smith</span>
                             </div>
                         </div>
                     </div>

@@ -12,18 +12,40 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 16px;
-        .date{
+    padding: 20px 15px 20px 20px;
+    width: 280px;
+    text-align: center;
+
+    .user-section {
+        .picture{
+            border-radius: 50%;
+            width: 90px;
+            background-color: #EEF4F9;
+        }
+        .user-name{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            cursor:pointer;
+            .name, .name:hover{
+                font-size: 16px;
+                font-weight: 600;
+                line-height: 16px;
+                padding: 16px;
+                color: rgb(0, 126, 255);
+                cursor: pointer;
+            }
+        }
+    }
+
+    .date{
             font-size: 12px;
             font-weight: 400;
             line-height: 16px;
             color: rgb(145, 166, 180);
-        }
-
-        .project-logo{
             position: relative;
-            top: 25px;
-            left: 2px;
+            align-items: center;
+            top: 100px;
         }
     }
 
@@ -31,13 +53,20 @@
         display: flex;
         flex-direction: column;
         padding: 0 0 12px 0;
+
+        .project-label{
+            margin-bottom: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            line-height: 16px;
+            color: rgb(178, 197, 209);
+        }
     }
 
     .project-detail{
         display:flex;
         flex-direction: column;
-        padding:16px 32px 16px 16px;
-        width: 100%;
+        padding:20px 20px 20px 15px;
         
         .project-name-button-row{
             display: flex;
@@ -45,9 +74,8 @@
             justify-content: space-between;
 
             .project-title{
-            font-size: 20px;
+            font-size: 18px;
             font-weight: 600;
-            line-height: 24px;
             color:rgb(0, 126, 255);
             }
             
@@ -75,9 +103,6 @@
                 display: flex;
                 flex-direction: column;
                 padding: 13px 13px 13px 0;
-                .span-add-margin {
-                    margin-bottom: 10px;
-                }
             }
 
             .first-column, .second-column,.third-column {
@@ -93,29 +118,6 @@
         font-weight: 600;
         line-height: 16px;
         color: rgb(178, 197, 209);
-    }
-
-    .user-section {
-        display:flex;
-        align-items: center;
-        margin-top: 2%;
-        .picture{
-            border-radius: 50%;
-            width: 90px;
-            padding: 15px;
-            background-color: #EEF4F9;
-        }
-        .user-name{
-            margin-left: 15px;
-            
-            .name{
-                margin-left:5px;
-                font-size: 16px;
-                font-weight: 600;
-                line-height: 16px;
-                color: rgb(0, 126, 255);
-            }
-        }
     }
 }   
 

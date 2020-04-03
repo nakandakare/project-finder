@@ -7,14 +7,13 @@
     box-shadow: 0px 1px 5px 0px rgba(209,209,209,1);
 
     .logo-img {
-        margin-top: 10px;
-        height:75%;
-        width: 118px;
-        margin-right:82px;
+    margin-top: 15px;
+    margin-left: 25px;
+    height:55%;
     }
+    
 
     .options{
-    width: 25%;
     height: 100%;
     display: flex;
     align-items: center;
@@ -25,11 +24,51 @@
     color: rgb(49, 69, 89);
     }
 
+    .option-each{
+        padding: 0 25px 0 25px;
+    }
+
+    .user-header{
+        display: flex;
+        justify-content: space-evenly;
+        align-items: center;
+        width: 140px;
+
+        .image-border{
+            border-radius: 50%;
+            width: 50px;
+            height: 40px;
+            margin-right: 10px;
+            background-color: #EEF4F9;
+        }
+        .user-img {
+            position: relative;
+            width: 40px;
+            bottom: 4px;
+        }
+
+        .user-name {
+            margin-right: 40px;
+            margin-bottom: 2px;
+        }
+
+        .logout-button{
+            padding: 4px;
+            margin-top: 4px;
+            margin-right: 50px;
+        }
+
+        .logout-button:hover {
+            cursor: pointer;
+        }
+    }
+    
     .auth-options{
         width: 200px;
         display: flex;
         align-items: center;
         justify-content: space-around;
+        margin-right: 20px;
 
         .register-button {
             background-color: rgb(0,126,255);
@@ -54,16 +93,7 @@
         opacity: 0;
     }
 
-    .option-projects:hover  hr{
-        opacity: 1;
-    }
-        .option-members:hover  hr{
-        opacity: 1;
-    }
-        .option-chat:hover  hr{
-        opacity: 1;
-    }
-        .option-support:hover  hr{
+    .option-each:hover  hr{
         opacity: 1;
     }
 

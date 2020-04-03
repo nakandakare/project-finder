@@ -12,7 +12,7 @@ const SignIn = ({emailSignIn}) => {
 
     const [userCredentials, setCredentials] = useState({email: '', password: '', keepSignIn: false});
 
-    const { email, password, /*keepSignIn*/ } = userCredentials;
+    const { email, password, keepSignIn } = userCredentials;
 
     const handleChange = event => {
         const {value, name, checked} = event.target;
@@ -21,7 +21,7 @@ const SignIn = ({emailSignIn}) => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        emailSignIn(email, password);
+        emailSignIn(email, password, keepSignIn);
     }
 
     return (
@@ -75,6 +75,6 @@ const SignIn = ({emailSignIn}) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    emailSignIn: (email,password) => dispatch(emailSignInStart({email, password}))
+    emailSignIn: (email, password, keepSignIn) => dispatch(emailSignInStart({ email, password, keepSignIn}))
 })
 export default connect(null,mapDispatchToProps)(SignIn);

@@ -19,3 +19,20 @@ export const registerStart = (userCredentials) => ({
     type: UserActionTypes.REGISTER_START,
     payload: userCredentials
 })
+
+export const logoutStart = () => ({
+    type: UserActionTypes.LOGOUT_START
+})
+
+export const logoutSuccess = () => ({
+    type: UserActionTypes.LOGOUT_SUCCESS
+})
+
+export const checkUserSession = () => ({
+    type: UserActionTypes.CHECK_USER_SESSION
+})
+
+export const setCurrentUser = (data) => ({
+    type: UserActionTypes.SET_CURRENT_USER,
+    payload: data
+})
