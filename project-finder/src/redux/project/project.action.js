@@ -6,7 +6,7 @@ export const projectAddStart = (projectData) => ({
 })
 
 export const projectAddSuccess = () => ({
-    type: ProjectActionTypes.PROJECT_ADD_SUCCESS,
+    type: ProjectActionTypes.PROJECT_ADD_SUCCESS
 })
 
 export const projectFetchStart = () => ({
@@ -20,5 +20,13 @@ export const projectFetchSuccess = (projects) => ({
 
 export const projectFailure = (err) => ({
     type: ProjectActionTypes.PROJECT_ADD_FAILURE,
-    payloaD: err
+    payload: err
 }) 
+
+export const projectCreateShow = () => ({
+    type: ProjectActionTypes.PROJECT_CREATE_SHOW
+})
+
+export const projectCreateClose = () => ({
+    type: ProjectActionTypes.PROJECT_CREATE_CLOSE
+})

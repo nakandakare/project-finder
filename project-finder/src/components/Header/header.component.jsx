@@ -1,24 +1,18 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './header.styles.scss';
 import { Link } from 'react-router-dom';
-import ProjectCreate from '../../components/project-create/project-create.component';
 import Button from '@material-ui/core/Button';
+import { projectCreateShow } from '../../redux/project/project.action'
 import { Dropdown } from 'semantic-ui-react'
 import { useLocation } from 'react-router-dom'
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { connect } from 'react-redux';
 import { logoutStart} from '../../redux/user/user.actions';
 
-const Header = ({ currentUser, logoutStart }) => {
-    
-    const [visibilityBoolean, setVisibility] = useState(false);
+const Header = ({ currentUser, logoutStart, projectCreateShow}) => {
 
     const { pathname } = useLocation();
     const path = pathname.replace('/', ''); 
-
-    const setBoolean = () => {
-        setVisibility(!visibilityBoolean);
-    }
 
     const startSignOut = () => {
         logoutStart();
@@ -67,7 +61,7 @@ const Header = ({ currentUser, logoutStart }) => {
                     <div className='logout-button'>
                         <Dropdown direction='left' closeOnChange>
                             <Dropdown.Menu >
-                                <Dropdown.Item icon='pencil alternate' text='Create Project' onClick={setBoolean}/>
+                                <Dropdown.Item icon='pencil alternate' text='Create Project' onClick={projectCreateShow}/>
                                 <Dropdown.Item icon='bell' text='Notification' />
                                 <Dropdown.Divider />
                                 <Dropdown.Item icon='sign-out' text='Log Out' onClick={startSignOut} />
@@ -89,17 +83,17 @@ const Header = ({ currentUser, logoutStart }) => {
                     </Link>
                 </div> 
             }
-            <ProjectCreate visibility={visibilityBoolean} setVisibility={setVisibility}/>
         </header>
     )
 }
 
 const mapStateToProps = (state) => ({
-    currentUser: selectCurrentUser(state)
+    currentUser: selectCurrentUser(state),
 })
 
 const mapDispatchToProps = (dispatch) => ({
-    logoutStart: () => dispatch(logoutStart())
+    logoutStart: () => dispatch(logoutStart()),
+    projectCreateShow: () => dispatch(projectCreateShow())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

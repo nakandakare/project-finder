@@ -4,16 +4,20 @@ import TextField from '@material-ui/core/TextField';
 import { OPTIONS } from '../../constants/constants';
 import { Select, Modal } from 'semantic-ui-react';
 import Button from '@material-ui/core/Button';
+import { createStructuredSelector } from 'reselect';
+import { selectCreateShow  } from '../../redux/project/project.selectors';
+import { projectCreateClose } from '../../redux/project/project.action';    
+import { projectAddStart} from '../../redux/project/project.action';
 import { selectCurrentUser} from '../../redux/user/user.selectors';
 import { connect } from 'react-redux';
 
-const ProjectCreate = ({visibility, setVisibility, currentUser}) => {
+const ProjectCreate = ({currentUser, projectAddStart, createShow, projectCreateClose }) => {
 
     const [projectData, setProjectData] = useState({ userId: '', name: '', description: '', size: '', duration: '', difficulty: '', members: '', language: '', progLanguage: '' })
 
     const handleChange = (event) => {
         const { value, name } = event.target;
-        setProjectData({ ...projectData, [name]: value });
+        setProjectData({ ...projectData, [name]: value, userId: currentUser.id });
     }
 
     const optionChange = (e, data) => {
@@ -23,12 +27,11 @@ const ProjectCreate = ({visibility, setVisibility, currentUser}) => {
 
     const handleSubmit = event => {
         event.preventDefault();
-        setProjectData({...projectData, userId: currentUser.id});
-        
+        projectAddStart(projectData)
     }
 
     return (
-        <Modal className='modal' open={visibility} closeIcon onClose={setVisibility()}  >
+        <Modal className='modal' open={createShow} closeIcon onClose={projectCreateClose}  >
             <Modal.Content image>
                 <Modal.Description>
                     <div className='project-create'>
@@ -50,7 +53,7 @@ const ProjectCreate = ({visibility, setVisibility, currentUser}) => {
                                 <TextField className='project-language project-input' onChange={handleChange} required name='language' label="Conversation language" variant="outlined" size="small" />
                                 <TextField className='project-programming-language project-input' onChange={handleChange} required name='progLanguage' label="Programming language" variant="outlined" size="small" />
                             </div>
-                            <Button className="create-button" type="submit" size="medium" variant="contained" color="primary" onClick={setVisibility()}>
+                            <Button className="create-button" type="submit" size="medium" variant="contained" color="primary" onClick={projectCreateClose }>
                                 Create project
                              </Button>
                         </form>
@@ -62,8 +65,14 @@ const ProjectCreate = ({visibility, setVisibility, currentUser}) => {
     )
 }
 
-const mapStateToProps = (state) => ({
-    currentUser: selectCurrentUser(state)
+const mapStateToProps = createStructuredSelector({
+    currentUser: selectCurrentUser,
+    createShow: selectCreateShow
 })
 
-export default connect(mapStateToProps)(ProjectCreate);
+const mapDispatchToProps = dispatch => ({
+    projectAddStart: (projectData) => dispatch(projectAddStart(projectData)),
+    projectCreateClose: () => dispatch(projectCreateClose())
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(ProjectCreate);

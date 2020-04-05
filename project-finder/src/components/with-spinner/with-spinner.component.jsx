@@ -3,8 +3,8 @@ import { SpinnerOverlay, SpinnerContainer } from './with-spinner.styles.jsx';
 
 //HOC
 const WithSpinner = (WrappedComponent) => {
-    const Spinner = ({ isLoading, ...otherProps }) => {
-        return isLoading ? (
+    const Spinner = ({ isFetching, ...otherProps }) => {
+        return isFetching ? (
             <SpinnerOverlay>
                 <SpinnerContainer />
             </SpinnerOverlay>

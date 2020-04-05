@@ -4,22 +4,7 @@ import { signInFailure, signInSuccess, logoutSuccess, setCurrentUser } from './u
 import { URL } from '../../constants/constants';
 import Cookies from 'universal-cookie';
 import jwt_decode from 'jwt-decode';
-
-const postRequest = (url, payload) => {
-    return fetch(url, {
-        method: 'POST',
-        body: JSON.stringify(payload),
-        headers: { 'Content-Type': 'application/json' },
-        credentials: 'include'
-    }).then(res => res.json())
-}
-
-const getRequest = (url) => {
-    return fetch(url, {
-        method: 'GET',
-        credentials: 'include'
-    }).then(res => res)
-}
+import {postRequest, getRequest} from '../../utils/fetch-request';
 
 export function* signInWithEmail({ payload }) {
     try {
@@ -31,16 +16,12 @@ export function* signInWithEmail({ payload }) {
 }
 
 export function* registerWithEmail({ payload }) {
-    try {
         const user = yield postRequest(URL.API_REGISTER, payload)
-        yield put(signInSuccess(user));
-    } catch (err) {
-        yield put(signInFailure(err));
-    }
+        user ? yield put(signInSuccess(user)) : yield put(signInFailure())
 }
 
 export function* logout(){
-    const resp = yield getRequest(URL.API_LOGOUT);
+    yield getRequest(URL.API_LOGOUT);
     yield put(logoutSuccess());
 }
 

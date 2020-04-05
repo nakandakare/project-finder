@@ -5,21 +5,18 @@ import ReadMoreAndLess from 'react-read-more-less';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 
-const ProjectItem = () => {
+const ProjectItem = ({projectname, description, size, duration, difficulty, members, language, proglanguage, created_at, name, img}) => {
 
     return (
         <div className='project'>
-            <header className='available-header'>
-            <span className='available-text'>1 Available Projects Found:</span>
-            </header>
             <div className='project-item'>
                 <div className='project-sidebar'>
                     <div className='user-section'>
                         <div className='user-picture'>
-                            <img className='picture' src={'https://robohash.org/9'} alt='John Doe'></img>
+                            <img className='picture' src={img} alt='Robots'></img>
                         </div>
                         <div className='user-name'>
-                            <span className='name'>Rebecca Smith</span>
+                            <span className='name'>{name.toUpperCase()}</span>
                             <FlagIcon code="us" />
                         </div>
                     </div>
@@ -29,65 +26,58 @@ const ProjectItem = () => {
                         <div className='project-name-button-row'>
                             <div className='project-name'>
                                 <span className='project-label'>Project name: </span>
-                                <span className='project-title'>Facebook</span>
+                                <span className='project-title'>{projectname}</span>
                             </div>
                             <div className='apply-button'>
-                                <Button
-                                    variant="contained"
-                                    color="primary"
-                                    className={'icon-button'}
-                                    endIcon={<Icon>thumb_up</Icon>}
-                                >
-                                    APPLY
-                             </Button>
+                                    <Button
+                                        variant="contained"
+                                        color="primary"
+                                        className='icon-button'
+                                        size='small'
+                                        endIcon={<Icon>thumb_up</Icon>}
+                                    >
+                                        APPLY
+                                </Button>
                             </div>
                         </div>
                         <div className='project-description'>
                             <span className='span-add-margin'>Description: </span>
-                            <ReadMoreAndLess charLimit={200}
+                            <div className='readmore-div'>
+                            <ReadMoreAndLess charLimit={140}
                                 readMoreText="more"
-                                readLessText="less">Lorem Ipsum is simply dummy text
-                                of the printing and typesetting industry.
-                                Lorem Ipsum has been the industry's standard
-                                dummy text ever since the 1500s, when an unknown
-                                printer took a galley of type and scrambled it to
-                                make a type specimen book. It has survived not only
-                                five centuries, but also the leap into electronic typesetting,
-                                remaining essentially unchanged. It was popularised in the 1960s
-                                with the release of Letraset sheets containing Lorem Ipsum passages,
-                                and more recently with desktop publishing software like Aldus PageMaker
-                                including versions of Lorem Ipsum
-                        </ReadMoreAndLess>
+                                readLessText="less">{description}
+                            </ReadMoreAndLess>
+                            </div>
                             <div className='hr-div first-hr-div' />
                             <div className='column-box'>
                                 <div className='first-column'>
                                     <div className='first-row'>
                                         <span className='span-add-margin'>Project Size</span>
-                                        <span>Medium</span>
+                                        <span>{size}</span>
                                     </div>
                                     <div className='second-row'>
                                         <span className='span-add-margin'>Looking For</span>
-                                        <span>14-20 Member(s)</span>
+                                        <span>{members} Member(s)</span>
                                     </div>
                                 </div>
                                 <div className='second-column'>
                                     <div className='first-row'>
                                         <span className='span-add-margin'>Project Duration</span>
-                                        <span>3 Month</span>
+                                        <span>{duration}</span>
                                     </div>
                                     <div className='second-row'>
                                         <span className='span-add-margin'>Language</span>
-                                        <span>English</span>
+                                        <span>{language}</span>
                                     </div>
                                 </div>
                                 <div className='third-column'>
                                     <div className='first-row'>
                                         <span className='span-add-margin'>Project Difficulty</span>
-                                        <span>Complex</span>
+                                        <span>{difficulty}</span>
                                     </div>
                                     <div className='second-row'>
                                         <span className='span-add-margin'>Prog. Language</span>
-                                        <span>React, Node.js, MySQL</span>
+                                        <span>{proglanguage}</span>
                                     </div>
                                 </div>
                             </div>
