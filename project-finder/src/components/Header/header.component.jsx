@@ -1,19 +1,24 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './header.styles.scss';
 import { Link } from 'react-router-dom';
-import logo from '../../assets/project-finder-logo.png';
+import ProjectCreate from '../../components/project-create/project-create.component';
 import Button from '@material-ui/core/Button';
 import { Dropdown } from 'semantic-ui-react'
 import { useLocation } from 'react-router-dom'
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { connect } from 'react-redux';
 import { logoutStart} from '../../redux/user/user.actions';
-import { withRouter } from "react-router-dom";
 
-const Header = ({ currentUser, logoutStart, history }) => {
+const Header = ({ currentUser, logoutStart }) => {
     
+    const [visibilityBoolean, setVisibility] = useState(false);
+
     const { pathname } = useLocation();
     const path = pathname.replace('/', ''); 
+
+    const setBoolean = () => {
+        setVisibility(!visibilityBoolean);
+    }
 
     const startSignOut = () => {
         logoutStart();
@@ -62,7 +67,7 @@ const Header = ({ currentUser, logoutStart, history }) => {
                     <div className='logout-button'>
                         <Dropdown direction='left' closeOnChange>
                             <Dropdown.Menu >
-                                <Dropdown.Item icon='pencil alternate' text='Create Project' onClick={()=> history.push('/project-create')}/>
+                                <Dropdown.Item icon='pencil alternate' text='Create Project' onClick={setBoolean}/>
                                 <Dropdown.Item icon='bell' text='Notification' />
                                 <Dropdown.Divider />
                                 <Dropdown.Item icon='sign-out' text='Log Out' onClick={startSignOut} />
@@ -84,6 +89,7 @@ const Header = ({ currentUser, logoutStart, history }) => {
                     </Link>
                 </div> 
             }
+            <ProjectCreate visibility={visibilityBoolean} setVisibility={setVisibility}/>
         </header>
     )
 }
@@ -96,4 +102,4 @@ const mapDispatchToProps = (dispatch) => ({
     logoutStart: () => dispatch(logoutStart())
 })
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Header));
+export default connect(mapStateToProps, mapDispatchToProps)(Header);
