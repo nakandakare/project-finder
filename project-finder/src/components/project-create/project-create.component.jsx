@@ -53,7 +53,7 @@ const ProjectCreate = ({currentUser, projectAddStart, createShow, projectCreateC
                                 <TextField className='project-language project-input' onChange={handleChange} required name='language' label="Conversation language" variant="outlined" size="small" />
                                 <TextField className='project-programming-language project-input' onChange={handleChange} required name='progLanguage' label="Programming language" variant="outlined" size="small" />
                             </div>
-                            <Button className="create-button" type="submit" size="medium" variant="contained" color="primary" onClick={projectCreateClose }>
+                            <Button className="create-button" type="submit" size="medium" variant="contained" color="primary" >
                                 Create project
                              </Button>
                         </form>

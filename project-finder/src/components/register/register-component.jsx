@@ -2,18 +2,24 @@ import React, {useState} from 'react';
 import './register.styles.scss';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button';
+import Select from 'react-select'
+import countryList from 'react-select-country-list'
 import {registerStart} from '../../redux/user/user.actions';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
  
 const Register = ({registerStart}) => {
-    const [userCredentials, setCredentials] = useState({ email: '', password: '', repassword: '',  name: ''});
-
-    const { email, password, repassword , name } = userCredentials;
+    const [userCredentials, setCredentials] = useState({ email: '', password: '', repassword: '',  name: '', flag: ''});
+    const options = countryList().getData()
+    const { email, password, repassword , name, flag } = userCredentials;
 
     const handleChange = event => {
         const { value, name } = event.target;
         setCredentials({ ...userCredentials, [name]: value });
+    }
+    
+    const flagHandler = event => {
+        setCredentials({...userCredentials, flag: event.value})
     }
 
     const handleSubmit = event => {
@@ -21,7 +27,7 @@ const Register = ({registerStart}) => {
         if(password !== repassword){
             return alert('The passwords you typed do not match');
         }
-        registerStart(email, password, name);
+        registerStart(email, password, name, flag);
     }
 
     return (
@@ -43,6 +49,14 @@ const Register = ({registerStart}) => {
                     <div className='input'>
                         <TextField className='input-section' onChange={handleChange} required name='repassword' label="Password" type="password" autoComplete="new-password" variant="outlined" size="small" />
                     </div>
+                    <div className='input'>
+                    <Select
+                        options={options}
+                        value={flag}
+                        onChange={flagHandler}
+                        placeholder='Nationality'
+                    />
+                    </div>
                 </div>
                 <div className='register-button'>
                     <Button variant="contained" color="primary" type="submit">
@@ -63,7 +77,7 @@ const Register = ({registerStart}) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    registerStart: (email, password, name) => dispatch(registerStart({email, password, name}))
+    registerStart: (email, password, name, flag) => dispatch(registerStart({email, password, name, flag}))
 })
 
 export default connect(null, mapDispatchToProps)(Register);

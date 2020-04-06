@@ -4,7 +4,9 @@ import Register from '../../components/register/register-component';
 
 const RegisterPage = () => {
     return(
+    <div className='register-page'>
         <Register />
+    </div>
     )
 }
 

@@ -18,6 +18,7 @@ const projectReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 isFetching: false,
+                createShow: false,
                 err: null
             }
         case ProjectActionTypes.PROJECT_FETCH_SUCCESS:

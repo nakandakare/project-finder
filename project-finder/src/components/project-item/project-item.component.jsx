@@ -5,8 +5,9 @@ import ReadMoreAndLess from 'react-read-more-less';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 
-const ProjectItem = ({projectname, description, size, duration, difficulty, members, language, proglanguage, created_at, name, img}) => {
+const ProjectItem = ({ projectname, description, size, duration, difficulty, members, language, proglanguage, created_at, name, img, flag }) => {
 
+    const created = created_at.substring(0, created_at.indexOf('T'));
     return (
         <div className='project'>
             <div className='project-item'>
@@ -17,7 +18,7 @@ const ProjectItem = ({projectname, description, size, duration, difficulty, memb
                         </div>
                         <div className='user-name'>
                             <span className='name'>{name.toUpperCase()}</span>
-                            <FlagIcon code="us" />
+                            <FlagIcon className='flag' code={flag.toLowerCase()} />
                         </div>
                     </div>
                 </div>
@@ -28,25 +29,30 @@ const ProjectItem = ({projectname, description, size, duration, difficulty, memb
                                 <span className='project-label'>Project name: </span>
                                 <span className='project-title'>{projectname}</span>
                             </div>
-                            <div className='apply-button'>
+                            <div className='project-created-button-end'>
+                                <div className='created-at'>
+                                    {created}
+                                </div>
+                                <div className='apply-button'>
                                     <Button
                                         variant="contained"
                                         color="primary"
                                         className='icon-button'
                                         size='small'
-                                        endIcon={<Icon>thumb_up</Icon>}
+                                        endIcon={<Icon>group</Icon>}
                                     >
                                         APPLY
                                 </Button>
+                                </div>
                             </div>
                         </div>
                         <div className='project-description'>
                             <span className='span-add-margin'>Description: </span>
                             <div className='readmore-div'>
-                            <ReadMoreAndLess charLimit={140}
-                                readMoreText="more"
-                                readLessText="less">{description}
-                            </ReadMoreAndLess>
+                                <ReadMoreAndLess charLimit={140}
+                                    readMoreText="more"
+                                    readLessText="less">{description}
+                                </ReadMoreAndLess>
                             </div>
                             <div className='hr-div first-hr-div' />
                             <div className='column-box'>

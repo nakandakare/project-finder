@@ -53,7 +53,7 @@ const Header = ({ currentUser, logoutStart, projectCreateShow}) => {
             {currentUser ?
                 <div className='user-header'>
                     <div className='image-border'>
-                        <img className='user-img' src={currentUser.img}/>
+                        <img className='user-img' src={currentUser.img} alt='user-img'/>
                     </div>
                     <div className='user-name'>
                         <span >{currentUser.name}</span>

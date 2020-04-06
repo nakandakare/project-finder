@@ -15,4 +15,8 @@ export const selectIsFetching = createSelector(
     [selectProject],
     project => project.isFetching
 )
+export const selectProjectsAvailable = createSelector(
+    [selectProjects],
+    projects => projects.reduce((total,project) => project.available ? total+1 : total, 0)
+)
 
