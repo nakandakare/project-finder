@@ -1,18 +1,18 @@
 import React, { useState } from 'react';
 import './filter.styles.scss';
-import _ from 'lodash'
 import { Icon, Search, Checkbox, Form, Button } from 'semantic-ui-react'
 import Slider from '@material-ui/core/Slider';
 import { MARKS_MEBMERS, MARKS_DURATION } from '../../constants/constants';
-
-const Filter = () => {
+import {projectFilterAddStart} from '../../redux/project/project.action';
+import {connect} from 'react-redux';
+import _ from 'lodash';
+const Filter = ({filterAddStart}) => {
 
     const [projectData, setProjectData] = useState({ projectname: '',  size: '', duration: '', category: '', members: '', language: '', progLanguage: '' })
     const { size, category } = projectData;
 
     const handleSearchChange = (e, { value, name }) => {
         setProjectData({ ...projectData, [name]: value })
-        console.log(projectData);
     }
 
     function valueLabelFormatMembers(value) {
@@ -25,12 +25,18 @@ const Filter = () => {
     }
 
     const handleMemberChange = (e, value) => {
-        setProjectData({ ...projectData, members: MARKS_MEBMERS.findIndex((mark) => mark.value === value)});
+        const labelArray = ["", 1, 2, 3, 4,5,6,7,8,9,10];
+        setProjectData({ ...projectData, members: labelArray[MARKS_MEBMERS.findIndex((mark) => mark.value === value)].toString()});
     }
 
     const handleDurationChange = (e, value) => {
-        const labelArray = [0, 1, 3, 6, 12];
-        setProjectData({...projectData, duration: labelArray[MARKS_DURATION.findIndex((mark) => mark.value === value)]});
+        const labelArray = ["", 1, 3, 6, 12];
+        setProjectData({ ...projectData, duration: labelArray[MARKS_DURATION.findIndex((mark) => mark.value === value)].toString()});
+    }
+
+    const buttonClicked = () => {
+        const filteredProjectData = _.pickBy(projectData,_.identity);
+        filterAddStart(filteredProjectData);
     }
 
     return (
@@ -60,7 +66,7 @@ const Filter = () => {
                                     Project Title
                             </p>
                             <Search className='search-type' size="large" name='projectname'
-                                onSearchChange={_.debounce(handleSearchChange, 500)}
+                                onSearchChange={handleSearchChange}
                             />
                         </div>
                     </div>
@@ -196,7 +202,7 @@ const Filter = () => {
                         Conversation Language
                         </p>
                             <Search className='search-type' size="large" name='language'
-                                onSearchChange={_.debounce(handleSearchChange, 500)}
+                                onSearchChange={handleSearchChange}
                             />
                         </div>
                     </div>
@@ -208,14 +214,14 @@ const Filter = () => {
                         Programming Language
                         </p>
                             <Search className='search-type' size="large" name='progLanguage'
-                                onSearchChange={_.debounce(handleSearchChange, 500)}
+                                onSearchChange={handleSearchChange}
                             />
                         </div>
                     </div>
                     <div className='search-button'>
                         <Button animated className='button'>
-                            <Button.Content visible>FILTER PROJECTS</Button.Content>
-                            <Button.Content hidden>
+                            <Button.Content visible onClick={buttonClicked}>FILTER PROJECTS</Button.Content>
+                            <Button.Content hidden onClick={buttonClicked}>
                                 <Icon name='search' />
                             </Button.Content>
                         </Button>
@@ -226,4 +232,8 @@ const Filter = () => {
     )
 }
 
-export default Filter;
+const mapDispatchToProps = dispatch => ({
+    filterAddStart: (filteredProjectData) => dispatch(projectFilterAddStart(filteredProjectData))
+})
+
+export default connect(null,mapDispatchToProps)(Filter);

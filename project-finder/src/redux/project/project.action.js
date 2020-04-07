@@ -30,3 +30,8 @@ export const projectCreateShow = () => ({
 export const projectCreateClose = () => ({
     type: ProjectActionTypes.PROJECT_CREATE_CLOSE
 })
+
+export const projectFilterAddStart = (projectFilter) => ({
+    type: ProjectActionTypes.PROJECT_FILTERED_ADD_START,
+    payload: projectFilter
+})

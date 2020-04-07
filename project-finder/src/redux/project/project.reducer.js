@@ -3,7 +3,8 @@ import ProjectActionTypes from './project.types';
 const INITIAL_STATE = {
     projects: null,
     isFetching: false,
-    createShow: false
+    createShow: false,
+    projectFilter: null
 }
 
 const projectReducer = (state = INITIAL_STATE, action) => {
@@ -13,6 +14,11 @@ const projectReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 isFetching: true
+            }
+        case ProjectActionTypes.PROJECT_FILTERED_ADD_START:
+            return {
+                ...state,
+                projectFilter: action.payload
             }
         case ProjectActionTypes.PROJECT_ADD_SUCCESS:
             return {

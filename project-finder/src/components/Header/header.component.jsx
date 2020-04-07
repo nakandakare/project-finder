@@ -8,14 +8,19 @@ import { useLocation } from 'react-router-dom'
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { connect } from 'react-redux';
 import { logoutStart} from '../../redux/user/user.actions';
+import { projectFilterAddStart } from '../../redux/project/project.action';
 
-const Header = ({ currentUser, logoutStart, projectCreateShow}) => {
+const Header = ({ currentUser, logoutStart, projectCreateShow, filterAddStart }) => {
 
     const { pathname } = useLocation();
     const path = pathname.replace('/', ''); 
 
     const startSignOut = () => {
         logoutStart();
+    }
+
+    const filterReset = () => {
+        filterAddStart({});
     }
 
     return (
@@ -25,7 +30,7 @@ const Header = ({ currentUser, logoutStart, projectCreateShow}) => {
                 </Link>
             </div>
             <div className='options'>
-                <Link className='option-each' to='/projects'>
+                <Link className='option-each' to='/projects' onClick={filterReset}>
                     PROJECTS
                     {
                         path === 'projects' ? <hr className='hr-highlight' /> : <hr />
@@ -93,7 +98,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     logoutStart: () => dispatch(logoutStart()),
-    projectCreateShow: () => dispatch(projectCreateShow())
+    projectCreateShow: () => dispatch(projectCreateShow()),
+    filterAddStart: (filteredProjectData) => dispatch(projectFilterAddStart(filteredProjectData))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);
