@@ -1,7 +1,37 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './filter.styles.scss';
+import _ from 'lodash'
+import { Icon, Search, Checkbox, Form, Button } from 'semantic-ui-react'
+import Slider from '@material-ui/core/Slider';
+import { MARKS_MEBMERS, MARKS_DURATION } from '../../constants/constants';
 
-const Filter = ({match}) => {
+const Filter = () => {
+
+    const [projectData, setProjectData] = useState({ projectname: '',  size: '', duration: '', category: '', members: '', language: '', progLanguage: '' })
+    const { size, category } = projectData;
+
+    const handleSearchChange = (e, { value, name }) => {
+        setProjectData({ ...projectData, [name]: value })
+        console.log(projectData);
+    }
+
+    function valueLabelFormatMembers(value) {
+        return MARKS_MEBMERS.findIndex((mark) => mark.value === value);
+    }
+
+    function valueLabelFormatDurations(value) {
+        const labelArray = [0, 1, 3, 6, 12];
+        return labelArray[MARKS_DURATION.findIndex((mark) => mark.value === value)];
+    }
+
+    const handleMemberChange = (e, value) => {
+        setProjectData({ ...projectData, members: MARKS_MEBMERS.findIndex((mark) => mark.value === value)});
+    }
+
+    const handleDurationChange = (e, value) => {
+        const labelArray = [0, 1, 3, 6, 12];
+        setProjectData({...projectData, duration: labelArray[MARKS_DURATION.findIndex((mark) => mark.value === value)]});
+    }
 
     return (
         <div className='filter-box'>
@@ -14,6 +44,183 @@ const Filter = ({match}) => {
                         <p>Member Search</p>
                     </li>
                 </ul>
+                <div className='tab-title'>
+                    <div className='logo'>
+                        <Icon name='pencil alternate' size='large' />
+                    </div>
+                    <div className='title'>
+                        <p className='filter-big-title'>Project Filter</p>
+                    </div>
+                </div>
+                <div className='search-options'>
+                    <div className='search-input'>
+                        <div className='tab-search-title'>
+                            <p className='filter-title'>
+                                <Icon name='unordered list' />
+                                    Project Title
+                            </p>
+                            <Search className='search-type' size="large" name='projectname'
+                                onSearchChange={_.debounce(handleSearchChange, 500)}
+                            />
+                        </div>
+                    </div>
+
+
+                    <div className='search-input'>
+                        <div className='tab-search'>
+                            <div className='filter-title'>
+                                <Icon name='box' />
+                                    Project Size
+                            </div>
+                            <Form className='form'>
+                                <Form.Field>
+                                    <Checkbox
+                                        checked={size === 'Small'}
+                                        className='checkbox'
+                                        label='Small'
+                                        name='size'
+                                        value='Small'
+                                        onChange={handleSearchChange}
+                                    />
+                                </Form.Field>
+                                <Form.Field>
+                                    <Checkbox
+                                        checked={size === 'Medium'}
+                                        className='checkbox'
+                                        label='Medium'
+                                        name='size'
+                                        value='Medium'
+                                        onChange={handleSearchChange}
+                                    />
+                                </Form.Field>
+                                <Form.Field>
+                                    <Checkbox
+                                        checked={size === 'Large'}
+                                        className='checkbox'
+                                        label='Large'
+                                        name='size'
+                                        value='Large'
+                                        onChange={handleSearchChange}
+                                    />
+                                </Form.Field>
+                            </Form>
+                        </div>
+                    </div>
+
+
+                    <div className='search-input'>
+                        <div className='tab-search'>
+                            <div className='filter-title'>
+                                <Icon name='time' />
+                        Project Duration
+                        </div>
+                        </div>
+                        <Slider className='slider'
+                            name='duration'
+                            defaultValue={0}
+                            onChange={handleDurationChange}
+                            valueLabelFormat={valueLabelFormatDurations}                 
+                            aria-labelledby="discrete-slider-custom"
+                            step={null}
+                            valueLabelDisplay="auto"
+                            marks={MARKS_DURATION}
+                        />
+                    </div>
+
+
+
+                    <div className='search-input'>
+                        <div className='tab-search category'>
+                            <div className='filter-title'>
+                                <Icon name='world' />
+                        Project Category
+                        </div>
+                            <Form className='checkbox-options form'>
+                                <Form.Field>
+                                    <Checkbox
+                                        checked={category === 'Web Application'}
+                                        className='checkbox'
+                                        label='Web Application'
+                                        name='category'
+                                        value='Web Application'
+                                        onChange={handleSearchChange}
+                                    />
+                                </Form.Field>
+                                <Form.Field>
+                                    <Checkbox
+                                        checked={category === 'Mobile Application'}
+                                        className='checkbox'
+                                        label='Mobile Application'
+                                        name='category'
+                                        value='Mobile Application'
+                                        onChange={handleSearchChange}
+                                    />
+                                </Form.Field>
+                                <Form.Field>
+                                    <Checkbox
+                                        checked={category === 'Others'}
+                                        className='checkbox'
+                                        label='Others'
+                                        name='category'
+                                        value='Others'
+                                        onChange={handleSearchChange}
+                                    />
+                                </Form.Field>
+                            </Form>
+                        </div>
+                    </div>
+
+                    <div className='search-input'>
+                        <div className='tab-search members'>
+                            <div className='filter-title'>
+                                <Icon name='users' />
+                        Members for the project
+                        </div>
+                        </div>
+                        <Slider className='slider'
+                            defaultValue={0}
+                            name='member'
+                            onChange={handleMemberChange}
+                            valueLabelFormat={valueLabelFormatMembers}
+                            aria-labelledby="discrete-slider-custom"
+                            step={null}
+                            valueLabelDisplay="auto"
+                            marks={MARKS_MEBMERS}
+                        />
+                    </div>
+
+                    <div className='search-input'>
+                        <div className='tab-search-title'>
+                            <p className='filter-title'>
+                                <Icon name='comments' />
+                        Conversation Language
+                        </p>
+                            <Search className='search-type' size="large" name='language'
+                                onSearchChange={_.debounce(handleSearchChange, 500)}
+                            />
+                        </div>
+                    </div>
+
+                    <div className='search-input'>
+                        <div className='tab-search-title'>
+                            <p className='filter-title'>
+                                <Icon name='code' />
+                        Programming Language
+                        </p>
+                            <Search className='search-type' size="large" name='progLanguage'
+                                onSearchChange={_.debounce(handleSearchChange, 500)}
+                            />
+                        </div>
+                    </div>
+                    <div className='search-button'>
+                        <Button animated className='button'>
+                            <Button.Content visible>FILTER PROJECTS</Button.Content>
+                            <Button.Content hidden>
+                                <Icon name='search' />
+                            </Button.Content>
+                        </Button>
+                    </div>
+                </div>
             </div>
         </div>
     )

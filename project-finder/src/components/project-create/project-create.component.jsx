@@ -13,11 +13,12 @@ import { connect } from 'react-redux';
 
 const ProjectCreate = ({currentUser, projectAddStart, createShow, projectCreateClose }) => {
 
-    const [projectData, setProjectData] = useState({ userId: '', name: '', description: '', size: '', duration: '', difficulty: '', members: '', language: '', progLanguage: '' })
+    const [projectData, setProjectData] = useState({ userId: '', name: '', description: '', size: '', duration: '', category: '', members: '', language: '', progLanguage: '' })
 
     const handleChange = (event) => {
         const { value, name } = event.target;
         setProjectData({ ...projectData, [name]: value, userId: currentUser.id });
+        console.log(projectData);
     }
 
     const optionChange = (e, data) => {
@@ -42,12 +43,12 @@ const ProjectCreate = ({currentUser, projectAddStart, createShow, projectCreateC
                             <TextField className='project-description project-input' id="outlined-multiline-static" onChange={handleChange} label="Project description" multiline required rows="5" variant="outlined" name='description'
                             />
                             <div className='project-row'>
-                                <TextField className='project-duration project-input' onChange={handleChange} required name='duration' label="Project duration (Date)" variant="outlined" size="small" />
+                                <Select className='project-duration project-input' placeholder='Project duration' name='duration' onChange={optionChange} options={OPTIONS.DURATION} />
                                 <Select className='project-size project-input' placeholder='Project size' name='size' onChange={optionChange} options={OPTIONS.SIZE} />
                             </div>
                             <div className='project-row'>
-                                <Select className='project-difficulty project-input' placeholder='Project difficulty' name='difficulty' onChange={optionChange} options={OPTIONS.DIFFICULTY} />
-                                <Select className='project-members project-input' placeholder='Members for the project' name='members' onChange={optionChange} options={OPTIONS.MEMBERS} />
+                                <Select className='project-category project-input' placeholder='Project category' name='category' onChange={optionChange} options={OPTIONS.CATEGORY} />
+                                <TextField className='project-members project-input' onChange={handleChange} required name='members' label="Members for the project (Max 10)" variant="outlined" size="small" />
                             </div>
                             <div className='project-row'>
                                 <TextField className='project-language project-input' onChange={handleChange} required name='language' label="Conversation language" variant="outlined" size="small" />

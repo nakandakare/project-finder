@@ -5,7 +5,10 @@ const selectProject = state => state.project;
 
 export const selectProjects = createSelector(
     [selectProject],
-    project => jsonToArray(project.projects) 
+    project => {
+        const projects = jsonToArray(project.projects)
+        return projects.filter(project => project);
+    }
 )
 export const selectCreateShow = createSelector(
     [selectProject],

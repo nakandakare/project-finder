@@ -128,7 +128,7 @@
         
         .column-box{
         display: flex;
-        flex-wrap: wrap;
+        flex-direction: row;
         justify-content: space-between;
         
             .first-row, .second-row{
@@ -144,7 +144,7 @@
         font-size: 14px;
         font-weight: 600;
         line-height: 16px;
-        color: rgb(178, 197, 209);
+        color: rgb(165, 188, 204);
     }
     }   
 }

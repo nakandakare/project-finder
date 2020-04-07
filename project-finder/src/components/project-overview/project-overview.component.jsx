@@ -5,12 +5,11 @@ import { selectProjects, selectProjectsAvailable } from '../../redux/project/pro
 import {connect} from 'react-redux';
 import ProjectItem from '../project-item/project-item.component';
 
-const ProjectOverview = ({ projects, projectsAvailable}) => {
-    console.log(projectsAvailable);
+const ProjectOverview = ({ projects, projectsCount}) => {
     return (
         <div className='project-overview'>
         <header className='available-header'>
-                <span className='available-text'>{projectsAvailable} Available Projects Found:</span>
+                <span className='available-text'>{projectsCount} Available Projects Found:</span>
         </header>
         {
                 projects.map(({ project_id, ...otherCollectionProps }) => (<ProjectItem key={project_id} {...otherCollectionProps}/>))
@@ -21,7 +20,7 @@ const ProjectOverview = ({ projects, projectsAvailable}) => {
 
 const mapStateToProps = createStructuredSelector({
     projects: selectProjects,
-    projectsAvailable: selectProjectsAvailable
+    projectsCount: selectProjectsAvailable
 })
 
 export default connect(mapStateToProps)(ProjectOverview);

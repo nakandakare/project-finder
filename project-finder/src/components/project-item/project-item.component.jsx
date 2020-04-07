@@ -5,7 +5,7 @@ import ReadMoreAndLess from 'react-read-more-less';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 
-const ProjectItem = ({ projectname, description, size, duration, difficulty, members, language, proglanguage, created_at, name, img, flag }) => {
+const ProjectItem = ({ projectname, description, size, duration, members, language, proglanguage, created_at, name, img, flag, category }) => {
 
     const created = created_at.substring(0, created_at.indexOf('T'));
     return (
@@ -58,8 +58,8 @@ const ProjectItem = ({ projectname, description, size, duration, difficulty, mem
                             <div className='column-box'>
                                 <div className='first-column'>
                                     <div className='first-row'>
-                                        <span className='span-add-margin'>Project Size</span>
-                                        <span>{size}</span>
+                                        <span className='span-add-margin'>Project Category</span>
+                                        <span>{category}</span>
                                     </div>
                                     <div className='second-row'>
                                         <span className='span-add-margin'>Looking For</span>
@@ -69,7 +69,7 @@ const ProjectItem = ({ projectname, description, size, duration, difficulty, mem
                                 <div className='second-column'>
                                     <div className='first-row'>
                                         <span className='span-add-margin'>Project Duration</span>
-                                        <span>{duration}</span>
+                                        <span>{duration} Month</span>
                                     </div>
                                     <div className='second-row'>
                                         <span className='span-add-margin'>Language</span>
@@ -78,8 +78,8 @@ const ProjectItem = ({ projectname, description, size, duration, difficulty, mem
                                 </div>
                                 <div className='third-column'>
                                     <div className='first-row'>
-                                        <span className='span-add-margin'>Project Difficulty</span>
-                                        <span>{difficulty}</span>
+                                        <span className='span-add-margin'>Project Size</span>
+                                        <span>{size}</span>
                                     </div>
                                     <div className='second-row'>
                                         <span className='span-add-margin'>Prog. Language</span>

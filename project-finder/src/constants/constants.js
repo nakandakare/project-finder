@@ -1,12 +1,83 @@
-export const URL = { 
+export const URL = {
     API_SIGNIN: 'http://localhost:2500/users/signin',
     API_REGISTER: 'http://localhost:2500/users/register',
     API_LOGOUT: 'http://localhost:2500/users/logout',
     API_PROJECT: 'http://localhost:2500/project'
-} 
+}
 
 export const OPTIONS = {
     SIZE: [{ key: 'Small', value: 'Small', text: 'Small' }, { key: 'Medium', value: 'Medium', text: 'Medium' }, { key: 'Large', value: 'Large', text: 'Large' }],
-    DIFFICULTY: [{ key: 'Easy', value: 'Easy', text: 'Easy' }, { key: 'Normal', value: 'Normal', text: 'Normal' }, { key: 'Complex', value: 'Complex', text: 'Complex' }],
-    MEMBERS: [{ key: 'OneToFive', value: '1-5', text: '1-5 members' }, { key: 'FiveToTen', value: '5-10', text: '5-10 members' }, { key: 'TenToFifteen', value: '10-15', text: '10-15 members' }]
+    CATEGORY: [{ key: 'Web Application', value: 'Web Application', text: 'Web Application' }, { key: 'Mobile Application', value: 'Mobile Application', text: 'Mobile Application' }, { key: 'Others', value: 'Others', text: 'Others' }],
+    DURATION: [{ key: '1', value: '1', text: '1 Month' }, { key: '2', value: '3', text: '3 Month' }, { key: '3', value: '6', text: '6 Month' }, { key: '4', value: '12', text: '12 Month' }]
 }
+
+
+export const MARKS_MEBMERS = [
+    {
+        value: 0,
+        label: 'All',
+    },
+    {
+        value: 10,
+        label: '1',
+    },
+    {
+        value: 20,
+        label: '2',
+    },
+    {
+        value: 30,
+        label: '3',
+    },
+    {
+        value: 40,
+        label: '4',
+    },
+    {
+        value: 50,
+        label: '5',
+    },
+    {
+        value: 60,
+        label: '6',
+    },
+    {
+        value: 70,
+        label: '7',
+    },
+    {
+        value: 80,
+        label: '8',
+    },
+    {
+        value: 90,
+        label: '9',
+    },
+    {
+        value: 100,
+        label: '10',
+    }
+]
+
+export const MARKS_DURATION = [
+    {
+        value: 0,
+        label: 'All',
+    },
+    {
+        value: 25,
+        label: '1 Month',
+    },
+    {
+        value: 50,
+        label: '3 Month',
+    },
+    {
+        value: 75,
+        label: '6 Month',
+    },
+    {
+        value: 100,
+        label: '12 Month',
+    }
+]

@@ -30,11 +30,11 @@
             display: flex;
             justify-content: space-between;
         }
-        .project-duration , .project-difficulty, .project-members, .project-language, .project-programming-language{
+        .project-duration , .project-category, .project-members, .project-language, .project-programming-language, .project-size{
             width: 100%;
         }
                 
-        .project-size {
+        .project-category {
             width: 93%;
         }
     }
@@ -45,6 +45,11 @@
         margin-top: 30px;
         background-color: #006FE2;
     }
+
+    .default {
+        color: rgba(17, 17, 17, 0.644) !important;
+    }
+
 }
 
 .description {
