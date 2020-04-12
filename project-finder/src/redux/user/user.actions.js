@@ -28,6 +28,11 @@ export const logoutSuccess = () => ({
     type: UserActionTypes.LOGOUT_SUCCESS
 })
 
+export const logoutFailure = (err) => ({
+    type:UserActionTypes.LOGOUT_FAILURE,
+    payload:err
+})
+
 export const checkUserSession = () => ({
     type: UserActionTypes.CHECK_USER_SESSION
 })

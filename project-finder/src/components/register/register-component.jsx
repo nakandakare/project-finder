@@ -9,9 +9,9 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
  
 const Register = ({registerStart}) => {
-    const [userCredentials, setCredentials] = useState({ email: '', password: '', repassword: '',  name: '', flag: ''});
+    const [userCredentials, setCredentials] = useState({ email: '', password: '', repassword: '',  name: '', flag: '', flagSelected: ''});
     const options = countryList().getData()
-    const { email, password, repassword , name, flag } = userCredentials;
+    const { email, password, repassword, name, flag, flagSelected} = userCredentials;
 
     const handleChange = event => {
         const { value, name } = event.target;
@@ -19,7 +19,7 @@ const Register = ({registerStart}) => {
     }
     
     const flagHandler = event => {
-        setCredentials({...userCredentials, flag: event.value})
+        setCredentials({...userCredentials, flagSelected: event, flag: event.value})
     }
 
     const handleSubmit = event => {
@@ -52,7 +52,7 @@ const Register = ({registerStart}) => {
                     <div className='input'>
                     <Select
                         options={options}
-                        value={flag}
+                        value={flagSelected}
                         onChange={flagHandler}
                         placeholder='Nationality'
                     />

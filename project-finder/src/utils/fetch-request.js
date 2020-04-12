@@ -4,7 +4,7 @@ export const postRequest = (url, payload) => {
         body: JSON.stringify(payload),
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include'
-    }).then(res => res.json())
+    }).then(res => res.json()).catch(err => err);
 }
 
 export const getRequest = (url) => {

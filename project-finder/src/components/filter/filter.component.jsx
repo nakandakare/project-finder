@@ -134,7 +134,6 @@ const Filter = ({filterAddStart}) => {
                     </div>
 
 
-
                     <div className='search-input'>
                         <div className='tab-search category'>
                             <div className='filter-title'>
