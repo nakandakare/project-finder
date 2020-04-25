@@ -31,14 +31,7 @@ const App = ({ currentUser, checkUserSession, projectFetchStart}) => {
         <div className="content-wrapper">
           <ProjectCreate/>
           {
-            (() => {
-              if (pathname === ('/signin'))
-                return null 
-              if (pathname === ('/register'))
-                return null
-              else
-                return <CurrentPath />
-            })()
+            pathname === '/signin' ? null : pathname === '/register' ? null : <CurrentPath/>
           }
           <Route exact path='/projects' component={ProjectsPage} />
           <Route exact path='/signin' render={() => currentUser ? (<Redirect to='/projects' />) : (<SignInPageContainer />)} />

@@ -7,20 +7,21 @@ import jwt_decode from 'jwt-decode';
 import { postRequest, getRequest } from '../../utils/fetch-request';
 
 export function* signInWithEmail({ payload }) {
-    try {
-        const user = yield postRequest(URL.API_SIGNIN, payload);
-        yield put(signInSuccess(user));
-    } catch (err) {
-        yield put(signInFailure(err));
+    const resp = yield postRequest(URL.API_SIGNIN, payload);
+    if (resp.error) {
+        alert('Error: some fields are empty or invalid');
+        yield put(signInFailure(resp));
+    } else {
+        yield put(signInSuccess(resp));
     }
 }
 
 export function* registerWithEmail({ payload }) {
     const resp = yield postRequest(URL.API_REGISTER, payload);
-    if (resp.error) { 
-        yield put(signInFailure(resp)) 
-    } else { 
-        alert('Error: some fields are empty');
+    if (resp.error) {
+        alert('Error: some fields are empty or invalid');
+        yield put(signInFailure(resp))
+    } else {
         yield put(signInSuccess(resp))
     }
 }
@@ -44,6 +45,7 @@ export function* checkUserSession() {
         return
     }
 }
+
 //WATCHERS
 export function* onEmailSignInStart() {
     yield takeLatest(UserActionTypes.EMAIL_SIGN_IN_START, signInWithEmail)
@@ -61,6 +63,7 @@ export function* onCheckUserSession() {
     yield takeLatest(UserActionTypes.CHECK_USER_SESSION, checkUserSession);
 }
 //to export all functions.
+
 export function* userSagas() {
     yield all([call(onEmailSignInStart), call(onRegisterStart), call(onLogout), call(onCheckUserSession)])
 }
