@@ -6,6 +6,7 @@ import ProjectsPage from './pages/projects-page/projects-page.component';
 import ProjectCreate from './components/project-create/project-create.component';
 import SignInPageContainer from './pages/sign-in-page/sign-in-page.container';
 import RegisterPageContainer from './pages/register-page/register-page.container';
+import Chat from './components/Chat/chat.component';
 import { createStructuredSelector } from 'reselect';
 import {checkUserSession} from './redux/user/user.actions';
 import {selectCurrentUser} from './redux/user/user.selectors';
@@ -36,6 +37,7 @@ const App = ({ currentUser, checkUserSession, projectFetchStart}) => {
           <Route exact path='/projects' component={ProjectsPage} />
           <Route exact path='/signin' render={() => currentUser ? (<Redirect to='/projects' />) : (<SignInPageContainer />)} />
           <Route exact path='/register' render={() => currentUser ? (<Redirect to='/projects' />) : (<RegisterPageContainer />)} />
+          <Route path='/chat' component={Chat} />
         </div>
       </div>
     </div>
