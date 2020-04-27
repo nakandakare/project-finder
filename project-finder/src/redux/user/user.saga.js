@@ -1,6 +1,6 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import UserActionTypes from './user.types';
-import { signInFailure, signInSuccess, logoutSuccess, setCurrentUser, logoutFailure } from './user.actions';
+import { signInFailure, signInSuccess, logoutSuccess, setCurrentUser, logoutFailure, projectFetchFromUserSuccess } from './user.actions';
 import { URL } from '../../constants/constants';
 import Cookies from 'universal-cookie';
 import jwt_decode from 'jwt-decode';
@@ -40,10 +40,20 @@ export function* checkUserSession() {
     const token = cookies.get('token')
     if (token) {
         const decodedToken = jwt_decode(token);
+        const userProjects = yield postRequest(URL.API_PROJECT_USER, decodedToken);
+        //setting projects of user
+        yield put(projectFetchFromUserSuccess(userProjects));
+        //setting user information
         yield put(setCurrentUser(decodedToken));
     } else {
         return
     }
+}
+
+export function* fetchProjectFromUser({payload}) {
+    const resp = yield postRequest(URL.API_PROJECT_USER, payload);
+    const projectsId = resp.map(projectId => projectId.project_id);
+    yield put(projectFetchFromUserSuccess(projectsId));
 }
 
 //WATCHERS
@@ -62,8 +72,12 @@ export function* onLogout() {
 export function* onCheckUserSession() {
     yield takeLatest(UserActionTypes.CHECK_USER_SESSION, checkUserSession);
 }
-//to export all functions.
 
+export function* onProjectFetchFromUser() {
+    yield takeLatest(UserActionTypes.PROJECT_FETCH_USER, fetchProjectFromUser);
+}
+
+//to export all functions.
 export function* userSagas() {
-    yield all([call(onEmailSignInStart), call(onRegisterStart), call(onLogout), call(onCheckUserSession)])
+    yield all([call(onEmailSignInStart), call(onRegisterStart), call(onLogout), call(onCheckUserSession), call(onProjectFetchFromUser)])
 }

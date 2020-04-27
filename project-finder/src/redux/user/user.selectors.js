@@ -11,3 +11,8 @@ export const selectIsFetching = createSelector(
     [selectUser],
     user => user.isFetching
 )
+
+export const selectProjectFromUser = createSelector(
+    [selectUser],
+    user => user.userProjects
+)

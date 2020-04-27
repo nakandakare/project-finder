@@ -2,7 +2,8 @@ import UserActionTypes from './user.types';
 
 const INITIAL_STATE = {
     currentUser: null,
-    isFetching: false //to show spinner.
+    isFetching: false, //to show spinner.
+    userProjects: null
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -10,6 +11,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
         case UserActionTypes.EMAIL_SIGN_IN_START:
         case UserActionTypes.REGISTER_START: 
         case UserActionTypes.LOGOUT_START:
+        case UserActionTypes.PROJECT_FETCH_USER:
             return {
                 ...state,
                 isFetching: true
@@ -34,6 +36,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 isFetching: false,
                 error: action.paylod
+            }
+        case UserActionTypes.PROJECT_FETCH_USER_SUCCESS:
+            return {
+                ...state,
+                userProjects: action.payload,
+                isFetching: false
             }
         default:
             return state;

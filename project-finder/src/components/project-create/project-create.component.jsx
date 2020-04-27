@@ -18,7 +18,6 @@ const ProjectCreate = ({currentUser, projectAddStart, createShow, projectCreateC
     const handleChange = (event) => {
         const { value, name } = event.target;
         setProjectData({ ...projectData, [name]: value, userId: currentUser.id });
-        console.log(projectData);
     }
 
     const optionChange = (e, data) => {

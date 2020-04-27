@@ -1,10 +1,29 @@
-import React from 'react';
+import React, { useEffect} from 'react';
 import './chat.styles.scss';
+import io from 'socket.io-client';
+import { connect } from 'react-redux';
+import { selectProjectFromUser } from '../../redux/user/user.selectors';
+import { createStructuredSelector } from 'reselect';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-const Chat = () => {
+const Chat = ({ currentUser, userProjects}) => {
+
+    useEffect(() => {
+        const { name } = currentUser;
+        
+        const socket = io('localhost:2500');
+        socket.emit('join', {name});
+    }, []) 
+
     return (
-        <h1>hola</h1>
+        <h1>Chat</h1>
     )
 }
 
-export default Chat;
+const mapStateToProps = createStructuredSelector ({
+    userProjects: selectProjectFromUser,
+    currentUser: selectCurrentUser
+})
+
+
+export default connect(mapStateToProps)(Chat);

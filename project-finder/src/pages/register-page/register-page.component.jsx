@@ -1,6 +1,6 @@
 import React from 'react';
 import './register-page.styles.scss';
-import Register from '../../components/register/register-component';
+import Register from '../../components/register/register.component';
 
 const RegisterPage = () => {
     return(

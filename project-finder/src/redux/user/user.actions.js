@@ -41,3 +41,13 @@ export const setCurrentUser = (data) => ({
     type: UserActionTypes.SET_CURRENT_USER,
     payload: data
 })
+
+export const projectFetchFromUserStart = (userId) => ({
+    type: UserActionTypes.PROJECT_FETCH_USER,
+    payload: userId
+})
+
+export const projectFetchFromUserSuccess = (data) => ({
+    type: UserActionTypes.PROJECT_FETCH_USER_SUCCESS,
+    payload: data
+})
