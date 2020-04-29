@@ -1,0 +1,16 @@
+.chat-tab-header {
+    display: flex;
+    flex-direction: row;
+    padding: 15px 0 15px 15px;
+    background-color: white;
+    box-shadow: 0 0 2px 0 rgba(49,69,89,0.18);
+    
+    .chat-tab-icon {
+        margin-top:5px;
+    }
+    .chat-tab-title{
+        margin-left: 5px;
+        font-size: 20px;
+        font-weight: 500;
+    }
+}

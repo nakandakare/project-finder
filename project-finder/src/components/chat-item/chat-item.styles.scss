@@ -1,0 +1,14 @@
+.chat-item {
+    min-width: 300px;
+    padding: 20px;
+    background-color: white;
+    box-shadow: 0 0 2px 0 rgba(49,69,89,0.18);
+    cursor: pointer;
+
+    .chat-item-title {
+    font-size: 18px;
+    font-weight: 600;
+    line-height: 16px;
+    color: rgb(0, 126, 255);
+    }
+}
