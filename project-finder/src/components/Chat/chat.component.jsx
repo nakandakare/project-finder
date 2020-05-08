@@ -6,7 +6,7 @@ import { selectProjectFromUser } from '../../redux/user/user.selectors';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-const Chat = ({ currentUser, userProjects}) => {
+const Chat = ({ currentUser}) => {
 
     useEffect(() => {
         const { name } = currentUser;
@@ -21,7 +21,6 @@ const Chat = ({ currentUser, userProjects}) => {
 }
 
 const mapStateToProps = createStructuredSelector ({
-    userProjects: selectProjectFromUser,
     currentUser: selectCurrentUser
 })
 
