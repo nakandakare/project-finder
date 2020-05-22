@@ -9,12 +9,8 @@ import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { connect } from 'react-redux';
 import { logoutStart} from '../../redux/user/user.actions';
 import { projectFilterAddStart } from '../../redux/project/project.action';
-import Cookies from 'universal-cookie';
 
 const Header = ({ currentUser, logoutStart, projectCreateShow, filterAddStart }) => {
-
-    const cookies = new Cookies();
-    const token = cookies.get('token');
 
     const { pathname } = useLocation();
     const path = pathname.replace('/', ''); 
@@ -47,7 +43,7 @@ const Header = ({ currentUser, logoutStart, projectCreateShow, filterAddStart })
                         path === 'members' ? <hr className='hr-highlight' /> : <hr />
                     }
                 </Link>
-                <Link className='option-each' to={`/chat?user=${token}`}>
+                <Link className='option-each' to={'/chat'}>
                     CHAT
                                         {
                         path === 'chat' ? <hr className='hr-highlight' /> : <hr />

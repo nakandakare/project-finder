@@ -37,3 +37,4 @@ export const selectProjectsAvailable = createSelector(
     projects => projects.reduce((total,project) => project.available ? total+1 : total, 0)
 )
 
+

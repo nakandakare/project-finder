@@ -4,7 +4,8 @@ const INITIAL_STATE = {
     projects: null,
     isFetching: false,
     createShow: false,
-    projectFilter: null
+    projectFilter: null,
+    projectChatId: null
 }
 
 const projectReducer = (state = INITIAL_STATE, action) => {

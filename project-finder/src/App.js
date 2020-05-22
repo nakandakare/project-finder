@@ -37,7 +37,7 @@ const App = ({ currentUser, checkUserSession, projectFetchStart}) => {
           <Route exact path='/projects' component={ProjectsPage} />
           <Route exact path='/signin' render={() => currentUser ? (<Redirect to='/projects' />) : (<SignInPageContainer />)} />
           <Route exact path='/register' render={() => currentUser ? (<Redirect to='/projects' />) : (<RegisterPageContainer />)} />
-          <Route path='/chat' render={() => currentUser ? (<ChatOverview />) : (<Redirect to='/projects' />)}/>
+          <Route path='/chat' render={() => currentUser ? (<ChatOverview/>) : (<Redirect to='/projects' />)}/>
         </div>
       </div>
     </div>
