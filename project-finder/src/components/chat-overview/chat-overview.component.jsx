@@ -5,9 +5,10 @@ import ChatTab from '../chat-tab/chat-tab.component';
 import { withRouter } from 'react-router-dom';
 import queryString from 'query-string';
 import _ from 'lodash';
+import ChatPlaceHolder from '../chat-placeholder/chat-placeholder.component';
 
-const ChatOverview = ({location}) => {
-    const {query} = queryString.parseUrl(location.search);
+const ChatOverview = ({ location }) => {
+    const { query } = queryString.parseUrl(location.search);
 
     return (
         <div className='chat-overview'>
@@ -15,10 +16,10 @@ const ChatOverview = ({location}) => {
                 <ChatTab />
             </div>
             {
-                _.isEmpty(query) ? null : 
-                <div className='chat-view'>
-                    <Chat />
-                </div>
+                _.isEmpty(query) ? <div className='placeholder'><ChatPlaceHolder /></div> :
+                    <div className='chat-view'>
+                        <Chat />
+                    </div>
             }
         </div>
     )

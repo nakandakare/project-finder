@@ -1,5 +1,16 @@
 .chat-overview {
     display: flex;
     flex-direction: row;
-    margin: 50px 50px 50px 50px;
+    margin: 50px 50px 50px 70px;
+    justify-content: center;
+}
+
+.chat-view {
+    margin-left: 15px;
+}
+
+.placeholder {
+    width: 500px;
+    height: 360px;
+    margin-left: 15px;
 }

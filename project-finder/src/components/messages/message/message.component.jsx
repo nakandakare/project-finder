@@ -13,7 +13,7 @@ const Message = ({ message: { text, messageName }, name}) => {
         isSentByCurrentUser
             ? (
                 <div className="messageContainer justifyEnd">
-                    <p className="sentText pr-10">{name}</p>
+                    <p className="sentText pr-10">{name.split(' ').slice(0, -1).join(' ')}</p>
                     <div className="messageBox backgroundBlue">
                         <p className="messageText colorWhite">{ReactEmoji.emojify(text)}</p>
                     </div>
@@ -24,7 +24,7 @@ const Message = ({ message: { text, messageName }, name}) => {
                     <div className="messageBox backgroundLight">
                         <p className="messageText colorDark">{ReactEmoji.emojify(text)}</p>
                     </div>
-                    <p className="sentText pl-10 ">{messageName}</p>
+                    <p className="sentText pl-10 ">{messageName.split(' ').slice(0, -1).join(' ')}</p>
                 </div>
             )
     );

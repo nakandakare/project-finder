@@ -9,7 +9,7 @@ const ChatTab = ({ ProjectsFromUser }) => {
     return (
         <div>
             <div className='chat-tab-header'>
-                <Icon className='chat-tab-icon'name='book' size='large' />
+                <Icon className='chat-tab-icon' inverted name='book' size='large' />
                 <p className='chat-tab-title'>Your Projects</p>
             </div>
             <div>
