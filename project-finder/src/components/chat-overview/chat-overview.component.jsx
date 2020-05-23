@@ -2,18 +2,26 @@ import React from 'react';
 import './chat-overview.styles.scss';
 import Chat from '../chat/chat.component';
 import ChatTab from '../chat-tab/chat-tab.component';
+import { withRouter } from 'react-router-dom';
+import queryString from 'query-string';
+import _ from 'lodash';
 
-const ChatOverview = () => {
+const ChatOverview = ({location}) => {
+    const {query} = queryString.parseUrl(location.search);
+
     return (
         <div className='chat-overview'>
             <div className='chat-tab'>
                 <ChatTab />
             </div>
-            <div className='chat-view'>
-                <Chat />
-            </div>
+            {
+                _.isEmpty(query) ? null : 
+                <div className='chat-view'>
+                    <Chat />
+                </div>
+            }
         </div>
     )
 }
 
-export default ChatOverview;
+export default withRouter(ChatOverview);
