@@ -2,12 +2,13 @@ import React from 'react';
 import './message.styles.scss';
 import ReactEmoji from 'react-emoji';
 
-const Message = ({ message: { text, messageName }, name}) => {
+const Message = ({ message: { text, messageName}, name}) => {
     let isSentByCurrentUser = false;
 
     if (messageName === name) {
         isSentByCurrentUser = true;
     }
+
 
     return (
         isSentByCurrentUser

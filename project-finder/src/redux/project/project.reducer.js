@@ -1,7 +1,7 @@
 import ProjectActionTypes from './project.types';
 
 const INITIAL_STATE = {
-    projects: null,
+    projects: [],
     isFetching: false,
     createShow: false,
     projectFilter: null,

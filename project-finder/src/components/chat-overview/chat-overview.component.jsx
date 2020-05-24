@@ -16,7 +16,11 @@ const ChatOverview = ({ location }) => {
                 <ChatTab />
             </div>
             {
-                _.isEmpty(query) ? <div className='placeholder'><ChatPlaceHolder /></div> :
+                _.isEmpty(query) ?
+                    <div className='placeholder'>
+                        <ChatPlaceHolder />
+                    </div>
+                    :
                     <div className='chat-view'>
                         <Chat />
                     </div>

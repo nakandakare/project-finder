@@ -9,24 +9,33 @@ import queryString from 'query-string';
 import InfoBar from '../info-bar/info-bar.component';
 import Input from '../input/input.component';
 import Messages from '../messages/messages.component';
+import {messagesFromProjectStart} from '../../redux/chat/chat.action';
+import {selectMessageOfProject} from '../../redux/chat/chat.selectors';
+import { selectMessageLoading } from '../../redux/chat/chat.selectors';
+
 let socket;
 
-const Chat = ({ currentUser, location }) => {
+const Chat = ({ currentUser, location, messagesFromProjectStart, messagesOfProject, messageLoading }) => {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
     const { id, project } = queryString.parse(location.search);
     const { name } = currentUser;
 
+    //Joining user(socket) to the room when click.
     useEffect(() => {
         socket = io('localhost:2500');
-        
+
+        //Making chat empty.
+        setMessages([]);
+
         socket.emit('join', {id});
 
         return () => { //hook unmount
             socket.off();
         }
-    }, [location.search]); //hook
+    }, [location.search]); 
 
+    //Setting message from all users of room.
     useEffect(() => {
         socket.on('message', (message) => {
             setMessages([...messages, message]);
@@ -41,6 +50,16 @@ const Chat = ({ currentUser, location }) => {
         }
     }
 
+    //Getting chat history on url change.
+    useEffect(() => {
+        messagesFromProjectStart(id);
+    }, [location.search])
+
+    //Setting chat history.
+    useEffect(() => {
+        setMessages(messagesOfProject);
+    }, [messagesOfProject]);
+
     return (
         <div className="outerContainer">
             <div className="container">
@@ -54,6 +73,12 @@ const Chat = ({ currentUser, location }) => {
 
 const mapStateToProps = createStructuredSelector({
     currentUser: selectCurrentUser,
+    messagesOfProject: selectMessageOfProject,
+    messageLoading: selectMessageLoading
 })
 
-export default withRouter(connect(mapStateToProps)(Chat));
+const mapDispatchToProps = dispatch => ({
+    messagesFromProjectStart: (id) => dispatch(messagesFromProjectStart(id))
+})
+
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Chat));
