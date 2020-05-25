@@ -5,7 +5,7 @@ import { URL } from '../../constants/constants';
 import { postRequest } from '../../utils/fetch-request';
 
 export function* messagesFetch({payload}) {
-    if(payload != undefined){
+    if(payload !== undefined){
     const resp = yield postRequest(URL.API_CHAT_MESSAGES, {'projectId': payload });
     if(resp.error){
         chatError(resp.error);

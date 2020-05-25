@@ -13,7 +13,6 @@ const projectReducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {
         case ProjectActionTypes.PROJECT_ADD_START:
         case ProjectActionTypes.PROJECT_FETCH_START:
-        case ProjectActionTypes.PROJECT_FETCH_MEMBERS_START:
             return {
                 ...state,
                 isFetching: true
@@ -57,7 +56,7 @@ const projectReducer = (state = INITIAL_STATE, action) => {
         case ProjectActionTypes.PROJECT_FETCH_MEMBERS_SUCCESS:
             return {
                 ...state,
-                projectMembers: action.payload
+                projectMembers: action.payload,
             }
         default:
             return state;
