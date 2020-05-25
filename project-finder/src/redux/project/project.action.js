@@ -35,3 +35,13 @@ export const projectFilterAddStart = (projectFilter) => ({
     type: ProjectActionTypes.PROJECT_FILTERED_ADD_START,
     payload: projectFilter
 })
+
+export const projectMemberFetchStart = (id) => ({
+    type: ProjectActionTypes.PROJECT_FETCH_MEMBERS_START,
+    payload: id
+})
+
+export const projectMemberFetchSuccess = (members) => ({
+    type: ProjectActionTypes.PROJECT_FETCH_MEMBERS_SUCCESS,
+    payload: members
+})

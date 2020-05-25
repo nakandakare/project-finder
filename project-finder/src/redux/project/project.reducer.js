@@ -5,13 +5,15 @@ const INITIAL_STATE = {
     isFetching: false,
     createShow: false,
     projectFilter: null,
-    projectChatId: null
+    projectChatId: null,
+    projectMembers: []
 }
 
 const projectReducer = (state = INITIAL_STATE, action) => {
     switch(action.type) {
         case ProjectActionTypes.PROJECT_ADD_START:
         case ProjectActionTypes.PROJECT_FETCH_START:
+        case ProjectActionTypes.PROJECT_FETCH_MEMBERS_START:
             return {
                 ...state,
                 isFetching: true
@@ -51,6 +53,11 @@ const projectReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 createShow: false
+            }
+        case ProjectActionTypes.PROJECT_FETCH_MEMBERS_SUCCESS:
+            return {
+                ...state,
+                projectMembers: action.payload
             }
         default:
             return state;

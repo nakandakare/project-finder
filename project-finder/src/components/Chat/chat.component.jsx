@@ -11,7 +11,7 @@ import Input from '../input/input.component';
 import Messages from '../messages/messages.component';
 import {messagesFromProjectStart} from '../../redux/chat/chat.action';
 import {selectMessageOfProject} from '../../redux/chat/chat.selectors';
-import { selectMessageLoading } from '../../redux/chat/chat.selectors';
+import {selectMessageLoading} from '../../redux/chat/chat.selectors';
 
 let socket;
 
