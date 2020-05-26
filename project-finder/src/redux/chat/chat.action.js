@@ -14,3 +14,13 @@ export const chatError = (error) => ({
     type: ChatActionTypes.CHAT_ERROR,
     payload: error
 })
+
+export const lastMessageStart = (id) => ({
+    type: ChatActionTypes.LAST_MESSAGE_START,
+    payload: id
+})
+
+export const lastMessageSuccess = (lastMessages) => ({
+    type: ChatActionTypes.LAST_MESSAGE_SUCCESS,
+    payload: lastMessages
+})

@@ -1,11 +1,20 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import './chat-tab.styles.scss';
 import ChatItem from '../chat-item/chat-item.component';
-import { selectProjectFromUser } from '../../redux/user/user.selectors';
+import { selectProjectFromUser, selectCurrentUser } from '../../redux/user/user.selectors';
+import { selectLastMessages} from '../../redux/chat/chat.selectors';
 import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react';
+import { lastMessageStart } from '../../redux/chat/chat.action';
 
-const ChatTab = ({ ProjectsFromUser }) => {
+const ChatTab = ({ projectsFromUser, currentUser, lastMessageStart, lastMessages}) => {
+    
+    //Getting id of current user to fetch last massage.
+    useEffect(() => {
+    const { id } = currentUser;    
+    lastMessageStart(id);
+    },[])
+
     return (
         <div>
             <div className='chat-tab-header'>
@@ -14,15 +23,21 @@ const ChatTab = ({ ProjectsFromUser }) => {
             </div>
             <div>
                 {
-                    ProjectsFromUser.map(({ project_id, ...otherProps }) => <ChatItem key={project_id} project_id={project_id} {...otherProps} />)
+                    projectsFromUser.map(({...otherProps }, i) => <ChatItem key={i} lastMessages={lastMessages} {...otherProps} />)
                 }
             </div>
         </div>
     )
 }
 
-const mapStateToProps = state => ({
-    ProjectsFromUser: selectProjectFromUser(state)
+const mapDispatchToProps = dispatch => ({
+    lastMessageStart: (id) => dispatch(lastMessageStart(id))
 })
 
-export default connect(mapStateToProps)(ChatTab);
+const mapStateToProps = state => ({
+    projectsFromUser: selectProjectFromUser(state),
+    currentUser: selectCurrentUser(state),
+    lastMessages: selectLastMessages(state)
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ChatTab);

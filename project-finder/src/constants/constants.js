@@ -5,7 +5,8 @@ export const URL = {
     API_PROJECT: 'http://localhost:2500/project',
     API_PROJECT_USER: 'http://localhost:2500/project/projectsFromUser',
     API_CHAT_MESSAGES: 'http://localhost:2500/chat',
-    API_PROJECT_MEMBERS: 'http://localhost:2500/project/projectMembers'
+    API_PROJECT_MEMBERS: 'http://localhost:2500/project/projectMembers',
+    API_CHAT_LAST_MESSAGES: 'http://localhost:2500/chat/lastMessage',
 }
 
 export const OPTIONS = {

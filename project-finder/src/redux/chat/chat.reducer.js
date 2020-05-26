@@ -2,7 +2,9 @@ import ChatActionTypes from './chat.types';
 
 const INITIAL_STATE = {
     messagesOfProject: [],
+    lastMessages: [],
     loadingMessages: false,
+    loadingLastMessages: false,
     error: null
 }
 
@@ -21,8 +23,19 @@ const chatReducer = (state = INITIAL_STATE, action) => {
             }
         case ChatActionTypes.CHAT_ERROR:
             return {
+                ...state,
                 error: action.payload,
                 loadingMessages: false
+            }
+        case ChatActionTypes.LAST_MESSAGE_START: 
+            return {
+                ...state,
+                loadingLastMessages: true
+            }
+        case ChatActionTypes.LAST_MESSAGE_SUCCESS:
+            return {
+                ...state,
+                lastMessages: action.payload
             }
         default:
             return state;

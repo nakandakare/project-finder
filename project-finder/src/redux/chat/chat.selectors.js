@@ -12,3 +12,8 @@ export const selectMessageLoading = createSelector(
     [selectChat],
     chat => chat.loadingMessages
 )
+
+export const selectLastMessages = createSelector(
+    [selectChat],
+    chat => chat.lastMessages
+)

@@ -3,7 +3,7 @@ import './chat-item.styles.scss';
 import { useHistory, useLocation } from "react-router-dom";
 import queryString from 'query-string';
 
-const ChatItem = ({project_id, projectname}) => {
+const ChatItem = ({project_id, projectname, lastMessages}) => {
     const history = useHistory();
     const location = useLocation();
 
@@ -19,7 +19,11 @@ const ChatItem = ({project_id, projectname}) => {
         <div className={'chat-item ' + (parseInt(id) === project_id ? 'selected' : 'notSelected')} onClick={selectProject}>
             <div className='chat-item-box'>
                 <p className='chat-item-title'>{projectname}</p>
-                <p className='chat-item-message'>Last message</p>
+                {
+                    lastMessages.map((lastMessage, i) => {
+                        return (lastMessage.project_id === project_id ? <p key={i} className='chat-item-message'>{lastMessage.messageName.split(' ').slice(0, -1).join(' ')}: {lastMessage.text}</p> : null)
+                    })
+                }
             </div>
         </div>
     )
