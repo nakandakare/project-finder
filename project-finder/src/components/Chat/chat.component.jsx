@@ -20,6 +20,7 @@ const Chat = ({ currentUser, location, messagesFromProjectStart, messagesOfProje
     const { id, project } = queryString.parse(location.search);
     const { name } = currentUser;
     const ENDPOINT = 'localhost:2500'
+
     //Joining user(socket) to the room when click.
     useEffect(() => {
         socket = io(ENDPOINT);
@@ -34,9 +35,14 @@ const Chat = ({ currentUser, location, messagesFromProjectStart, messagesOfProje
     }, [ENDPOINT,location.search]);
 
     //Setting message from all users of room.
-    console.log(messages);
     useEffect(() => {
-        socket.on('message', (messageFromServer) => {
+        /*TIENE QUE SER ONCE YA QUE SI ES CON SOCKET.ON 
+        CADA VEZ QUE LLAMO ESTA FUNCION,
+        SE VA ADICIONANDO SOCKET.ON
+        
+        SOCKET.ON IS ACCUMULABLE.
+        */
+        socket.once('message', (messageFromServer) => {
             setMessages([...messages, messageFromServer]);
         })
     }, [messages]);
