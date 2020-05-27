@@ -25,7 +25,7 @@ export function* projectFetch(){
 }
 
 export function* projectMembersFetch({payload}){
-    if(payload != undefined) {
+    if(payload !== undefined) {
         const resp = yield postRequest(URL.API_PROJECT_MEMBERS, {'projectId': payload});
         if(resp.error){
             projectFailure(resp);

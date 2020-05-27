@@ -24,3 +24,12 @@ export const lastMessageSuccess = (lastMessages) => ({
     type: ChatActionTypes.LAST_MESSAGE_SUCCESS,
     payload: lastMessages
 })
+
+export const newLastMessage = (message) => ({
+    type: ChatActionTypes.NEW_LAST_MESSAGE,
+    payload: message
+})
+
+export const newMessage = () => ({
+    type: ChatActionTypes.NEW_MESSAGE
+})

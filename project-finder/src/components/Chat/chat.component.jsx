@@ -9,44 +9,45 @@ import queryString from 'query-string';
 import InfoBar from '../info-bar/info-bar.component';
 import Input from '../input/input.component';
 import Messages from '../messages/messages.component';
-import {messagesFromProjectStart} from '../../redux/chat/chat.action';
-import {selectMessageOfProject} from '../../redux/chat/chat.selectors';
-import {selectMessageLoading} from '../../redux/chat/chat.selectors';
+import { messagesFromProjectStart, newMessage } from '../../redux/chat/chat.action';
+import { selectMessageOfProject, selectMessageLoading } from '../../redux/chat/chat.selectors';
 
 let socket;
 
-const Chat = ({ currentUser, location, messagesFromProjectStart, messagesOfProject, messageLoading }) => {
+const Chat = ({ currentUser, location, messagesFromProjectStart, messagesOfProject}) => {
     const [message, setMessage] = useState('');
     const [messages, setMessages] = useState([]);
     const { id, project } = queryString.parse(location.search);
     const { name } = currentUser;
-
+    const ENDPOINT = 'localhost:2500'
     //Joining user(socket) to the room when click.
     useEffect(() => {
-        socket = io('localhost:2500');
-
+        socket = io(ENDPOINT);
         //Making chat empty.
         setMessages([]);
 
-        socket.emit('join', {id});
+        socket.emit('join', { id });
 
         return () => { //hook unmount
             socket.off();
         }
-    }, [location.search]); 
+    }, [ENDPOINT,location.search]);
 
     //Setting message from all users of room.
+    console.log(messages);
     useEffect(() => {
-        socket.on('message', (message) => {
-            setMessages([...messages, message]);
+        socket.on('message', (messageFromServer) => {
+            setMessages([...messages, messageFromServer]);
         })
-    }, [messages, location.search]);
+    }, [messages]);
 
     // function for sending messages
     const sendMessage = (event) => {
         if (message) {
             event.preventDefault();
-            socket.emit('sendMessage', { message, name, id }, () => setMessage(''))
+            socket.emit('sendMessage', { message, name, id }, () => { 
+                setMessage(''); 
+            })
         }
     }
 
@@ -64,8 +65,8 @@ const Chat = ({ currentUser, location, messagesFromProjectStart, messagesOfProje
         <div className="outerContainer">
             <div className="container">
                 <InfoBar room={project} />
-                <Messages messages={messages} name={name}/>
-                <Input message={message} setMessage={setMessage} sendMessage={sendMessage}/>
+                <Messages messages={messages} id={id} name={name} />
+                <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
             </div>
         </div>
     )

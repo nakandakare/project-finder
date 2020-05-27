@@ -21,7 +21,7 @@ const ChatItem = ({project_id, projectname, lastMessages}) => {
                 <p className='chat-item-title'>{projectname}</p>
                 {
                     lastMessages.map((lastMessage, i) => {
-                        return (lastMessage.project_id === project_id ? <p key={i} className='chat-item-message'>{lastMessage.messageName.split(' ').slice(0, -1).join(' ')}: {lastMessage.text}</p> : null)
+                        return (lastMessage.projectId === project_id ? <p key={i} className='chat-item-message'><b>{lastMessage.messageName.split(' ').slice(0, -1).join(' ')}:</b> {lastMessage.text}</p> : null)
                     })
                 }
             </div>

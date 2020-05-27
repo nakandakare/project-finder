@@ -5,6 +5,7 @@ const INITIAL_STATE = {
     lastMessages: [],
     loadingMessages: false,
     loadingLastMessages: false,
+    newMessageObserver: true,
     error: null
 }
 
@@ -36,6 +37,13 @@ const chatReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 lastMessages: action.payload
+            }
+        case ChatActionTypes.NEW_LAST_MESSAGE:
+            const newLastMessage = state.lastMessages.map(message => 
+                action.payload.find(newLastMessage => (newLastMessage.projectId === message.projectId)) || message)
+            return {
+                ...state,
+                lastMessages: newLastMessage
             }
         default:
             return state;

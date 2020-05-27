@@ -9,10 +9,9 @@ import MemberView from '../member-view/member-view.component';
 import { Item } from 'semantic-ui-react'
 
 const ChatProjectMembers = ({ projectMemberFetchStart, location, projectMembers }) => {
-    const { id } = queryString.parse(location.search);
-
     //Fetching members of project selected.
     useEffect(() => {
+        const { id } = queryString.parse(location.search);
         projectMemberFetchStart(id);
     }, [location.search])
 

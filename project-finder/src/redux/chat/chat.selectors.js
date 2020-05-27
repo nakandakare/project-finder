@@ -1,5 +1,4 @@
 import { createSelector } from 'reselect';
-import { jsonToArray } from '../../utils/json-to-array';
 
 const selectChat = state => state.chat;
 
