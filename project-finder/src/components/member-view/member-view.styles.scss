@@ -1,0 +1,27 @@
+.innerProjectMember {
+    display: flex;
+    flex-direction: row;
+    margin-top: 10px;
+    margin-left: 10px;
+    margin-bottom: 20px;
+}
+
+.projectMemberTitleOwner {
+    display: flex;
+    flex-direction: row;
+    margin-top: 40px;
+    margin-left: 10px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(91, 102, 109);
+    margin-right: auto;
+}
+
+.projectMemberTitle {
+    margin-top: 40px;
+    margin-left: 20px;
+    font-size: 14px;
+    font-weight: 600;
+    color: rgb(91, 102, 109);
+    margin-right: auto;
+}
