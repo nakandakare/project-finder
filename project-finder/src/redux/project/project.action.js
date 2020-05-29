@@ -45,3 +45,7 @@ export const projectMemberFetchSuccess = (members) => ({
     type: ProjectActionTypes.PROJECT_FETCH_MEMBERS_SUCCESS,
     payload: members
 })
+
+export const emptyProjectMembers = () => ({
+    type: ProjectActionTypes.EMPTY_PROJECT_MEMBERS
+})

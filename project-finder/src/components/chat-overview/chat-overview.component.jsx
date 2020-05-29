@@ -5,30 +5,32 @@ import ChatTab from '../chat-tab/chat-tab.component';
 import { withRouter } from 'react-router-dom';
 import queryString from 'query-string';
 import _ from 'lodash';
-import ChatPlaceHolder from '../chat-placeholder/chat-placeholder.component';
+import ChatPlaceholder from '../Placeholder/chat-placeholder/chat-placeholder.component';
 import ChatProjectMembers from '../chat-project-members/chat-project-members.component';
 
 const ChatOverview = ({ location }) => {
     const { query } = queryString.parseUrl(location.search);
 
     return (
-        <div className='chat-overview'>
-            <div className='chat-tab'>
+        <div className='chatOverview'>
+            <div className='chatTab'>
                 <ChatTab />
             </div>
             {
                 _.isEmpty(query) ?
-                    <div className='placeholder'>
-                        <ChatPlaceHolder />
+                    <div className='chatPlaceholder'>
+                        <ChatPlaceholder />
                     </div>
                     :
-                    <div className='chat-view'>
+                    <div className='chat'>
                         <Chat />
                     </div>
             }
-            <div className='chat-project-members'>
-                <ChatProjectMembers />
-            </div>
+            {
+                    <div className='chatProjectMembers'>
+                        <ChatProjectMembers />
+                    </div>
+            }
         </div>
     )
 }

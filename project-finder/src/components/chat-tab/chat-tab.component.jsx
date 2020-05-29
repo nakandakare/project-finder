@@ -7,10 +7,15 @@ import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react';
 import { lastMessageStart, newLastMessage } from '../../redux/chat/chat.action';
 import io from 'socket.io-client';
+import ScrollToBottom from 'react-scroll-to-bottom';
 
 let socket;
 
 const ChatTab = ({ projectsFromUser, currentUser, lastMessageStart, lastMessages, newLastMessage}) => {
+    const [filterValue, setFilterValue] = useState('');
+
+    const filteredProjects = projectsFromUser.filter(project => project.projectname.toLowerCase().includes(filterValue));
+    
     //Fetching last massage of chat when enter /chat.
     useEffect(() => {
     const { id } = currentUser;    
@@ -31,16 +36,26 @@ const ChatTab = ({ projectsFromUser, currentUser, lastMessageStart, lastMessages
         })
     }, []);
 
+    const projectSearchHandle = (event) => {
+        setFilterValue(event.target.value.toLowerCase()); //re-render after this setState.
+    }
+
     return (
-        <div>
+        <div className='chatTab'>
             <div className='chat-tab-header'>
                 <Icon className='chat-tab-icon' inverted name='book' size='large' />
                 <p className='chat-tab-title'>Your Projects</p>
             </div>
-            <div>
+            <div className='chatTabSearch'>
+                <Icon className='chatTabSearchIcon' color='grey' name='search' size='large' />
+                <input placeholder='Search project...' className='chatTabSearchInput' onChange={projectSearchHandle}/>
+            </div>
+            <div className="chatTabItem">
+                <ScrollToBottom>
                 {
-                    projectsFromUser.map(({...otherProps }, i) => <ChatItem key={i} lastMessages={lastMessages} {...otherProps} />)
+                    filteredProjects.map(({...otherProps }, i) => <ChatItem key={i} lastMessages={lastMessages} {...otherProps} />)
                 }
+                </ScrollToBottom>
             </div>
         </div>
     )

@@ -58,6 +58,11 @@ const projectReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 projectMembers: action.payload,
             }
+        case ProjectActionTypes.EMPTY_PROJECT_MEMBERS: 
+            return {
+                ...state,
+                projectMembers: []
+            }
         default:
             return state;
     }

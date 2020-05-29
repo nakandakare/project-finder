@@ -1,7 +1,8 @@
 import React from 'react';
 import './input.styles.scss';
+import { Icon } from 'semantic-ui-react'
 
-const Input = ({message, setMessage, sendMessage}) => {
+const Input = ({ message, setMessage, sendMessage}) => {
     return (
     <form className="form-in">
             <input
@@ -12,7 +13,8 @@ const Input = ({message, setMessage, sendMessage}) => {
                 onChange={(event) => setMessage(event.target.value)}
                 onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
             />
-            <button className="sendButton" onClick={e => sendMessage(e)}>Send</button>
+            <button className="sendButton" onClick={e => sendMessage(e)}><Icon name='send' color='blue' size='big' /></button>
+            
     </form>
     )
 }

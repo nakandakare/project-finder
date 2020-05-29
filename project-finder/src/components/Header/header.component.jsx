@@ -5,12 +5,12 @@ import Button from '@material-ui/core/Button';
 import { projectCreateShow } from '../../redux/project/project.action'
 import { Dropdown } from 'semantic-ui-react'
 import { useLocation } from 'react-router-dom'
-import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { selectCurrentUser} from '../../redux/user/user.selectors';
 import { connect } from 'react-redux';
 import { logoutStart} from '../../redux/user/user.actions';
 import { projectFilterAddStart } from '../../redux/project/project.action';
 
-const Header = ({ currentUser, logoutStart, projectCreateShow, filterAddStart }) => {
+const Header = ({ currentUser, logoutStart, projectCreateShow, filterAddStart}) => {
 
     const { pathname } = useLocation();
     const path = pathname.replace('/', ''); 
@@ -23,7 +23,6 @@ const Header = ({ currentUser, logoutStart, projectCreateShow, filterAddStart })
         filterAddStart({});
     }
 
-
     return (
         <header className='header'>
             <div className='logo'>
@@ -33,27 +32,19 @@ const Header = ({ currentUser, logoutStart, projectCreateShow, filterAddStart })
             <div className='options'>
                 <Link className='option-each' to='/projects' onClick={filterReset}>
                     PROJECTS
-                    {
-                        path === 'projects' ? <hr className='hr-highlight' /> : <hr />
-                    }
+                    <hr className={path === 'projects' ? 'hr-highlight' : <hr/>} />
                 </Link>
                 <Link className='option-each' to='/members'>
                     MEMBERS
-                    {
-                        path === 'members' ? <hr className='hr-highlight' /> : <hr />
-                    }
+                    <hr className={path === 'members' ? 'hr-highlight' : <hr />} />
                 </Link>
-                <Link className='option-each' to={'/chat'}>
+                <Link className='option-each' to={`/chat`}>
                     CHAT
-                                        {
-                        path === 'chat' ? <hr className='hr-highlight' /> : <hr />
-                    }
+                    <hr className={path === 'chat' ? 'hr-highlight' : <hr />} />
                 </Link>
                 <Link className='option-each' to='/support'>
                     SUPPORT
-                                                            {
-                        path === 'support' ? <hr className='hr-highlight' /> : <hr />
-                    }
+                    <hr className={path === 'support' ? 'hr-highlight' : <hr />} />
                 </Link>
             </div>
             {currentUser ?
@@ -94,7 +85,7 @@ const Header = ({ currentUser, logoutStart, projectCreateShow, filterAddStart })
 }
 
 const mapStateToProps = (state) => ({
-    currentUser: selectCurrentUser(state),
+    currentUser: selectCurrentUser(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({

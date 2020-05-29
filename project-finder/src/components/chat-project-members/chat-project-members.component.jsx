@@ -1,27 +1,43 @@
 import React, { useEffect } from 'react';
 import './chat-project-members.scss';
 import { connect } from 'react-redux';
-import { projectMemberFetchStart } from '../../redux/project/project.action';
+import { projectMemberFetchStart, emptyProjectMembers } from '../../redux/project/project.action';
 import { withRouter } from 'react-router-dom';
 import queryString from 'query-string';
 import { selectProjectMembers } from '../../redux/project/project.selectors';
 import MemberView from '../member-view/member-view.component';
-import { Item } from 'semantic-ui-react'
-
-const ChatProjectMembers = ({ projectMemberFetchStart, location, projectMembers }) => {
+import { Icon } from 'semantic-ui-react'
+import ScrollToBottom from 'react-scroll-to-bottom';
+const ChatProjectMembers = ({ projectMemberFetchStart, location, projectMembers, emptyProjectMembers }) => {
+    
     //Fetching members of project selected.
     useEffect(() => {
         const { id } = queryString.parse(location.search);
         projectMemberFetchStart(id);
+        if(!location.search) {
+            emptyProjectMembers();
+        }
     }, [location.search])
 
     return (
         <div>
-            <Item.Group>
-                {
-                    projectMembers.map(({ ...props } /*member*/, i) => <MemberView key={i} {...props} />)
-                }
-            </Item.Group>
+            <div className="infoBarMembers" />
+            
+            <div className='headerMembers'>
+                <div className='innerHeaderMembers'>
+                    <div className='headerIconMembers'>
+                        <Icon color='grey' size='big' name='group' />
+                    </div>
+                    <div className='headerTitleMembers'>
+                        <h3>Project Members</h3>
+                    </div>
+                </div>
+            </div>
+            <ScrollToBottom>
+            {
+                projectMembers.map(({ ...props } /*member*/, i) => <MemberView key={i} {...props} />)
+            }
+            </ScrollToBottom>
         </div>
     )
 }
@@ -31,7 +47,8 @@ const mapStateToProps = state => ({
 })
 
 const mapDispatchToProps = dispatch => ({
-    projectMemberFetchStart: (id) => dispatch(projectMemberFetchStart(id))
+    projectMemberFetchStart: (id) => dispatch(projectMemberFetchStart(id)),
+    emptyProjectMembers: () => dispatch(emptyProjectMembers())
 })
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(ChatProjectMembers));

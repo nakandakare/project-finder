@@ -34,9 +34,19 @@ const Chat = ({ currentUser, location, messagesFromProjectStart, messagesOfProje
         }
     }, [ENDPOINT,location.search]);
 
+    //Getting chat history on url change.
+    useEffect(() => {
+        messagesFromProjectStart(id);
+    }, [location.search])
+
+    //Setting chat history.
+    useEffect(() => {
+        setMessages(messagesOfProject);
+    }, [messagesOfProject]);
+
     //Setting message from all users of room.
     useEffect(() => {
-        /*TIENE QUE SER ONCE YA QUE SI ES CON SOCKET.ON 
+        /*TIENE QUE SER SOCKET.ONCE YA QUE SI ES CON SOCKET.ON 
         CADA VEZ QUE LLAMO ESTA FUNCION,
         SE VA ADICIONANDO SOCKET.ON
         
@@ -57,20 +67,10 @@ const Chat = ({ currentUser, location, messagesFromProjectStart, messagesOfProje
         }
     }
 
-    //Getting chat history on url change.
-    useEffect(() => {
-        messagesFromProjectStart(id);
-    }, [location.search])
-
-    //Setting chat history.
-    useEffect(() => {
-        setMessages(messagesOfProject);
-    }, [messagesOfProject]);
-
     return (
         <div className="outerContainer">
             <div className="container">
-                <InfoBar room={project} />
+                <InfoBar room={project} projectId={id}/>
                 <Messages messages={messages} id={id} name={name} />
                 <Input message={message} setMessage={setMessage} sendMessage={sendMessage} />
             </div>

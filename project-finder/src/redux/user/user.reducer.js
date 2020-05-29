@@ -3,7 +3,8 @@ import UserActionTypes from './user.types';
 const INITIAL_STATE = {
     currentUser: null,
     isFetching: false, //to show spinner.
-    userProjects: []
+    userProjects: [],
+    filterValue: ''
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {

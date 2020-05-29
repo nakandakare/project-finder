@@ -4,7 +4,7 @@ import FlagIcon from '../../utils/flag-icon-factory';
 import ReadMoreAndLess from 'react-read-more-less';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
-
+import UserPicture from '../user-picture/user-picture.component';
 
 const ProjectItem = ({ projectname, description, size, duration, members, language, proglanguage, created_at, name, img, flag, category }) => {
 
@@ -14,9 +14,7 @@ const ProjectItem = ({ projectname, description, size, duration, members, langua
             <div className='project-item'>
                 <div className='project-sidebar'>
                     <div className='user-section'>
-                        <div className='user-picture'>
-                            <img className='picture' src={img} alt='Robots'></img>
-                        </div>
+                        <UserPicture img={img} />
                         <div className='user-name'>
                             <span className='name'>{name.toUpperCase()}</span>
                             <FlagIcon className='flag' code={flag.toLowerCase()} />

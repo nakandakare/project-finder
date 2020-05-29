@@ -1,9 +1,17 @@
-.chat-item {
+    .chat-item {
     min-width: 300px;
     padding: 20px;
-    background-color: white;
+    background-color: #F2F6F9;
     box-shadow: 0 0 2px 0 rgba(49,69,89,0.18);
     cursor: pointer;
+
+    .chat-item-box {
+        display: flex;
+
+        .jdenticon{
+            margin-right: 20px;
+        }
+    }
 
     .chat-item-title {
     font-size: 18px;
@@ -11,8 +19,9 @@
     line-height: 16px;
     color: rgb(0, 126, 255);
     }
+
 }
 
 .selected {
-    background-color: #F3F3F3;
+    background-color: #E6E6E6;
 }

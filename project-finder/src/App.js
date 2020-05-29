@@ -32,12 +32,12 @@ const App = ({ currentUser, checkUserSession, projectFetchStart}) => {
         <div className="content-wrapper">
           <ProjectCreate/>
           {
-            pathname === '/signin' ? null : pathname === '/register' ? null : <CurrentPath/>
+            pathname === '/signin' ? null : pathname === '/register' ? null : pathname === '/chat' ? null : <CurrentPath/>
           }
           <Route exact path='/projects' component={ProjectsPage} />
           <Route exact path='/signin' render={() => currentUser ? (<Redirect to='/projects' />) : (<SignInPageContainer />)} />
           <Route exact path='/register' render={() => currentUser ? (<Redirect to='/projects' />) : (<RegisterPageContainer />)} />
-          <Route path='/chat' render={() => currentUser ? (<ChatOverview/>) : (<Redirect to='/projects' />)}/>
+          <Route path='/chat' render={() => currentUser ? (<ChatOverview/>) : (<Redirect to='/signin' />)}/>
         </div>
       </div>
     </div>

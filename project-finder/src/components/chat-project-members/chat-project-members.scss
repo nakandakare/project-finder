@@ -1,0 +1,27 @@
+.infoBarMembers {
+  background: rgb(25, 106, 246) ;
+  border: none;
+  height: 58px;
+  width: 100%;
+}
+
+.innerHeaderMembers {
+  display: flex;
+  flex-direction: row;
+  box-shadow: 0 2px 4px 0 rgba(49,69,89,0.16);
+  padding-top: 18px;
+  height: 65px;
+  background-color: #FFFF;
+}
+
+.headerIconMembers {
+  margin-right: 10px;
+  margin-left: auto;
+}
+
+.headerTitleMembers {
+  font-size: 14px;
+  font-weight: 600;
+  color: rgb(91, 102, 109);
+  margin-right: auto;
+}
