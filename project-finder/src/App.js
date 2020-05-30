@@ -20,8 +20,8 @@ const App = ({ currentUser, checkUserSession, projectFetchStart}) => {
 
   useEffect(() => {
     checkUserSession();
-    projectFetchStart();
-  }, [checkUserSession, projectFetchStart])
+    projectFetchStart({offset: 0}); //0 to 6 projects on initial render
+  }, [checkUserSession, projectFetchStart, pathname])
   
   return (
     <div className="App">
@@ -30,6 +30,7 @@ const App = ({ currentUser, checkUserSession, projectFetchStart}) => {
       </div>
       <div className="main-content">
         <div className="content-wrapper">
+          <Redirect from="/" to="projects" />
           <ProjectCreate/>
           {
             pathname === '/signin' ? null : pathname === '/register' ? null : pathname === '/chat' ? null : <CurrentPath/>
@@ -50,7 +51,7 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   checkUserSession: () => dispatch(checkUserSession()),
-  projectFetchStart: () => dispatch(projectFetchStart())
+  projectFetchStart: (offset) => dispatch(projectFetchStart(offset))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);

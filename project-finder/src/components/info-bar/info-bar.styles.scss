@@ -2,7 +2,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: rgb(25, 106, 246);
+  background: #FFFF;
+  border: 2px solid rgba(0, 0, 0, 0.116);
+  border-left: 2px solid rgba(0, 0, 0, 0.116);
+  border-right: none;
   height: 58px;
   width: 100%;
 }
@@ -17,7 +20,7 @@
   display: flex;
   align-items: center;
   margin-left: 1%;
-  color: white;
+  color: rgb(0, 126, 255);
 }
 
 .rightInnerContainer {

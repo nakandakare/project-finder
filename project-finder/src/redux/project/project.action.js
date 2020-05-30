@@ -9,8 +9,9 @@ export const projectAddSuccess = () => ({
     type: ProjectActionTypes.PROJECT_ADD_SUCCESS
 })
 
-export const projectFetchStart = () => ({
-    type: ProjectActionTypes.PROJECT_FETCH_START
+export const projectFetchStart = (offset) => ({
+    type: ProjectActionTypes.PROJECT_FETCH_START,
+    payload: offset
 })
 
 export const projectFetchSuccess = (projects) => ({
@@ -48,4 +49,9 @@ export const projectMemberFetchSuccess = (members) => ({
 
 export const emptyProjectMembers = () => ({
     type: ProjectActionTypes.EMPTY_PROJECT_MEMBERS
+})
+
+export const projectCountSuccess = (count) => ({
+    type: ProjectActionTypes.PROJECT_COUNT_SUCCESS,
+    payload: count
 })

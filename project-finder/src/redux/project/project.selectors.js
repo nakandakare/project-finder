@@ -24,6 +24,10 @@ export const selectProjects = createSelector(
         }
     }
 )
+export const selectProjectCount = createSelector(
+    [selectProject],
+    project => project.projectCount
+)
 export const selectCreateShow = createSelector(
     [selectProject],
     project => project.createShow

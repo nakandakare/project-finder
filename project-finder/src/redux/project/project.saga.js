@@ -1,6 +1,6 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import ProjectActionTypes from './project.types';
-import { projectAddSuccess, projectFailure, projectFetchSuccess, projectMemberFetchSuccess } from './project.action';
+import { projectAddSuccess, projectFailure, projectFetchSuccess, projectMemberFetchSuccess, projectCountSuccess } from './project.action';
 import { URL } from '../../constants/constants';
 import { postRequest, getRequest } from '../../utils/fetch-request';
 
@@ -15,9 +15,11 @@ export function* projectAdd({ payload }) {
     }
 }
 
-export function* projectFetch(){
+export function* projectFetch({payload}){
     try{
-        const projects = yield getRequest(URL.API_PROJECT);
+        const projects = yield postRequest(URL.API_PROJECT, payload); //payload = offset    
+        const projectCount = yield getRequest(URL.API_PROJECT_COUNT);
+        yield put(projectCountSuccess(projectCount))
         yield put(projectFetchSuccess(projects))
     }catch(err){
         yield put(projectFailure(err));

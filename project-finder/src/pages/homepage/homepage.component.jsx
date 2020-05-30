@@ -3,7 +3,7 @@ import './homepage.styles.scss';
 
 const Homepage = () => {
     return (
-        <h1>hola</h1>
+        
     )
 }
 

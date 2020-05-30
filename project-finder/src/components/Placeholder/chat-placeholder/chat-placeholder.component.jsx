@@ -2,7 +2,7 @@ import React from 'react';
 import './chat-placeholder.styles.scss';
 import InfoBar from '../../info-bar/info-bar.component';
 import Input from '../../input/input.component';
-import ChatIconPng from '../../../assets/chat.png';
+import ChatIconPng from '../../../assets/chat-grey.png';
 
 const ChatPlaceholder = () => {
     return (

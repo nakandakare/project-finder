@@ -6,7 +6,8 @@ const INITIAL_STATE = {
     createShow: false,
     projectFilter: null,
     projectChatId: null,
-    projectMembers: []
+    projectMembers: [''],
+    projectCount: ['']
 }
 
 const projectReducer = (state = INITIAL_STATE, action) => {
@@ -62,6 +63,11 @@ const projectReducer = (state = INITIAL_STATE, action) => {
             return {
                 ...state,
                 projectMembers: []
+            }
+        case ProjectActionTypes.PROJECT_COUNT_SUCCESS:
+            return {
+                ...state,
+                projectCount: action.payload
             }
         default:
             return state;

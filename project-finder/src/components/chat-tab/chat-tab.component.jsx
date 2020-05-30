@@ -16,6 +16,7 @@ const ChatTab = ({ projectsFromUser, currentUser, lastMessageStart, lastMessages
 
     const filteredProjects = projectsFromUser.filter(project => project.projectname.toLowerCase().includes(filterValue));
     
+    console.log(projectsFromUser , "kodskosda");
     //Fetching last massage of chat when enter /chat.
     useEffect(() => {
     const { id } = currentUser;    

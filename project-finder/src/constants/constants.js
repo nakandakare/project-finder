@@ -3,6 +3,7 @@ export const URL = {
     API_REGISTER: 'http://localhost:2500/users/register',
     API_LOGOUT: 'http://localhost:2500/users/logout',
     API_PROJECT: 'http://localhost:2500/project',
+    API_PROJECT_COUNT: 'http://localhost:2500/project/count',
     API_PROJECT_USER: 'http://localhost:2500/project/projectsFromUser',
     API_CHAT_MESSAGES: 'http://localhost:2500/chat',
     API_PROJECT_MEMBERS: 'http://localhost:2500/project/projectMembers',
