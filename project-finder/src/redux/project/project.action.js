@@ -47,3 +47,11 @@ export const projectCountSuccess = (count) => ({
     type: ProjectActionTypes.PROJECT_COUNT_SUCCESS,
     payload: count
 })
+
+export const projectApplyStart = (projectApplyData) => ({
+    type: ProjectActionTypes.PROJECT_APPLY_START,
+    payload: projectApplyData
+})
+export const projectApplySuccess = () => ({
+    type: ProjectActionTypes.PROJECT_APPLY_SUCCESS
+})

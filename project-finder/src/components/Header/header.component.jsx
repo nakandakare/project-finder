@@ -1,19 +1,19 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './header.styles.scss';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import { Dropdown } from 'semantic-ui-react'
+import { Dropdown, Icon } from 'semantic-ui-react'
 import { useLocation } from 'react-router-dom'
-import { selectCurrentUser} from '../../redux/user/user.selectors';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { connect } from 'react-redux';
-import { logoutStart} from '../../redux/user/user.actions';
+import { logoutStart } from '../../redux/user/user.actions';
 import { projectFilterAddStart } from '../../redux/project/project.action';
 import ProjectCreate from '../../components/project-create/project-create.component';
 
-const Header = ({ currentUser, logoutStart, filterAddStart}) => {
+const Header = ({ currentUser, logoutStart, filterAddStart }) => {
 
     const { pathname } = useLocation();
-    const path = pathname.replace('/', ''); 
+    const path = pathname.replace('/', '');
 
     const [showProjectCreate, setShowProjectCreate] = useState(false);
 
@@ -30,6 +30,7 @@ const Header = ({ currentUser, logoutStart, filterAddStart}) => {
     }
 
     return (
+    <div className='headerContainer'>
         <header className='header'>
             <div className='logo'>
                 <Link to='/projects' className='logo'>
@@ -38,7 +39,7 @@ const Header = ({ currentUser, logoutStart, filterAddStart}) => {
             <div className='options'>
                 <Link className='option-each' to='/projects' onClick={filterReset}>
                     PROJECTS
-                    <hr className={path === 'projects' ? 'hr-highlight' : <hr/>} />
+                    <hr className={path === 'projects' ? 'hr-highlight' : <hr />} />
                 </Link>
                 <Link className='option-each' to='/members'>
                     MEMBERS
@@ -56,20 +57,21 @@ const Header = ({ currentUser, logoutStart, filterAddStart}) => {
             {currentUser ?
                 <div className='user-header'>
                     <div className='image-border'>
-                        <img className='user-img' src={currentUser.img} alt='user-img'/>
+                        <img className='user-img' src={currentUser.img} alt='user-img' />
                     </div>
                     <div className='user-name'>
                         <span >{currentUser.name.split(' ').slice(0, -1).join(' ')}</span>
                     </div>
-                    <div className='logout-button'>
-                        <Dropdown direction='left' closeOnChange>
-                            <Dropdown.Menu >
-                                <Dropdown.Item icon='pencil alternate' text='Create Project' onClick={showProjectCreateHandler}/>
-                                <Dropdown.Item icon='bell' text='Notification' />
-                                <Dropdown.Divider />
-                                <Dropdown.Item icon='sign-out' text='Log Out' onClick={startSignOut} />
-                            </Dropdown.Menu>
-                        </Dropdown>
+                    <div className='menuIcons'>
+                        <div className='pencilIcon'>
+                            <Icon size='large' name='pencil' onClick={showProjectCreateHandler} />
+                        </div>
+                        <div className='bellIcon'>
+                            <Icon size='large' name='bell' />
+                        </div>
+                        <div className='logoutIcon'>
+                            <Icon size='large' name='log out' onClick={startSignOut} />
+                        </div>
                     </div>
                 </div>
                 :
@@ -84,10 +86,11 @@ const Header = ({ currentUser, logoutStart, filterAddStart}) => {
                             REGISTER
                         </Button>
                     </Link>
-                </div> 
+                </div>
             }
-            <ProjectCreate showProjectCreate={showProjectCreate} setShowProjectCreate={setShowProjectCreate}/>
+            <ProjectCreate showProjectCreate={showProjectCreate} setShowProjectCreate={setShowProjectCreate} />
         </header>
+        </div>
     )
 }
 

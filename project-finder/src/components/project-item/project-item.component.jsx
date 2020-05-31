@@ -9,7 +9,7 @@ import { selectProjectFromUser } from '../../redux/user/user.selectors';
 import { connect } from 'react-redux';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-const ProjectItem = ({ projectId, projectname, description, size, duration, members, language, proglanguage, created_at, name, img, flag, category, projectsFromUser, setShowApplyModal, setNotAllowedModal, setProjectName, currentUser }) => {
+const ProjectItem = ({ projectId, projectname, description, size, duration, members, language, proglanguage, created_at, name, img, flag, category, projectsFromUser, setShowApplyModal, setNotAllowedModal, setProjectName, currentUser, userId, setApplyProjectData, applyProjectData }) => {
 
     var showApplyButton = true;
 
@@ -21,6 +21,7 @@ const ProjectItem = ({ projectId, projectname, description, size, duration, memb
         if (currentUser) {
             setProjectName(projectname);
             setShowApplyModal(true);
+            setApplyProjectData({ ...applyProjectData, projectId, projectOwnerId: userId, requestUserId: currentUser.id})
         } else {
             setNotAllowedModal(true);
         }

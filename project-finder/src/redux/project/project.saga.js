@@ -1,6 +1,6 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import ProjectActionTypes from './project.types';
-import { projectAddSuccess, projectFailure, projectFetchSuccess, projectMemberFetchSuccess, projectCountSuccess } from './project.action';
+import { projectAddSuccess, projectFailure, projectFetchSuccess, projectMemberFetchSuccess, projectCountSuccess, projectApplySuccess } from './project.action';
 import { URL } from '../../constants/constants';
 import { postRequest, getRequest } from '../../utils/fetch-request';
 
@@ -36,6 +36,16 @@ export function* projectMembersFetch({payload}){
     }
 }
 
+export function* projectApplySave({ payload }) {
+    const resp = yield postRequest(URL.API_PROJECT_APPLY, payload);
+    if(resp.name == "error") {
+        yield put(projectFailure(resp));
+    } else {
+        yield put(projectApplySuccess());
+        alert('Error applying to project');
+    }
+}
+
 //WATCHERS
 export function* onProjectAddStart() {
     yield takeLatest(ProjectActionTypes.PROJECT_ADD_START, projectAdd)
@@ -49,7 +59,11 @@ export function* onProjectMembersFetchStart(){
     yield takeLatest(ProjectActionTypes.PROJECT_FETCH_MEMBERS_START, projectMembersFetch)
 }
 
+export function* onProjectApplyStart() {
+    yield takeLatest(ProjectActionTypes.PROJECT_APPLY_START, projectApplySave)
+}
+
 //to export all functions.
 export function* projectSagas() {
-    yield all([call(onProjectAddStart), call(onProjectFetchStart), call(onProjectMembersFetchStart)])
+    yield all([call(onProjectAddStart), call(onProjectFetchStart), call(onProjectMembersFetchStart), call(onProjectApplyStart)])
 }

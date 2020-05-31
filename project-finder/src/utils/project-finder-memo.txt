@@ -1,0 +1,32 @@
+Bugs:
+
+cant upload projects after user registration
+
+Cannot read property 'map' of null on CHAT TAB -> PROJECT USER.
+Use Loading and Make initial state of project user to Empty Array []
+
+Chat page not loading when changed account.
+
+Tasks:
+
+loading(placeholder) on project at chat
+loading(placeholder) on last messages
+move Project-Create to better place to avoid using showHandler in saga
+
+dont show project MEMBERS when '/chat/
+
+Memo: 
+
+projectId ownerId requestUserId note        active (middleware auth)
+44          41         45         "hola"     true
+
+if accept request : 
+change to inactive
+projectId requestUserId in user_project_table
+and notificate
+
+if reject :
+change to inactive
+nothing
+and notificate
+
