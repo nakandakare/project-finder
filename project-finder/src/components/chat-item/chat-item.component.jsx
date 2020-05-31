@@ -4,7 +4,7 @@ import { useHistory, useLocation } from "react-router-dom";
 import queryString from 'query-string';
 import Jdenticon from 'react-jdenticon';
 
-const ChatItem = ({ project_id, projectname, lastMessages }) => {
+const ChatItem = ({ projectId, projectname, lastMessages }) => {
     const history = useHistory();
     const location = useLocation();
 
@@ -13,20 +13,20 @@ const ChatItem = ({ project_id, projectname, lastMessages }) => {
     }
 
     const selectProject = () => {
-        history.push(`/chat?project=${projectname}&id=${project_id}`)
+        history.push(`/chat?project=${projectname}&id=${projectId}`)
     }
 
     return (
-        <div className={'chat-item ' + (parseInt(id) === project_id ? 'selected' : 'notSelected')} onClick={selectProject}>
+        <div className={'chat-item ' + (parseInt(id) === projectId ? 'selected' : 'notSelected')} onClick={selectProject}>
             <div className='chat-item-box'>
                 <div className='jdenticon'>
-                    <Jdenticon size="48" value={project_id.toString()} />
+                    <Jdenticon size="48" value={projectId.toString()} />
                 </div>
                 <div>
                     <p className='chat-item-title'>{projectname}</p>
                     {
                         lastMessages.map((lastMessage, i) => {
-                            return (lastMessage.projectId === project_id ? <p key={i} className='chat-item-message'><b>{lastMessage.messageName.split(' ').slice(0, -1).join(' ')}:</b> {lastMessage.text}</p> : null)
+                            return (lastMessage.projectId === projectId ? <p key={i} className='chat-item-message'><b>{lastMessage.messageName.split(' ').slice(0, -1).join(' ')}:</b> {lastMessage.text}</p> : null)
                         })
                     }
                 </div>

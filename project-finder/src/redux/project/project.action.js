@@ -24,14 +24,6 @@ export const projectFailure = (err) => ({
     payload: err
 }) 
 
-export const projectCreateShow = () => ({
-    type: ProjectActionTypes.PROJECT_CREATE_SHOW
-})
-
-export const projectCreateClose = () => ({
-    type: ProjectActionTypes.PROJECT_CREATE_CLOSE
-})
-
 export const projectFilterAddStart = (projectFilter) => ({
     type: ProjectActionTypes.PROJECT_FILTERED_ADD_START,
     payload: projectFilter

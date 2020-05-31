@@ -33,7 +33,7 @@ const ProjectsPage = ({ match, history, projectCount, projectFetchStart }) => {
         <div className='projects-page'>
             <Filter className='projects-filter' match={match} history={history} />
             <div className='projectsView'>
-                <ProjectOverviewContainer />
+                <ProjectOverviewContainer projectCount={projectCount}/>
                 <div className={`${classes.root}`}>
                     <Pagination onChange={pageChangeHandler} count={Math.ceil(projectCount[0].count / 6)} color="primary" size='medium' />
                 </div>

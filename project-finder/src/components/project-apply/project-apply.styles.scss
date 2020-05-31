@@ -1,0 +1,46 @@
+.applyModal {
+    border-radius: 100px !important;
+    width: 580px !important;
+}
+
+.projectApplyHeader {
+    background-color: #314559 !important;
+    color: #FFFF !important;
+    display: flex !important;
+    justify-content: center;
+    align-items: center;
+    padding-right: 45px !important;
+    border-top-left-radius: 8px !important;
+    border-top-right-radius: 8px !important;
+}
+
+.applyModalTextTitle {
+    display: flex;
+    flex-direction: row;
+    font-size: 16px;
+    font-weight: bold;
+    color: rgb(49, 69, 89);
+}
+
+.applyModalTextNote {
+    margin-top: 12px;
+    display: flex;
+    flex-direction: column;
+    font-size: 16px;
+    font-weight: 450;
+    color: rgb(97, 108, 117)
+}
+
+.applyModalTextArea {
+    margin-top: 12px;
+}
+
+.modalProjectName {
+    margin-left: 8px;
+    color: #007EFF;
+}
+
+.modalFooter {
+    border-bottom-left-radius: 8px !important;
+    border-bottom-right-radius: 8px !important;
+}

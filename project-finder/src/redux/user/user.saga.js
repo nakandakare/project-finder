@@ -52,7 +52,7 @@ export function* checkUserSession() {
 
 export function* fetchProjectFromUser({payload}) {
     const resp = yield postRequest(URL.API_PROJECT_USER, payload);
-    const projectsId = resp.map(projectId => projectId.project_id);
+    const projectsId = resp.map(projectId => projectId.projectId);
     yield put(projectFetchFromUserSuccess(projectsId));
 }
 

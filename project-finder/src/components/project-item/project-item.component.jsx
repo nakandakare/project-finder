@@ -5,8 +5,26 @@ import ReadMoreAndLess from 'react-read-more-less';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import UserPicture from '../user-picture/user-picture.component';
+import { selectProjectFromUser } from '../../redux/user/user.selectors';
+import { connect } from 'react-redux';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-const ProjectItem = ({ projectname, description, size, duration, members, language, proglanguage, created_at, name, img, flag, category }) => {
+const ProjectItem = ({ projectId, projectname, description, size, duration, members, language, proglanguage, created_at, name, img, flag, category, projectsFromUser, setShowApplyModal, setNotAllowedModal, setProjectName, currentUser }) => {
+
+    var showApplyButton = true;
+
+    if (projectsFromUser.find(project => project.projectId === projectId)) {
+        showApplyButton = false;
+    }
+
+    const applyClicked = () => {
+        if (currentUser) {
+            setProjectName(projectname);
+            setShowApplyModal(true);
+        } else {
+            setNotAllowedModal(true);
+        }
+    }
 
     const created = created_at.substring(0, created_at.indexOf('T'));
     return (
@@ -25,7 +43,7 @@ const ProjectItem = ({ projectname, description, size, duration, members, langua
                     <div className='project-detail'>
                         <div className='project-name-button-row'>
                             <div className='project-name'>
-                                <span className='project-label'>Project name: </span>
+                                <span className='project-label'>Project Name: </span>
                                 <span className='project-title'>{projectname}</span>
                             </div>
                             <div className='project-created-button-end'>
@@ -33,15 +51,21 @@ const ProjectItem = ({ projectname, description, size, duration, members, langua
                                     {created}
                                 </div>
                                 <div className='apply-button'>
-                                    <Button
-                                        variant="contained"
-                                        color="primary"
-                                        className='icon-button'
-                                        size='small'
-                                        endIcon={<Icon>group</Icon>}
-                                    >
-                                        APPLY
+                                    {
+                                        showApplyButton ?
+                                            <Button
+                                                onClick={applyClicked}
+                                                variant="contained"
+                                                color="primary"
+                                                className='icon-button'
+                                                size='small'
+                                                endIcon={<Icon>group</Icon>}
+                                            >
+                                                APPLY
                                 </Button>
+                                            :
+                                            null
+                                    }
                                 </div>
                             </div>
                         </div>
@@ -95,4 +119,8 @@ const ProjectItem = ({ projectname, description, size, duration, members, langua
     )
 }
 
-export default ProjectItem;
+const mapStateToProps = state => ({
+    projectsFromUser: selectProjectFromUser(state),
+    currentUser: selectCurrentUser(state)
+})
+export default connect(mapStateToProps)(ProjectItem);

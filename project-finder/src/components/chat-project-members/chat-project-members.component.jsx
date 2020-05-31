@@ -8,6 +8,8 @@ import { selectProjectMembers } from '../../redux/project/project.selectors';
 import MemberView from '../member-view/member-view.component';
 import { Icon } from 'semantic-ui-react'
 import ScrollToBottom from 'react-scroll-to-bottom';
+import { css } from 'glamor';
+
 const ChatProjectMembers = ({ projectMemberFetchStart, location, projectMembers, emptyProjectMembers }) => {
     
     //Fetching members of project selected.
@@ -18,6 +20,11 @@ const ChatProjectMembers = ({ projectMemberFetchStart, location, projectMembers,
             emptyProjectMembers();
         }
     }, [location.search])
+
+    const ROOT_CSS = css({
+        height: 730,
+        width: 420
+    });
 
     return (
         <div>
@@ -33,7 +40,7 @@ const ChatProjectMembers = ({ projectMemberFetchStart, location, projectMembers,
                     </div>
                 </div>
             </div>
-            <ScrollToBottom>
+            <ScrollToBottom className={ROOT_CSS}>
             {
                 projectMembers.map(({ ...props } /*member*/, i) => <MemberView key={i} {...props} />)
             }

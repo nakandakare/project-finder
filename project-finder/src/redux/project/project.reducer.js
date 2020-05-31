@@ -44,16 +44,6 @@ const projectReducer = (state = INITIAL_STATE, action) => {
                 isFetching: false,
                 error: action.payload
             }
-        case ProjectActionTypes.PROJECT_CREATE_SHOW:
-            return {
-                ...state,
-                createShow: true
-            }
-        case ProjectActionTypes.PROJECT_CREATE_CLOSE:
-            return {
-                ...state,
-                createShow: false
-            }
         case ProjectActionTypes.PROJECT_FETCH_MEMBERS_SUCCESS:
             return {
                 ...state,

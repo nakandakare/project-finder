@@ -5,13 +5,11 @@ import { OPTIONS } from '../../constants/constants';
 import { Select, Modal } from 'semantic-ui-react';
 import Button from '@material-ui/core/Button';
 import { createStructuredSelector } from 'reselect';
-import { selectCreateShow  } from '../../redux/project/project.selectors';
-import { projectCreateClose } from '../../redux/project/project.action';    
 import { projectAddStart} from '../../redux/project/project.action';
 import { selectCurrentUser} from '../../redux/user/user.selectors';
 import { connect } from 'react-redux';
 
-const ProjectCreate = ({currentUser, projectAddStart, createShow, projectCreateClose }) => {
+const ProjectCreate = ({ currentUser, projectAddStart, showProjectCreate, setShowProjectCreate }) => {
 
     const [projectData, setProjectData] = useState({ userId: '', name: '', description: '', size: '', duration: '', category: '', members: '', language: '', progLanguage: '' })
 
@@ -30,8 +28,12 @@ const ProjectCreate = ({currentUser, projectAddStart, createShow, projectCreateC
         projectAddStart(projectData)
     }
 
+    const closeProjectCreateHandler = () => {
+        setShowProjectCreate(false);
+    }
+
     return (
-        <Modal className='modal' open={createShow} closeIcon onClose={projectCreateClose}  >
+        <Modal className='modal' open={showProjectCreate} closeIcon onClose={closeProjectCreateHandler}  >
             <Modal.Content image>
                 <Modal.Description>
                     <div className='project-create'>
@@ -66,13 +68,11 @@ const ProjectCreate = ({currentUser, projectAddStart, createShow, projectCreateC
 }
 
 const mapStateToProps = createStructuredSelector({
-    currentUser: selectCurrentUser,
-    createShow: selectCreateShow
+    currentUser: selectCurrentUser
 })
 
 const mapDispatchToProps = dispatch => ({
-    projectAddStart: (projectData) => dispatch(projectAddStart(projectData)),
-    projectCreateClose: () => dispatch(projectCreateClose())
+    projectAddStart: (projectData) => dispatch(projectAddStart(projectData))
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(ProjectCreate);

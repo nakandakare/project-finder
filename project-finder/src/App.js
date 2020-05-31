@@ -3,7 +3,6 @@ import './App.css';
 import Header from './components/header/header.component';
 import CurrentPath from './components/current-path/current-path.component';
 import ProjectsPage from './pages/projects-page/projects-page.component';
-import ProjectCreate from './components/project-create/project-create.component';
 import SignInPageContainer from './pages/sign-in-page/sign-in-page.container';
 import RegisterPageContainer from './pages/register-page/register-page.container';
 import ChatOverview from './components/chat-overview/chat-overview.component';
@@ -31,7 +30,6 @@ const App = ({ currentUser, checkUserSession, projectFetchStart}) => {
       <div className="main-content">
         <div className="content-wrapper">
           <Redirect from="/" to="projects" />
-          <ProjectCreate/>
           {
             pathname === '/signin' ? null : pathname === '/register' ? null : pathname === '/chat' ? null : <CurrentPath/>
           }

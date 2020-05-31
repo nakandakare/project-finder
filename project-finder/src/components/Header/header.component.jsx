@@ -1,19 +1,21 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './header.styles.scss';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import { projectCreateShow } from '../../redux/project/project.action'
 import { Dropdown } from 'semantic-ui-react'
 import { useLocation } from 'react-router-dom'
 import { selectCurrentUser} from '../../redux/user/user.selectors';
 import { connect } from 'react-redux';
 import { logoutStart} from '../../redux/user/user.actions';
 import { projectFilterAddStart } from '../../redux/project/project.action';
+import ProjectCreate from '../../components/project-create/project-create.component';
 
-const Header = ({ currentUser, logoutStart, projectCreateShow, filterAddStart}) => {
+const Header = ({ currentUser, logoutStart, filterAddStart}) => {
 
     const { pathname } = useLocation();
     const path = pathname.replace('/', ''); 
+
+    const [showProjectCreate, setShowProjectCreate] = useState(false);
 
     const startSignOut = () => {
         logoutStart();
@@ -21,6 +23,10 @@ const Header = ({ currentUser, logoutStart, projectCreateShow, filterAddStart}) 
 
     const filterReset = () => {
         filterAddStart({});
+    }
+
+    const showProjectCreateHandler = () => {
+        setShowProjectCreate(true);
     }
 
     return (
@@ -53,12 +59,12 @@ const Header = ({ currentUser, logoutStart, projectCreateShow, filterAddStart}) 
                         <img className='user-img' src={currentUser.img} alt='user-img'/>
                     </div>
                     <div className='user-name'>
-                        <span >{currentUser.name}</span>
+                        <span >{currentUser.name.split(' ').slice(0, -1).join(' ')}</span>
                     </div>
                     <div className='logout-button'>
                         <Dropdown direction='left' closeOnChange>
                             <Dropdown.Menu >
-                                <Dropdown.Item icon='pencil alternate' text='Create Project' onClick={projectCreateShow}/>
+                                <Dropdown.Item icon='pencil alternate' text='Create Project' onClick={showProjectCreateHandler}/>
                                 <Dropdown.Item icon='bell' text='Notification' />
                                 <Dropdown.Divider />
                                 <Dropdown.Item icon='sign-out' text='Log Out' onClick={startSignOut} />
@@ -80,6 +86,7 @@ const Header = ({ currentUser, logoutStart, projectCreateShow, filterAddStart}) 
                     </Link>
                 </div> 
             }
+            <ProjectCreate showProjectCreate={showProjectCreate} setShowProjectCreate={setShowProjectCreate}/>
         </header>
     )
 }
@@ -90,7 +97,6 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     logoutStart: () => dispatch(logoutStart()),
-    projectCreateShow: () => dispatch(projectCreateShow()),
     filterAddStart: (filteredProjectData) => dispatch(projectFilterAddStart(filteredProjectData))
 })
 
