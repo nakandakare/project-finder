@@ -1,6 +1,6 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import UserActionTypes from './user.types';
-import { signInFailure, signInSuccess, logoutSuccess, setCurrentUser, logoutFailure, projectFetchFromUserSuccess } from './user.actions';
+import { signInFailure, signInSuccess, logoutSuccess, setCurrentUser, logoutFailure, projectFetchFromUserSuccess, getNotificationDataStart, getNotificationSuccess, getNotificationRequestSuccess } from './user.actions';
 import { URL } from '../../constants/constants';
 import Cookies from 'universal-cookie';
 import jwt_decode from 'jwt-decode';
@@ -41,10 +41,14 @@ export function* checkUserSession() {
     if (token) {
         const decodedToken = jwt_decode(token);
         const userProjects = yield postRequest(URL.API_PROJECT_USER, decodedToken);
-        //setting projects of user
+        //Setting projects of user
         yield put(projectFetchFromUserSuccess(userProjects));
-        //setting user information
+        //Setting user information
         yield put(setCurrentUser(decodedToken));
+        //Getting notification data of user
+        yield put(getNotificationDataStart());
+        const projectsApplied = yield postRequest(URL.API_PROJECT_APPLIED, {id:decodedToken.id});
+        yield put(getNotificationSuccess(projectsApplied));
     } else {
         return
     }

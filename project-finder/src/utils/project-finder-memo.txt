@@ -12,7 +12,7 @@ Tasks:
 loading(placeholder) on project at chat
 loading(placeholder) on last messages
 move Project-Create to better place to avoid using showHandler in saga
-
+optimize checkUserSession() saaga
 dont show project MEMBERS when '/chat/
 
 Memo: 

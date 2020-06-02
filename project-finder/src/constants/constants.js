@@ -9,6 +9,7 @@ export const URL = {
     API_PROJECT_MEMBERS: 'http://localhost:2500/project/projectMembers',
     API_PROJECT_APPLY: 'http://localhost:2500/project/apply',
     API_CHAT_LAST_MESSAGES: 'http://localhost:2500/chat/lastMessage',
+    API_PROJECT_APPLIED: 'http://localhost:2500/users/projectApplied'
 }
 
 export const OPTIONS = {

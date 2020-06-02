@@ -4,14 +4,16 @@ import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
 import { Dropdown, Icon } from 'semantic-ui-react'
 import { useLocation } from 'react-router-dom'
-import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { selectCurrentUser, selectNotificationCount} from '../../redux/user/user.selectors';
 import { connect } from 'react-redux';
-import { logoutStart } from '../../redux/user/user.actions';
+import { logoutStart, emptyNotificationCount, showHideNotification } from '../../redux/user/user.actions';
 import { projectFilterAddStart } from '../../redux/project/project.action';
 import ProjectCreate from '../../components/project-create/project-create.component';
+import Badge from '@material-ui/core/Badge';
+import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 
-const Header = ({ currentUser, logoutStart, filterAddStart }) => {
-
+const Header = ({ currentUser, logoutStart, filterAddStart, notificationCount, emptyNotificationCount, showHideNotification }) => {
+    
     const { pathname } = useLocation();
     const path = pathname.replace('/', '');
 
@@ -27,6 +29,11 @@ const Header = ({ currentUser, logoutStart, filterAddStart }) => {
 
     const showProjectCreateHandler = () => {
         setShowProjectCreate(true);
+    }
+
+    const notificationClickHandler = () => {
+        showHideNotification();
+        emptyNotificationCount();
     }
 
     return (
@@ -63,14 +70,14 @@ const Header = ({ currentUser, logoutStart, filterAddStart }) => {
                         <span >{currentUser.name.split(' ').slice(0, -1).join(' ')}</span>
                     </div>
                     <div className='menuIcons'>
-                        <div className='pencilIcon'>
-                            <Icon size='large' name='pencil' onClick={showProjectCreateHandler} />
+                        <div className='pencilIcon menuIcon' onClick={showProjectCreateHandler}>
+                            <Icon size='large' name='pencil' title='Create Project'/>
                         </div>
-                        <div className='bellIcon'>
-                            <Icon size='large' name='bell' />
-                        </div>
-                        <div className='logoutIcon'>
-                            <Icon size='large' name='log out' onClick={startSignOut} />
+                            <Badge className='bellIcon menuIcon' color="secondary" badgeContent={notificationCount} onClick={notificationClickHandler} title='Notification'>
+                                <NotificationsActiveIcon />
+                            </Badge>
+                        <div className='logoutIcon menuIcon' title='Logout' onClick={startSignOut}>
+                            <Icon size='large' name='log out' />
                         </div>
                     </div>
                 </div>
@@ -95,12 +102,15 @@ const Header = ({ currentUser, logoutStart, filterAddStart }) => {
 }
 
 const mapStateToProps = (state) => ({
-    currentUser: selectCurrentUser(state)
+    currentUser: selectCurrentUser(state),
+    notificationCount: selectNotificationCount(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({
     logoutStart: () => dispatch(logoutStart()),
-    filterAddStart: (filteredProjectData) => dispatch(projectFilterAddStart(filteredProjectData))
+    filterAddStart: (filteredProjectData) => dispatch(projectFilterAddStart(filteredProjectData)),
+    emptyNotificationCount: () => dispatch(emptyNotificationCount()),
+    showHideNotification: () => dispatch(showHideNotification())
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

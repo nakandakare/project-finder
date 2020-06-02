@@ -8,7 +8,6 @@ import { Icon } from 'semantic-ui-react';
 import { lastMessageStart, newLastMessage } from '../../redux/chat/chat.action';
 import io from 'socket.io-client';
 import ScrollToBottom from 'react-scroll-to-bottom';
-import { css } from 'glamor';
 
 let socket;
 
@@ -41,11 +40,6 @@ const ChatTab = ({ projectsFromUser, currentUser, lastMessageStart, lastMessages
         setFilterValue(event.target.value.toLowerCase()); //re-render after this setState.
     }
 
-    const ROOT_CSS = css({
-        height: 730,
-        width: 420
-    });
-
     return (
         <div className='chatTab'>
             <div className='chat-tab-header'>
@@ -56,8 +50,8 @@ const ChatTab = ({ projectsFromUser, currentUser, lastMessageStart, lastMessages
                 <Icon className='chatTabSearchIcon' color='grey' name='search' size='large' />
                 <input placeholder='Search project...' className='chatTabSearchInput' onChange={projectSearchHandle}/>
             </div>
-            <div className="chatTabItem">
-                <ScrollToBottom className={ROOT_CSS}>
+            <div className='chatTabItem'>
+                <ScrollToBottom className='scrollStyles'>
                 {
                     filteredProjects.map(({...otherProps }, i) => <ChatItem key={i} lastMessages={lastMessages} {...otherProps} />)
                 }

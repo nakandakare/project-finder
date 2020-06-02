@@ -13,7 +13,7 @@ const ProjectOverview = ({ projects, projectCount }) => {
     const [showNotAllowedModal, setShowNotAllowedModal] = useState(false);
     const [selectedProjectName, setProjectName] = useState('');
 
-    const [applyProjectData, setApplyProjectData] = useState({projectId:'', projectOwnerId:'', requestUserId: '', note:''});
+    const [applyProjectData, setApplyProjectData] = useState({ projectId: '', projectOwnerId: '', requestUserId: '', projectName: '', note:''});
 
     return (
         <div className='project-overview'>

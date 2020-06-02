@@ -39,7 +39,7 @@
             display: flex;
             flex-direction: row;
             margin-left: 18px;
-            .pencilIcon, .bellIcon, .logoutIcon {
+            .menuIcon {
                 cursor: pointer;
                 display: flex;
                 border-radius: 50%;
@@ -48,8 +48,17 @@
                 margin-right: 10px;
                 align-items: center;
                 justify-content: center;
-                background-color: #F2F6F9;
-                padding-left: 2px;
+                background-color: rgb(228, 231, 236);
+            }
+            .pencilIcon {
+                padding-left: 4px;
+            }
+            .bellIcon {
+                padding-left: 1px;
+                padding-bottom: 2px;
+            }
+            .logoutIcon {
+                padding-left: 6px;
             }
         }
 
@@ -63,8 +72,8 @@
         .user-img {
             position: relative;
             border-radius: 50%;
-            width: 40px;
-            bottom: 4px;
+            width: 38px;
+            bottom: 3px;
         }
 
         .user-name {

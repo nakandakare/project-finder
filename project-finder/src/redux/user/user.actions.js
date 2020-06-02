@@ -51,3 +51,38 @@ export const projectFetchFromUserSuccess = (data) => ({
     type: UserActionTypes.PROJECT_FETCH_USER_SUCCESS,
     payload: data
 })
+
+export const addNotificationCount = () => ({
+    type: UserActionTypes.ADD_NOTIFICATION_COUNT
+})
+
+export const emptyNotificationCount = () => ({
+    type: UserActionTypes.EMPTY_NOTIFICATION_COUNT
+})
+
+export const showHideNotification = () => ({
+    type: UserActionTypes.SHOW_HIDE_NOTIFICATION
+})
+
+export const hideNotification = () => ({
+    type: UserActionTypes.HIDE_NOTIFICATION
+})
+
+export const getNotificationDataStart = () => ({
+    type: UserActionTypes.GET_NOTIFICATION_DATA_START,
+})
+
+export const getNotificationSuccess = (notification) => ({
+    type: UserActionTypes.GET_NOTIFICATION_SUCCESS,
+    payload: notification
+})
+
+export const getNotificationRequestSuccess = (requestNotification) => ({
+    type: UserActionTypes.GET_NOTIFICATION_REQUEST_SUCCESS,
+    payload: requestNotification
+})
+
+export const addProjectApplied = (projectApplied) => ({
+    type: UserActionTypes.ADD_PROJECT_APPLIED,
+    payload: projectApplied
+})

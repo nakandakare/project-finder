@@ -1,6 +1,8 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import ProjectActionTypes from './project.types';
-import { projectAddSuccess, projectFailure, projectFetchSuccess, projectMemberFetchSuccess, projectCountSuccess, projectApplySuccess } from './project.action';
+import { projectAddSuccess, projectFailure, projectFetchSuccess, projectMemberFetchSuccess, projectCountSuccess, projectApplySuccess  } from './project.action';
+import { addProjectApplied} from '../user/user.actions';
+import { addNotificationCount } from '../user/user.actions';
 import { URL } from '../../constants/constants';
 import { postRequest, getRequest } from '../../utils/fetch-request';
 
@@ -40,10 +42,16 @@ export function* projectApplySave({ payload }) {
     const resp = yield postRequest(URL.API_PROJECT_APPLY, payload);
     if(resp.name == "error") {
         yield put(projectFailure(resp));
+        alert('Error applying to project');
     } else {
         yield put(projectApplySuccess());
-        alert('Error applying to project');
+        yield put(addProjectApplied(resp));
+        yield put(addNotificationCount());
     }
+}
+
+export function* getNotificationData(payload) {
+    console.log(payload);
 }
 
 //WATCHERS
@@ -62,6 +70,7 @@ export function* onProjectMembersFetchStart(){
 export function* onProjectApplyStart() {
     yield takeLatest(ProjectActionTypes.PROJECT_APPLY_START, projectApplySave)
 }
+
 
 //to export all functions.
 export function* projectSagas() {

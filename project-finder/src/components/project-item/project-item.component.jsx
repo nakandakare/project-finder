@@ -21,7 +21,7 @@ const ProjectItem = ({ projectId, projectname, description, size, duration, memb
         if (currentUser) {
             setProjectName(projectname);
             setShowApplyModal(true);
-            setApplyProjectData({ ...applyProjectData, projectId, projectOwnerId: userId, requestUserId: currentUser.id})
+            setApplyProjectData({ ...applyProjectData, projectId, projectOwnerId: userId, requestUserId: currentUser.id, projectName: projectname})
         } else {
             setNotAllowedModal(true);
         }

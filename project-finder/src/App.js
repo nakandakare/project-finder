@@ -6,12 +6,14 @@ import ProjectsPage from './pages/projects-page/projects-page.component';
 import SignInPageContainer from './pages/sign-in-page/sign-in-page.container';
 import RegisterPageContainer from './pages/register-page/register-page.container';
 import ChatOverview from './components/chat-overview/chat-overview.component';
+import Notification from './components/notificaction/notification.component';
 import { createStructuredSelector } from 'reselect';
-import {checkUserSession} from './redux/user/user.actions';
+import { checkUserSession} from './redux/user/user.actions';
 import {selectCurrentUser} from './redux/user/user.selectors';
-import {projectFetchStart} from './redux/project/project.action';
+import { projectFetchStart} from './redux/project/project.action';
 import {connect} from 'react-redux';
 import {Route, useLocation, Redirect} from 'react-router-dom';
+import OutsideAlerter from './components/outside-alerter/outside-alerter.component';
 
 const App = ({ currentUser, checkUserSession, projectFetchStart}) => {
 
@@ -37,6 +39,9 @@ const App = ({ currentUser, checkUserSession, projectFetchStart}) => {
           <Route exact path='/signin' render={() => currentUser ? (<Redirect to='/projects' />) : (<SignInPageContainer />)} />
           <Route exact path='/register' render={() => currentUser ? (<Redirect to='/projects' />) : (<RegisterPageContainer />)} />
           <Route path='/chat' render={() => currentUser ? (<ChatOverview/>) : (<Redirect to='/signin' />)}/>
+          <OutsideAlerter>
+            <Notification />
+          </OutsideAlerter>
         </div>
       </div>
     </div>

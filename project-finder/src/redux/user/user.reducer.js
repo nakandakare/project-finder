@@ -4,7 +4,11 @@ const INITIAL_STATE = {
     currentUser: '',
     isFetching: false, //to show spinner.
     userProjects: [],
-    filterValue: ''
+    filterValue: '',
+    notificationCount: 0,
+    showNotification: false,
+    isNotificationLoading: false,
+    projectsApplied: []
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -43,6 +47,48 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 userProjects: action.payload,
                 isFetching: false
+            }
+        case UserActionTypes.ADD_NOTIFICATION_COUNT:
+            return {
+                ...state,
+                notificationCount: state.notificationCount + 1
+            }
+        case UserActionTypes.EMPTY_NOTIFICATION_COUNT:
+            return {
+                ...state,
+                notificationCount: 0
+            }
+        case UserActionTypes.SHOW_HIDE_NOTIFICATION:
+            return {
+                ...state,
+                showNotification: !state.showNotification
+            }   
+        case UserActionTypes.HIDE_NOTIFICATION:
+            return {
+                ...state,
+                showNotification: false
+            }
+        case UserActionTypes.GET_NOTIFICATION_DATA_START:
+            return {
+                ...state,
+                isNotificationLoading: true
+            }
+        case UserActionTypes.ADD_PROJECT_APPLIED:
+            return {
+                ...state,
+                projectsApplied: [...state.projectsApplied, action.payload[0]]
+            }
+        case UserActionTypes.GET_NOTIFICATION_SUCCESS:
+            console.log(action.payload);
+            console.log("JIODASIJOIJOAIJOASAIJODSIJODS");
+            return {
+                ...state,
+                projectsApplied: action.payload
+            }
+        case UserActionTypes.GET_NOTIFICATION_REQUEST_SUCCESS:
+            return {
+                ...state,
+                isNotificationLoading: false
             }
         default:
             return state;

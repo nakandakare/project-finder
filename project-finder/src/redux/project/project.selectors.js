@@ -36,6 +36,11 @@ export const selectProjectMembers = createSelector(
     [selectProject],
     project => project.projectMembers
 )
+export const selectProjectsApplied = createSelector(
+    [selectProject],
+    project => project.projectsApplied
+)
+
 
 
 

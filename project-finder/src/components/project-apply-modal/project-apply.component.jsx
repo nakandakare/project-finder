@@ -34,7 +34,7 @@ const ProjectApply = ({ showApplyModal, setShowApplyModal, selectedProjectName, 
                 <Button size='tiny' color='red' basic onClick={closeHandler}>
                     <Icon name='remove' /> Cancel
                 </Button>
-                <Button onClick={applyToProject}size='tiny' color='green'>
+                <Button onClick={applyToProject} size='tiny' color='green'>
                     <Icon name='checkmark' /> Apply
                 </Button>
             </Modal.Actions>

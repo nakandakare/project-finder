@@ -16,3 +16,18 @@ export const selectProjectFromUser = createSelector(
     [selectUser],
     user => user.userProjects
 )
+
+export const selectNotificationCount = createSelector(
+    [selectUser],
+    user => user.notificationCount
+)
+
+export const selectShowNotification = createSelector(
+    [selectUser],
+    user => user.showNotification
+)
+
+export const selectProjectsApplied = createSelector(
+    [selectUser],
+    user => user.projectsApplied
+)
