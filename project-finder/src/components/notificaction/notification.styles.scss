@@ -31,7 +31,7 @@
 
     .scrollStyles {
         height: 190px !important;
-        width: 320px !important;
+        width: 330px !important;
     }
 
     .noContent {
@@ -52,5 +52,10 @@
         font-size: 14px;
         font-weight: 600;
         color: rgb(90, 96, 125);
+    }
+
+    .requestItems {
+        margin: 0 !important;
+        
     }
 }

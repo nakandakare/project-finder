@@ -40,6 +40,7 @@ export function* checkUserSession() {
     const token = cookies.get('token')
     if (token) {
         const decodedToken = jwt_decode(token);
+        //Getting projects of user
         const userProjects = yield postRequest(URL.API_PROJECT_USER, decodedToken);
         //Setting projects of user
         yield put(projectFetchFromUserSuccess(userProjects));

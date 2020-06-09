@@ -34,10 +34,10 @@ const ProjectCreate = ({ currentUser, projectAddStart, showProjectCreate, setSho
 
     return (
         <Modal className='modal' open={showProjectCreate} closeIcon onClose={closeProjectCreateHandler}  >
-            <Modal.Content image>
+            <Modal.Content image className='description-pc'>
                 <Modal.Description>
                     <div className='project-create'>
-                        <span className='project-info'>Project Info</span>
+                        <span className='project-info'>Create Project</span>
                         <span icon="cancel"></span>
                         <form className='project-create-form' onSubmit={handleSubmit} noValidate autoComplete="off">
                             <TextField className='project-name project-input' onChange={handleChange} required name='name' label="Project name" variant="outlined" size="small" />

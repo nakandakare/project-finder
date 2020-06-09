@@ -38,7 +38,7 @@ const Header = ({ currentUser, logoutStart, filterAddStart, notificationCount, e
 
     return (
     <div className='headerContainer'>
-        <header className='header'>
+        <header className='header-p'>
             <div className='logo'>
                 <Link to='/projects' className='logo'>
                 </Link>

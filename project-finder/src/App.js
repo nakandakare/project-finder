@@ -26,7 +26,7 @@ const App = ({ currentUser, checkUserSession, projectFetchStart}) => {
   
   return (
     <div className="App">
-      <div className="header">
+      <div className="header-pf">
         <Header />
       </div>
       <div className="main-content">
