@@ -26,6 +26,7 @@ const ProjectCreate = ({ currentUser, projectAddStart, showProjectCreate, setSho
     const handleSubmit = event => {
         event.preventDefault();
         projectAddStart(projectData)
+        closeProjectCreateHandler();
     }
 
     const closeProjectCreateHandler = () => {
@@ -55,7 +56,7 @@ const ProjectCreate = ({ currentUser, projectAddStart, showProjectCreate, setSho
                                 <TextField className='project-language project-input' onChange={handleChange} required name='language' label="Conversation language" variant="outlined" size="small" />
                                 <TextField className='project-programming-language project-input' onChange={handleChange} required name='progLanguage' label="Programming language" variant="outlined" size="small" />
                             </div>
-                            <Button className="create-button" type="submit" size="medium" variant="contained" color="primary" >
+                            <Button className="create-button" type="submit" size="medium" variant="contained" color="primary">
                                 Create project
                              </Button>
                         </form>

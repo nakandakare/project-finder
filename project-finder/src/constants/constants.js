@@ -3,13 +3,17 @@ export const URL = {
     API_REGISTER: 'http://localhost:2500/users/register',
     API_LOGOUT: 'http://localhost:2500/users/logout',
     API_PROJECT: 'http://localhost:2500/project',
+    API_ADD_PROJECT: 'http://localhost:2500/project/addProject',
     API_PROJECT_COUNT: 'http://localhost:2500/project/count',
     API_PROJECT_USER: 'http://localhost:2500/project/projectsFromUser',
     API_CHAT_MESSAGES: 'http://localhost:2500/chat',
     API_PROJECT_MEMBERS: 'http://localhost:2500/project/projectMembers',
     API_PROJECT_APPLY: 'http://localhost:2500/project/apply',
     API_CHAT_LAST_MESSAGES: 'http://localhost:2500/chat/lastMessage',
-    API_PROJECT_APPLIED: 'http://localhost:2500/users/projectApplied'
+    API_PROJECT_APPLIED: 'http://localhost:2500/users/projectApplied',
+    API_PROJECT_REQUEST: 'http://localhost:2500/users/projectRequest',
+    API_USER_TO_PROJECT: 'http://localhost:2500/project/userToProject',
+    API_DECLINE_REQUEST: 'http://localhost:2500/users/declineRequest'
 }
 
 export const OPTIONS = {

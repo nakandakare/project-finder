@@ -31,3 +31,8 @@ export const selectProjectsApplied = createSelector(
     [selectUser],
     user => user.projectsApplied
 )
+
+export const selectProjectsRequest = createSelector(
+    [selectUser],
+    user => user.projectsRequest
+)

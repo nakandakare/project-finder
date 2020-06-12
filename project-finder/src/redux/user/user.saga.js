@@ -40,6 +40,7 @@ export function* checkUserSession() {
     const token = cookies.get('token')
     if (token) {
         const decodedToken = jwt_decode(token);
+        const { id } = decodedToken;
         //Getting projects of user
         const userProjects = yield postRequest(URL.API_PROJECT_USER, decodedToken);
         //Setting projects of user
@@ -48,8 +49,9 @@ export function* checkUserSession() {
         yield put(setCurrentUser(decodedToken));
         //Getting notification data of user
         yield put(getNotificationDataStart());
-        const projectsApplied = yield postRequest(URL.API_PROJECT_APPLIED, {id:decodedToken.id});
-        yield put(getNotificationSuccess(projectsApplied));
+        const projectsApplied = yield postRequest(URL.API_PROJECT_APPLIED, { id });
+        const projectsRequest = yield postRequest(URL.API_PROJECT_REQUEST, { id });
+        yield put(getNotificationSuccess([projectsApplied, projectsRequest]));
     } else {
         return
     }
@@ -60,6 +62,15 @@ export function* fetchProjectFromUser({payload}) {
     const projectsId = resp.map(projectId => projectId.projectId);
     yield put(projectFetchFromUserSuccess(projectsId));
 }
+
+export function* saveUserToProject({payload}) {
+    yield postRequest(URL.API_USER_TO_PROJECT, payload);
+}
+
+export function* declineRequest({payload}) {
+    yield postRequest(URL.API_DECLINE_REQUEST, payload);
+}
+
 
 //WATCHERS
 export function* onEmailSignInStart() {
@@ -82,7 +93,16 @@ export function* onProjectFetchFromUser() {
     yield takeLatest(UserActionTypes.PROJECT_FETCH_USER, fetchProjectFromUser);
 }
 
+export function* onSaveUserToProject() {
+    yield takeLatest(UserActionTypes.SAVE_USER_TO_PROJECT, saveUserToProject);
+}
+
+export function* onDeclineRequest() {
+    yield takeLatest(UserActionTypes.DECLIE_PROJECT_REQUEST, declineRequest);
+}
+
+
 //to export all functions.
 export function* userSagas() {
-    yield all([call(onEmailSignInStart), call(onRegisterStart), call(onLogout), call(onCheckUserSession), call(onProjectFetchFromUser)])
+    yield all([call(onEmailSignInStart), call(onRegisterStart), call(onLogout), call(onCheckUserSession), call(onProjectFetchFromUser), call(onSaveUserToProject), call(onDeclineRequest)])
 }

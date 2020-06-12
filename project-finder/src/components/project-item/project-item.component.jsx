@@ -12,7 +12,7 @@ import { selectCurrentUser } from '../../redux/user/user.selectors';
 const ProjectItem = ({ projectId, projectname, description, size, duration, members, language, proglanguage, created_at, name, img, flag, category, projectsFromUser, setShowApplyModal, setNotAllowedModal, setProjectName, currentUser, userId, setApplyProjectData, applyProjectData }) => {
 
     var showApplyButton = true;
-
+   
     if (projectsFromUser.find(project => project.projectId === projectId)) {
         showApplyButton = false;
     }

@@ -8,7 +8,8 @@ const INITIAL_STATE = {
     notificationCount: 0,
     showNotification: false,
     isNotificationLoading: false,
-    projectsApplied: []
+    projectsApplied: [],
+    projectsRequest: []
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {
@@ -79,16 +80,10 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 projectsApplied: [...state.projectsApplied, action.payload[0]]
             }
         case UserActionTypes.GET_NOTIFICATION_SUCCESS:
-            console.log(action.payload);
-            console.log("JIODASIJOIJOAIJOASAIJODSIJODS");
             return {
                 ...state,
-                projectsApplied: action.payload
-            }
-        case UserActionTypes.GET_NOTIFICATION_REQUEST_SUCCESS:
-            return {
-                ...state,
-                isNotificationLoading: false
+                projectsApplied: action.payload[0],
+                projectsRequest: action.payload[1]
             }
         default:
             return state;

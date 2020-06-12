@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import './notification.styles.scss';
-import { selectShowNotification, selectProjectsApplied } from '../../redux/user/user.selectors'
-import { Button, Card, Image } from 'semantic-ui-react'
+import { selectShowNotification, selectProjectsApplied, selectProjectsRequest } from '../../redux/user/user.selectors'
+import { Card } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import ProjectApplied from '../../components/project-applied/project-applied.component';
+import ProjectRequest from '../../components/project-request/project-request.component';
 import ScrollToBottom from 'react-scroll-to-bottom';
 import applyIcon from '../../assets/notification-apply.png'
 import groupIcon from '../../assets/notification-group.png'
 import _ from 'lodash';
 
-const Notification = ({ showNotification, projectsApplied }) => {
-    console.log(projectsApplied);
-    console.log(projectsApplied);
+const Notification = ({ showNotification, projectsApplied, projectsRequest }) => {
+
+    const [filterValue, setFilterValue] = useState(undefined);
+
+    if (filterValue) {
+        projectsRequest.splice(filterValue, 1)
+        setFilterValue(undefined); 
+    } else if (filterValue === 0 ){
+        projectsRequest.shift();
+        setFilterValue(undefined);
+    }
+
     return (
         <div className='notificationContainer'>
             {
@@ -24,7 +34,9 @@ const Notification = ({ showNotification, projectsApplied }) => {
                             <div className='projectsApplied'>
                                 <ScrollToBottom className='scrollStyles' mode='top'>
                                     {
-                                        !_.isEmpty(projectsApplied) ? projectsApplied.map(({ ...props }, i) => <ProjectApplied key={i} {...props} />)
+                                        !_.isEmpty(projectsApplied)
+                                            ?
+                                            projectsApplied.map(({ ...props }, i) => <ProjectApplied key={i} {...props} />)
                                             :
                                             <div className='noContent'>
                                                 <img className='notificationIcon' src={applyIcon} />
@@ -41,54 +53,16 @@ const Notification = ({ showNotification, projectsApplied }) => {
                             <div>
                                 <ScrollToBottom className='scrollStyles' mode='top'>
                                     <Card.Group className='requestItems'>
-                                        <Card>
-                                            <Card.Content>
-                                                <Image
-                                                    floated='right'
-                                                    size='mini'
-                                                    src='https://robohash.org/ds'
-                                                />
-                                                <Card.Header>Steve Sanders</Card.Header>
-                                                <Card.Meta>Friends of Elliot</Card.Meta>
-                                                <Card.Description>
-                                                    Steve wants to add you to the group <strong>best friends</strong>
-                                                </Card.Description>
-                                            </Card.Content>
-                                            <Card.Content extra>
-                                                <div className='ui two buttons'>
-                                                    <Button basic color='green'>
-                                                        Approve
-                                                </Button>
-                                                    <Button basic color='red'>
-                                                        Decline
-                                                </Button>
+                                        {
+                                            !_.isEmpty(projectsRequest)
+                                                ?
+                                                projectsRequest.map(({ ...props }, i) => <ProjectRequest key={i} {...props} setFilterValue={setFilterValue} index={i} />)
+                                                :
+                                                <div className='noContent secondNoContent'>
+                                                    <img className='notificationIcon' src={groupIcon} />
+                                                    <p className='notificationIconText'>Request empty</p>
                                                 </div>
-                                            </Card.Content>
-                                        </Card>
-                                        <Card>
-                                            <Card.Content>
-                                                <Image
-                                                    floated='right'
-                                                    size='mini'
-                                                    src='https://react.semantic-ui.com/images/avatar/large/steve.jpg'
-                                                />
-                                                <Card.Header>Steve Sanders</Card.Header>
-                                                <Card.Meta>Friends of Elliot</Card.Meta>
-                                                <Card.Description>
-                                                    Steve wants to add you to the group <strong>best friends</strong>
-                                                </Card.Description>
-                                            </Card.Content>
-                                            <Card.Content extra>
-                                                <div className='ui two buttons'>
-                                                    <Button basic color='green'>
-                                                        Approve
-                                                </Button>
-                                                    <Button basic color='red'>
-                                                        Decline
-                                                </Button>
-                                                </div>
-                                            </Card.Content>
-                                        </Card>
+                                        }
                                     </Card.Group>
                                 </ScrollToBottom>
                             </div>
@@ -103,7 +77,8 @@ const Notification = ({ showNotification, projectsApplied }) => {
 
 const mapStateToProps = state => ({
     showNotification: selectShowNotification(state),
-    projectsApplied: selectProjectsApplied(state)
+    projectsApplied: selectProjectsApplied(state),
+    projectsRequest: selectProjectsRequest(state)
 })
 
 export default connect(mapStateToProps)(Notification);

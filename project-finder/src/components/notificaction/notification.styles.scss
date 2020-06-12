@@ -21,7 +21,7 @@
         font-size: 17px;
         font-weight: 600;
         line-height: 20.0005px;
-        color: rgb(5, 5, 5);
+        color: #5A607D;
         margin-bottom: 8px;
     }
 
@@ -43,6 +43,10 @@
         align-items: center;
     }
 
+    .secondNoContent {
+        margin-top: 45px;
+    }
+
     .notificationIcon {
         width: 65px;
     }
@@ -56,6 +60,5 @@
 
     .requestItems {
         margin: 0 !important;
-        
     }
 }
