@@ -44,13 +44,9 @@ export function* projectApplySave({ payload }) {
         alert('Error applying to project');
     } else {
         yield put(projectApplySuccess());
-        yield put(addProjectApplied(resp));
+        yield put(addProjectApplied(resp[0]));
         yield put(addNotificationCount());
     }
-}
-
-export function* getNotificationData(payload) {
-    console.log(payload);
 }
 
 //WATCHERS

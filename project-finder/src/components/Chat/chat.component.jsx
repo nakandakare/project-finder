@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import './chat.styles.scss';
 import io from 'socket.io-client';
+import { ENDPOINT } from '../../constants/constants';
 import { connect } from 'react-redux';
 import { createStructuredSelector } from 'reselect';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
@@ -19,7 +20,6 @@ const Chat = ({ currentUser, location, messagesFromProjectStart, messagesOfProje
     const [messages, setMessages] = useState([]);
     const { id, project } = queryString.parse(location.search);
     const { name } = currentUser;
-    const ENDPOINT = 'localhost:2500'
 
     //Joining user(socket) to the room when click.
     useEffect(() => {
@@ -48,10 +48,7 @@ const Chat = ({ currentUser, location, messagesFromProjectStart, messagesOfProje
     useEffect(() => {
         /*TIENE QUE SER SOCKET.ONCE YA QUE SI ES CON SOCKET.ON 
         CADA VEZ QUE LLAMO ESTA FUNCION,
-        SE VA ADICIONANDO SOCKET.ON
-        
-        SOCKET.ON IS ACCUMULABLE.
-        */
+        SE VA ACUMULANDO SOCKET.ON*/
         socket.once('message', (messageFromServer) => {
             setMessages([...messages, messageFromServer]);
         })

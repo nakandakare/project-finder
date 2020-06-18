@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import './notification.styles.scss';
-import { selectShowNotification, selectProjectsApplied, selectProjectsRequest } from '../../redux/user/user.selectors'
+import { selectShowNotification, selectProjectsApplied, selectProjectsRequest, selectCurrentUser } from '../../redux/user/user.selectors'
 import { Card } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import ProjectApplied from '../../components/project-applied/project-applied.component';
@@ -9,8 +9,10 @@ import ScrollToBottom from 'react-scroll-to-bottom';
 import applyIcon from '../../assets/notification-apply.png'
 import groupIcon from '../../assets/notification-group.png'
 import _ from 'lodash';
+import { notifySocket } from '../../constants/constants';
+import { addProjectRequest, addNotificationCount, changeAppliedStatus  } from '../../redux/user/user.actions';
 
-const Notification = ({ showNotification, projectsApplied, projectsRequest }) => {
+const Notification = ({ showNotification, projectsApplied, projectsRequest, currentUser, addProjectRequest, addNotificationCount, changeAppliedStatus }) => {
 
     const [filterValue, setFilterValue] = useState(undefined);
 
@@ -21,6 +23,27 @@ const Notification = ({ showNotification, projectsApplied, projectsRequest }) =>
         projectsRequest.shift();
         setFilterValue(undefined);
     }
+    
+    //Using same socket of project-apply.component & project-request.component
+    useEffect(() => {   
+        if(currentUser){
+        notifySocket.emit('join', {id: currentUser.id});
+        }
+    }, [currentUser])
+
+    useEffect(() => {
+        notifySocket.on('projectRequest', (projectRequestFromServer) => {
+            addProjectRequest(projectRequestFromServer);  //user action
+            addNotificationCount();
+        });
+    }, [])
+
+    useEffect(() => {
+        notifySocket.on('requestAcceptOrDecline', (requestValue) => {
+            changeAppliedStatus(requestValue); //user action
+            addNotificationCount();
+        });
+    }, [])
 
     return (
         <div className='notificationContainer'>
@@ -78,7 +101,14 @@ const Notification = ({ showNotification, projectsApplied, projectsRequest }) =>
 const mapStateToProps = state => ({
     showNotification: selectShowNotification(state),
     projectsApplied: selectProjectsApplied(state),
-    projectsRequest: selectProjectsRequest(state)
+    projectsRequest: selectProjectsRequest(state),
+    currentUser: selectCurrentUser(state)
 })
 
-export default connect(mapStateToProps)(Notification);
+const mapDispatchToProps = dispatch => ({
+    addProjectRequest: (value) => dispatch(addProjectRequest(value)),
+    changeAppliedStatus: (value) => dispatch(changeAppliedStatus (value)),
+    addNotificationCount: () => dispatch(addNotificationCount())
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(Notification);

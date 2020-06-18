@@ -3,18 +3,26 @@ import './project-request.styles.scss';
 import { Button, Card, Image } from 'semantic-ui-react'
 import { saveUserToProject, declileRequest } from '../../redux/user/user.actions';
 import { connect } from 'react-redux';
+import { notifySocket } from '../../constants/constants';
 
 const ProjectRequest = ({ name, img, project_name, note, requestUserId, projectId, saveUserToProject, declileRequest, setFilterValue, index}) => {
 
     const approveHandler = () => {
-        saveUserToProject({requestUserId, projectId})
+        saveUserToProject({ requestUserId, projectId })
+        sendRequestOption({ requestUserId, projectId, option: true })
         setFilterValue(index)
     }
 
     const declineHandler = () => {
         declileRequest({ requestUserId, projectId })
+        sendRequestOption({ requestUserId, projectId, option: false})
         setFilterValue(index)
     }
+
+    //Option => Accept = true, Decline = false
+    const sendRequestOption = (value) => {
+        notifySocket.emit('sendRequestOption', value);
+    }   
 
     return (
         <Card className='eachCard'>

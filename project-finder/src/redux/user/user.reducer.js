@@ -77,7 +77,12 @@ const userReducer = (state = INITIAL_STATE, action) => {
         case UserActionTypes.ADD_PROJECT_APPLIED:
             return {
                 ...state,
-                projectsApplied: [...state.projectsApplied, action.payload[0]]
+                projectsApplied: [...state.projectsApplied, action.payload]
+            }
+        case UserActionTypes.ADD_PROJECT_REQUEST:
+            return {
+                ...state,
+                projectsRequest: [...state.projectsRequest, action.payload]
             }
         case UserActionTypes.GET_NOTIFICATION_SUCCESS:
             return {
@@ -85,6 +90,19 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 projectsApplied: action.payload[0],
                 projectsRequest: action.payload[1]
             }
+        case UserActionTypes.CHANGE_APPLY_STATUS:
+            const { requestUserId, projectId, option} = action.payload;
+            return { 
+                ...state,
+                projectsApplied: state.projectsApplied.map(projectApplied => {
+                    if (projectApplied.request_user_id === requestUserId && projectApplied.project_id === projectId) {
+                        projectApplied.accepted = option;
+                        return projectApplied;
+                    } else {
+                        return projectApplied;
+                    }
+                })
+            } 
         default:
             return state;
     }

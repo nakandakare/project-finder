@@ -1,3 +1,5 @@
+import io from "socket.io-client";
+
 export const URL = {
     API_SIGNIN: 'http://localhost:2500/users/signin',
     API_REGISTER: 'http://localhost:2500/users/register',
@@ -12,7 +14,7 @@ export const URL = {
     API_CHAT_LAST_MESSAGES: 'http://localhost:2500/chat/lastMessage',
     API_PROJECT_APPLIED: 'http://localhost:2500/users/projectApplied',
     API_PROJECT_REQUEST: 'http://localhost:2500/users/projectRequest',
-    API_USER_TO_PROJECT: 'http://localhost:2500/project/userToProject',
+    API_USER_TO_PROJECT: 'http://localhost:2500/users/acceptRequest',
     API_DECLINE_REQUEST: 'http://localhost:2500/users/declineRequest'
 }
 
@@ -92,3 +94,7 @@ export const MARKS_DURATION = [
         label: '12 Month',
     }
 ]
+
+export const ENDPOINT = 'localhost:2500';
+
+export let notifySocket = io(ENDPOINT);

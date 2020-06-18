@@ -1,10 +1,10 @@
 import React from 'react';
 import './project-applied.styles.scss';
-import { Feed, Icon } from 'semantic-ui-react'
+import { Feed } from 'semantic-ui-react'
 import Jdenticon from 'react-jdenticon';
 
-const ProjectApplied = ({ project_id, project_name, accepted }) => {
-
+const ProjectApplied = ({ project_id, project_name, accepted, owner_id }) => {
+  
     let feedText;
 
     if (accepted === true) {

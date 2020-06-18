@@ -7,6 +7,7 @@ import { connect } from 'react-redux';
 import { Icon } from 'semantic-ui-react';
 import { lastMessageStart, newLastMessage } from '../../redux/chat/chat.action';
 import io from 'socket.io-client';
+import { ENDPOINT } from '../../constants/constants';
 import ScrollToBottom from 'react-scroll-to-bottom';
 
 let socket;
@@ -25,7 +26,7 @@ const ChatTab = ({ projectsFromUser, currentUser, lastMessageStart, lastMessages
     //Joining the user to all rooms of projects
     useEffect(() => {
         const projectsId = projectsFromUser.map(project => project.projectId)
-        socket = io('localhost:2500');
+        socket = io(ENDPOINT);
         socket.emit('join', { id: projectsId });
     }, []);
 

@@ -87,6 +87,11 @@ export const addProjectApplied = (projectApplied) => ({
     payload: projectApplied
 })
 
+export const addProjectRequest = (projectRequest) => ({
+    type: UserActionTypes.ADD_PROJECT_REQUEST,
+    payload: projectRequest
+})
+
 export const saveUserToProject = (value) => ({
     type: UserActionTypes.SAVE_USER_TO_PROJECT,
     payload: value
@@ -94,5 +99,10 @@ export const saveUserToProject = (value) => ({
 
 export const declileRequest = (value) => ({
     type: UserActionTypes.DECLIE_PROJECT_REQUEST,
+    payload: value
+})
+
+export const changeAppliedStatus = (value) => ({
+    type: UserActionTypes.CHANGE_APPLY_STATUS,
     payload: value
 })

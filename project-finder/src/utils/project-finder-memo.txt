@@ -14,6 +14,8 @@ loading(placeholder) on last messages
 move Project-Create to better place to avoid using showHandler in saga
 optimize checkUserSession() saaga
 dont show project MEMBERS when '/chat/
+Testear si notifySocket.on('projectRequest') funciona con varios request a la vez (por useEffect con [])
+Lo mismo con notifySocket.on('projectRequest'
 
 Memo: 
 
@@ -30,3 +32,4 @@ change to inactive
 nothing
 and notificate
 
+Socket esta compartido entre notification.component y project-apply.component

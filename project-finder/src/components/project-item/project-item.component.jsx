@@ -63,7 +63,7 @@ const ProjectItem = ({ projectId, projectname, description, size, duration, memb
                                                 endIcon={<Icon>group</Icon>}
                                             >
                                                 APPLY
-                                </Button>
+                                            </Button>
                                             :
                                             null
                                     }

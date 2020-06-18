@@ -1,10 +1,12 @@
 import React from 'react';
 import './project-apply.styles.scss';
 import { Button, Header, Icon, Modal, Form, TextArea } from 'semantic-ui-react';
+import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { projectApplyStart } from '../../redux/project/project.action';
 import {connect} from 'react-redux';
+import { notifySocket } from '../../constants/constants';
 
-const ProjectApply = ({ showApplyModal, setShowApplyModal, selectedProjectName, setApplyProjectData, applyProjectData, projectApplyStart}) => {
+const ProjectApply = ({ showApplyModal, setShowApplyModal, selectedProjectName, setApplyProjectData, applyProjectData, projectApplyStart, currentUser}) => {
 
     const closeHandler = () => {
         setShowApplyModal(false);
@@ -12,7 +14,12 @@ const ProjectApply = ({ showApplyModal, setShowApplyModal, selectedProjectName, 
 
     const applyToProject = () => {
         projectApplyStart(applyProjectData);
+        sendProjectApplied();
         setShowApplyModal(false);
+    }
+
+    const sendProjectApplied = () => {
+        notifySocket.emit('sendProjectApplied', {...applyProjectData, img: currentUser.img, name: currentUser.name});
     }
 
     return (
@@ -43,7 +50,10 @@ const ProjectApply = ({ showApplyModal, setShowApplyModal, selectedProjectName, 
 }
 
 const mapDispatchToProps = dispatch => ({
-    projectApplyStart: (projectApplyData) => dispatch(projectApplyStart(projectApplyData))
+    projectApplyStart: (projectApplyData) => dispatch(projectApplyStart(projectApplyData)),
 })
 
-export default connect(null, mapDispatchToProps)(ProjectApply);
+const mapStateToProps = state => ({
+    currentUser: selectCurrentUser(state)
+})
+export default connect(mapStateToProps, mapDispatchToProps)(ProjectApply);
