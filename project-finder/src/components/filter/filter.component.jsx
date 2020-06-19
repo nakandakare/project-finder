@@ -6,9 +6,9 @@ import { MARKS_MEBMERS, MARKS_DURATION } from '../../constants/constants';
 import {projectFilterAddStart} from '../../redux/project/project.action';
 import {connect} from 'react-redux';
 import _ from 'lodash';
-const Filter = ({filterAddStart}) => {
+const Filter = ({ filterAddStart }) => {
 
-    const [projectData, setProjectData] = useState({ projectname: '',  size: '', duration: '', category: '', members: '', language: '', progLanguage: '' })
+    const [ projectData, setProjectData ] = useState({ projectname: '',  size: '', duration: '', category: '', members: '', language: '', progLanguage: '' })
     const { size, category } = projectData;
 
     const handleSearchChange = (e, { value, name }) => {
@@ -47,7 +47,7 @@ const Filter = ({filterAddStart}) => {
                         <p>Project Search</p>
                     </li>
                     <li className='tab-member-search'>
-                        <p>Member Search</p>
+                        <p>Reset Filter</p>
                     </li>
                 </ul>
                 <div className='tab-title'>
@@ -70,7 +70,6 @@ const Filter = ({filterAddStart}) => {
                             />
                         </div>
                     </div>
-
 
                     <div className='search-input'>
                         <div className='tab-search'>
@@ -113,7 +112,6 @@ const Filter = ({filterAddStart}) => {
                         </div>
                     </div>
 
-
                     <div className='search-input'>
                         <div className='tab-search'>
                             <div className='filter-title'>
@@ -132,7 +130,6 @@ const Filter = ({filterAddStart}) => {
                             marks={MARKS_DURATION}
                         />
                     </div>
-
 
                     <div className='search-input'>
                         <div className='tab-search category'>

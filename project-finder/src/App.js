@@ -7,6 +7,7 @@ import SignInPageContainer from './pages/sign-in-page/sign-in-page.container';
 import RegisterPageContainer from './pages/register-page/register-page.container';
 import ChatOverview from './components/chat-overview/chat-overview.component';
 import Notification from './components/notificaction/notification.component';
+import ContactOverview from './components/contact-overview/contact-overview.component';
 import { createStructuredSelector } from 'reselect';
 import { checkUserSession} from './redux/user/user.actions';
 import {selectCurrentUser} from './redux/user/user.selectors';
@@ -38,7 +39,8 @@ const App = ({ currentUser, checkUserSession, projectFetchStart}) => {
           <Route exact path='/projects' component={ProjectsPage} />
           <Route exact path='/signin' render={() => currentUser ? (<Redirect to='/projects' />) : (<SignInPageContainer />)} />
           <Route exact path='/register' render={() => currentUser ? (<Redirect to='/projects' />) : (<RegisterPageContainer />)} />
-          <Route path='/chat' render={() => currentUser ? (<ChatOverview/>) : (<Redirect to='/signin' />)}/>
+          <Route path='/chat' render={() => currentUser ? (<ChatOverview />) : (<Redirect to='/signin' />)}/>
+          <Route exact path='/contact' component={ContactOverview} />
           <OutsideAlerter>
             <Notification />
           </OutsideAlerter>

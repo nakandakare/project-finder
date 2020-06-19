@@ -48,16 +48,12 @@ const Header = ({ currentUser, logoutStart, filterAddStart, notificationCount, e
                     PROJECTS
                     <hr className={path === 'projects' ? 'hr-highlight' : <hr />} />
                 </Link>
-                <Link className='option-each' to='/members'>
-                    MEMBERS
-                    <hr className={path === 'members' ? 'hr-highlight' : <hr />} />
-                </Link>
                 <Link className='option-each' to={`/chat`}>
                     CHAT
                     <hr className={path === 'chat' ? 'hr-highlight' : <hr />} />
                 </Link>
-                <Link className='option-each' to='/support'>
-                    SUPPORT
+                <Link className='option-each' to='/contact'>
+                    CONTACT
                     <hr className={path === 'support' ? 'hr-highlight' : <hr />} />
                 </Link>
             </div>
