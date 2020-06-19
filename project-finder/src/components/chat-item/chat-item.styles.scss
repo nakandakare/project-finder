@@ -7,17 +7,24 @@
 
     .chat-item-box {
         display: flex;
-
+        align-items: center;
         .jdenticon{
             margin-right: 20px;
         }
     }
 
-    .chat-item-title {
-    font-size: 18px;
-    font-weight: 600;
-    line-height: 16px;
-    color: rgb(0, 126, 255);
+    .chat-item-text {
+        .chat-item-title {
+        font-size: 18px;
+        font-weight: 600;
+        line-height: 16px;
+        margin: 0 !important;
+        color: rgb(0, 126, 255);
+        }
+
+        .chat-item-message {
+        margin-top: 18px;
+        }
     }
 
 }

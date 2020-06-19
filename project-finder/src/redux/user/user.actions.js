@@ -106,3 +106,8 @@ export const changeAppliedStatus = (value) => ({
     type: UserActionTypes.CHANGE_APPLY_STATUS,
     payload: value
 })
+
+export const sendContactData = (value) => ({
+    type: UserActionTypes.SEND_CONTACT_DATA,
+    payload: value
+})

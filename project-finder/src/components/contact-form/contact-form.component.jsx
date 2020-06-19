@@ -3,11 +3,13 @@ import './contact-from.styles.scss';
 import { Button, Form, Input, Select, TextArea } from 'semantic-ui-react'
 import { connect } from 'react-redux';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
+import { sendContactData } from '../../redux/user/user.actions';
+import Swal from 'sweetalert2'; 
 
-const ContactFrom = ({ currentUser }) => {
+const ContactFrom = ({ currentUser, sendContactData }) => {
 
-    const [contactData, setContactData] = useState({ typeSubject: '', email: '', name: '', message: ''})
-    const [formError, setFormError] = useState({ contactType: false, email: false, name: false, message: false})
+    const [contactData, setContactData] = useState({ subjectType: '', email: '', name: '', message: ''})
+    const [formError, setFormError] = useState({ subjectType: false, email: false, name: false, message: false })
     const options = [ { key: 'c', text: 'Contact', value: 'Contact' }, { key: 'f', text: 'Feedback', value: 'Feedback' }, { key: 'b', text: 'Reporting Bugs', value: 'Reporting Bugs' }]
 
     useEffect(() => {
@@ -22,56 +24,79 @@ const ContactFrom = ({ currentUser }) => {
     }
 
     const typeChange = (e, {value, name}) => {
-        setContactData({...contactData, [name]: value })
+        setContactData({...contactData, [name]: value });
     }
 
     const handleSubmit = () => {
         if(validInformation()) {
-            alert('submitted successfully')
-        } else {
-            alert('error')
-        }
+            sendContactData(contactData);
+            
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                customClass: 'swal-height',
+                onOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Message sent successfully'
+            })
+        } 
     }
 
     const validInformation = () => {
 
         let formIsValid = true;
-        const { typeSubject, email, name, message } = contactData;
-       
-        if(typeSubject === ''){
-            setFormError({ ...formError, typeSubject: true });
+        const { subjectType, email, name, message } = contactData;
+        let subjectTypeError = false;
+        let emailError = false;
+        let nameError = false;
+        let messageError = false;
+        
+        if (subjectType === ''){
+            subjectTypeError = true;
             formIsValid = false;
-        } else {
-            setFormError({ ...formError, typeSubject: false });
-        }
+        } 
 
         if(email === ''){
-            setFormError({ ...formError, email: true });
+            emailError = true;
             formIsValid = false;
         } else {
-            setFormError({ ...formError, email: false });
+            var pattern = new RegExp(/^(("[\w-\s]+")|([\w-]+(?:\.[\w-]+)*)|("[\w-\s]+")([\w-]+(?:\.[\w-]+)*))(@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$)|(@\[?((25[0-5]\.|2[0-4][0-9]\.|1[0-9]{2}\.|[0-9]{1,2}\.))((25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\.){2}(25[0-5]|2[0-4][0-9]|1[0-9]{2}|[0-9]{1,2})\]?$)/i);
+            if(!pattern.test(email)){
+                emailError = true;
+                formIsValid = false;
+            }
         }
 
         if (name === '') {
-            setFormError({ ...formError, name: true });
+            nameError = true;
             formIsValid = false;
-        } else {
-            setFormError({ ...formError, name: false });;
-        }
+        } 
 
         if (message === '') {
-            setFormError({ ...formError, message: true });
+            messageError = true;
             formIsValid = false;
-        } else {
-            setFormError({ ...formError, message: false });
-        }
-        
+        } 
+    
+        setFormError({ subjectType: subjectTypeError, email: emailError, name: nameError, message: messageError });
         return formIsValid;
+    }
+
+    const resetFormError = (key) => {
+        setFormError({...formError, [key]: false });
     }
 
     return (
         <div className='contactForm'>
-            <Form className='formInputs'>
+            <Form className='formInputs' onSubmit={handleSubmit}>
                 <Form.Group widths='equal'>
                     <Form.Field
                         control={Select}
@@ -79,14 +104,16 @@ const ContactFrom = ({ currentUser }) => {
                         options={options}
                         placeholder='Contact Type'
                         onChange={typeChange}
-                        name='typeSubject'
-                        error={formError.contactType}
+                        onClick={() => resetFormError('subjectType')}
+                        name='subjectType'
+                        error={formError.subjectType}
                     />
                     <Form.Field
                         control={Input}
                         label='Email'
                         placeholder='Email'
                         onChange={handleChange}
+                        onClick={() => resetFormError('email')}
                         name='email'
                         error={formError.email}
                     />
@@ -97,6 +124,7 @@ const ContactFrom = ({ currentUser }) => {
                         value={ currentUser ? currentUser.name : ''}
                         readOnly = { currentUser ? true : false } 
                         onChange={handleChange}
+                        onClick={() => resetFormError('name')}
                         name='name'
                         error={formError.name}
                     />
@@ -106,11 +134,12 @@ const ContactFrom = ({ currentUser }) => {
                     label='Message'
                     placeholder='Type your message here...'
                     onChange={handleChange}
+                    onClick={() => resetFormError('message')}
                     name='message'
                     style={{ minHeight: 200 }}
                     error={formError.message}
                 />
-                <Form.Field className='contactSubmit' color='blue' control={Button} onClick={handleSubmit}>Submit</Form.Field>
+                <Form.Field className='contactSubmit' color='blue' control={Button} >Submit</Form.Field>
             </Form>
         </div>
     )
@@ -120,4 +149,8 @@ const mapStateToProps = state => ({
     currentUser: selectCurrentUser(state)
 })
 
-export default connect(mapStateToProps)(ContactFrom);
+const mapDispatchToProps = dispatch => ({
+    sendContactData: (contactData) => dispatch(sendContactData(contactData))
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(ContactFrom);

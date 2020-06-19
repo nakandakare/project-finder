@@ -1,4 +1,5 @@
 import ChatActionTypes from './chat.types';
+import _ from 'lodash';
 
 const INITIAL_STATE = {
     messagesOfProject: [],
@@ -39,11 +40,11 @@ const chatReducer = (state = INITIAL_STATE, action) => {
                 lastMessages: action.payload
             }
         case ChatActionTypes.NEW_LAST_MESSAGE:
-            const newLastMessage = state.lastMessages.map(message => 
+                const newLastMessage = state.lastMessages.map(message => 
                 action.payload.find(newLastMessage => (newLastMessage.projectId === message.projectId)) || message)
             return {
                 ...state,
-                lastMessages: newLastMessage
+                lastMessages: _.isEmpty(newLastMessage) ? action.payload : newLastMessage
             }
         default:
             return state;

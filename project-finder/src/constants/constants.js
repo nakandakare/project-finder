@@ -15,7 +15,8 @@ export const URL = {
     API_PROJECT_APPLIED: 'http://localhost:2500/users/projectApplied',
     API_PROJECT_REQUEST: 'http://localhost:2500/users/projectRequest',
     API_USER_TO_PROJECT: 'http://localhost:2500/users/acceptRequest',
-    API_DECLINE_REQUEST: 'http://localhost:2500/users/declineRequest'
+    API_DECLINE_REQUEST: 'http://localhost:2500/users/declineRequest',
+    API_MAIL: 'http://localhost:2500/email'
 }
 
 export const OPTIONS = {

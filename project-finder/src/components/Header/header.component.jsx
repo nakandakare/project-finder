@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import './header.styles.scss';
 import { Link } from 'react-router-dom';
 import Button from '@material-ui/core/Button';
-import { Dropdown, Icon } from 'semantic-ui-react'
+import { Icon } from 'semantic-ui-react'
 import { useLocation } from 'react-router-dom'
 import { selectCurrentUser, selectNotificationCount} from '../../redux/user/user.selectors';
 import { connect } from 'react-redux';
@@ -11,6 +11,7 @@ import { projectFilterAddStart } from '../../redux/project/project.action';
 import ProjectCreate from '../../components/project-create/project-create.component';
 import Badge from '@material-ui/core/Badge';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
+import projectLogo from '../../assets/project-finder-logo.png';
 
 const Header = ({ currentUser, logoutStart, filterAddStart, notificationCount, emptyNotificationCount, showHideNotification }) => {
     
@@ -39,8 +40,9 @@ const Header = ({ currentUser, logoutStart, filterAddStart, notificationCount, e
     return (
     <div className='headerContainer'>
         <header className='header-p'>
-            <div className='logo'>
-                <Link to='/projects' className='logo'>
+            <div className='logoContainer'>
+                <Link to='/projects'>
+                    <img className='logo' src={projectLogo}/>
                 </Link>
             </div>
             <div className='options'>

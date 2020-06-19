@@ -71,6 +71,9 @@ export function* declineRequest({payload}) {
     yield postRequest(URL.API_DECLINE_REQUEST, payload);
 }
 
+export function* sendContactData({payload}) {
+    yield postRequest(URL.API_MAIL, payload);
+}
 
 //WATCHERS
 export function* onEmailSignInStart() {
@@ -101,8 +104,11 @@ export function* onDeclineRequest() {
     yield takeLatest(UserActionTypes.DECLIE_PROJECT_REQUEST, declineRequest);
 }
 
+export function* onSendContactData() {
+    yield takeLatest(UserActionTypes.SEND_CONTACT_DATA, sendContactData);
+}
 
 //to export all functions.
 export function* userSagas() {
-    yield all([call(onEmailSignInStart), call(onRegisterStart), call(onLogout), call(onCheckUserSession), call(onProjectFetchFromUser), call(onSaveUserToProject), call(onDeclineRequest)])
+    yield all([call(onEmailSignInStart), call(onRegisterStart), call(onLogout), call(onCheckUserSession), call(onProjectFetchFromUser), call(onSaveUserToProject), call(onDeclineRequest), call(onSendContactData)])
 }

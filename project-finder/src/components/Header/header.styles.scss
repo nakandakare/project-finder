@@ -13,6 +13,15 @@
     padding: 0 25px 0 25px;
     box-shadow: 0px 1px 5px 0px rgba(209,209,209,1);
 
+    .logoContainer {
+            width: 250px;
+            padding: 20px 0 0 5px;
+            .logo {
+                width: 90%;
+                align-items: center;
+            }
+    }
+
     .options{
     height: 100%;
     display: flex;
@@ -32,8 +41,7 @@
         display: flex;
         justify-content: space-evenly;
         align-items: center;
-        width: 140px;
-        padding-right: 120px;
+        width: 250px;
 
         .menuIcons{ 
             display: flex;
