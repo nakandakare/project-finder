@@ -15,7 +15,9 @@ move Project-Create to better place to avoid using showHandler in saga
 optimize checkUserSession() saaga
 dont show project MEMBERS when '/chat/
 Testear si notifySocket.on('projectRequest') funciona con varios request a la vez (por useEffect con [])
-Lo mismo con notifySocket.on('projectRequest'
+Lo mismo con notifySocket.on('projectRequest')
+need to press 2 times to filter
+"All" button to checkbox in filter
 
 Memo: 
 

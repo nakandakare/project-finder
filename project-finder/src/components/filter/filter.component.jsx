@@ -3,13 +3,14 @@ import './filter.styles.scss';
 import { Icon, Search, Checkbox, Form, Button } from 'semantic-ui-react'
 import Slider from '@material-ui/core/Slider';
 import { MARKS_MEBMERS, MARKS_DURATION } from '../../constants/constants';
-import {projectFilterAddStart} from '../../redux/project/project.action';
-import {connect} from 'react-redux';
+import { projectFilterAddStart } from '../../redux/project/project.action';
+import { connect } from 'react-redux';
 import _ from 'lodash';
 const Filter = ({ filterAddStart }) => {
 
-    const [ projectData, setProjectData ] = useState({ projectname: '',  size: '', duration: '', category: '', members: '', language: '', progLanguage: '' })
-    const { size, category } = projectData;
+    const [projectData, setProjectData] = useState({ projectName: '', size: '', duration: '', category: '', members: '', language: '', progLanguage: '', durationSlider: '', membersSlider: '' })
+
+    const { projectName, size, category, language, progLanguage, durationSlider, membersSlider } = projectData;
 
     const handleSearchChange = (e, { value, name }) => {
         setProjectData({ ...projectData, [name]: value })
@@ -25,17 +26,21 @@ const Filter = ({ filterAddStart }) => {
     }
 
     const handleMemberChange = (e, value) => {
-        const labelArray = ["", 1, 2, 3, 4,5,6,7,8,9,10];
-        setProjectData({ ...projectData, members: labelArray[MARKS_MEBMERS.findIndex((mark) => mark.value === value)].toString()});
+        const labelArray = ["", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
+        setProjectData({ ...projectData, members: labelArray[MARKS_MEBMERS.findIndex((mark) => mark.value === value)].toString(), membersSlider: value });
     }
 
     const handleDurationChange = (e, value) => {
         const labelArray = ["", 1, 3, 6, 12];
-        setProjectData({ ...projectData, duration: labelArray[MARKS_DURATION.findIndex((mark) => mark.value === value)].toString()});
+        setProjectData({ ...projectData, duration: labelArray[MARKS_DURATION.findIndex((mark) => mark.value === value)].toString(), durationSlider: value});
+    }
+
+    const resetFilter = () => {
+        setProjectData({ projectName: '', size: '', duration: '', category: '', members: '', language: '', progLanguage: '', durationSlider: 0, membersSlider: 0});
     }
 
     const buttonClicked = () => {
-        const filteredProjectData = _.pickBy(projectData,_.identity);
+        const filteredProjectData = _.pickBy(projectData, _.identity); //remove all object if the value is "", null or undefined
         filterAddStart(filteredProjectData);
     }
 
@@ -46,7 +51,7 @@ const Filter = ({ filterAddStart }) => {
                     <li className='tab-project-search'>
                         <p>Project Search</p>
                     </li>
-                    <li className='tab-member-search'>
+                    <li className='tab-member-search' onClick={resetFilter}>
                         <p>Reset Filter</p>
                     </li>
                 </ul>
@@ -65,7 +70,8 @@ const Filter = ({ filterAddStart }) => {
                                 <Icon name='unordered list' />
                                     Project Title
                             </p>
-                            <Search className='search-type' size="large" name='projectname'
+                            <Search className='search-type' size="large" name='projectName'
+                                value={projectName}
                                 onSearchChange={handleSearchChange}
                             />
                         </div>
@@ -121,13 +127,13 @@ const Filter = ({ filterAddStart }) => {
                         </div>
                         <Slider className='slider'
                             name='duration'
-                            defaultValue={0}
                             onChange={handleDurationChange}
-                            valueLabelFormat={valueLabelFormatDurations}                 
+                            valueLabelFormat={valueLabelFormatDurations}
                             aria-labelledby="discrete-slider-custom"
                             step={null}
                             valueLabelDisplay="auto"
                             marks={MARKS_DURATION}
+                            value={durationSlider}
                         />
                     </div>
 
@@ -180,7 +186,6 @@ const Filter = ({ filterAddStart }) => {
                         </div>
                         </div>
                         <Slider className='slider'
-                            defaultValue={0}
                             name='member'
                             onChange={handleMemberChange}
                             valueLabelFormat={valueLabelFormatMembers}
@@ -188,6 +193,7 @@ const Filter = ({ filterAddStart }) => {
                             step={null}
                             valueLabelDisplay="auto"
                             marks={MARKS_MEBMERS}
+                            value={membersSlider}
                         />
                     </div>
 
@@ -198,6 +204,7 @@ const Filter = ({ filterAddStart }) => {
                         Conversation Language
                         </p>
                             <Search className='search-type' size="large" name='language'
+                                value={language}
                                 onSearchChange={handleSearchChange}
                             />
                         </div>
@@ -210,6 +217,7 @@ const Filter = ({ filterAddStart }) => {
                         Programming Language
                         </p>
                             <Search className='search-type' size="large" name='progLanguage'
+                                value={progLanguage}
                                 onSearchChange={handleSearchChange}
                             />
                         </div>
@@ -232,4 +240,4 @@ const mapDispatchToProps = dispatch => ({
     filterAddStart: (filteredProjectData) => dispatch(projectFilterAddStart(filteredProjectData))
 })
 
-export default connect(null,mapDispatchToProps)(Filter);
+export default connect(null, mapDispatchToProps)(Filter);
