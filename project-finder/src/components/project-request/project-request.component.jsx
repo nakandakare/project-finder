@@ -59,4 +59,4 @@ const mapDispatchToProps = dispatch => ({
     declileRequest: (value) => dispatch(declileRequest(value))
 })
 
-export default connect(null, mapDispatchToProps)(ProjectRequest);
+ export default connect(null, mapDispatchToProps)(ProjectRequest);

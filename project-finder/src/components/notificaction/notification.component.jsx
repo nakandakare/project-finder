@@ -107,7 +107,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
     addProjectRequest: (value) => dispatch(addProjectRequest(value)),
-    changeAppliedStatus: (value) => dispatch(changeAppliedStatus (value)),
+    changeAppliedStatus: (value) => dispatch(changeAppliedStatus(value)),
     addNotificationCount: () => dispatch(addNotificationCount())
 })
 

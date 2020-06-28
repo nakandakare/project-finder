@@ -12,14 +12,17 @@ Tasks:
 loading(placeholder) on project at chat
 loading(placeholder) on last messages
 move Project-Create to better place to avoid using showHandler in saga
-optimize checkUserSession() saaga
+optimize checkUserSession() saga
 dont show project MEMBERS when '/chat/
 Testear si notifySocket.on('projectRequest') funciona con varios request a la vez (por useEffect con [])
 Lo mismo con notifySocket.on('projectRequest')
 need to press 2 times to filter
 "All" button to checkbox in filter
+Reset Filter should show default projects. 0 -> 6.
 
 Memo: 
+
+Cuando hace dispatch,  the wrapper component's callback is notified (connect) then run mapStateToProps, si hay diferencia con el state anterior, se re-renderiza sino no.
 
 projectId ownerId requestUserId note        active (middleware auth)
 44          41         45         "hola"     true

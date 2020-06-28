@@ -121,7 +121,7 @@ const ContactFrom = ({ currentUser, sendContactData }) => {
                         control={Input}
                         label='Name'
                         placeholder='Name'
-                        value={ currentUser ? currentUser.name : ''}
+                        value={ currentUser ? currentUser.name : null}
                         readOnly = { currentUser ? true : false } 
                         onChange={handleChange}
                         onClick={() => resetFormError('name')}
