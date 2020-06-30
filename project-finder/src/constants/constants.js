@@ -22,7 +22,8 @@ export const URL = {
 export const OPTIONS = {
     SIZE: [{ key: 'Small', value: 'Small', text: 'Small' }, { key: 'Medium', value: 'Medium', text: 'Medium' }, { key: 'Large', value: 'Large', text: 'Large' }],
     CATEGORY: [{ key: 'Web Application', value: 'Web Application', text: 'Web Application' }, { key: 'Mobile Application', value: 'Mobile Application', text: 'Mobile Application' }, { key: 'Others', value: 'Others', text: 'Others' }],
-    DURATION: [{ key: '1', value: '1', text: '1 Month' }, { key: '2', value: '3', text: '3 Month' }, { key: '3', value: '6', text: '6 Month' }, { key: '4', value: '12', text: '12 Month' }]
+    DURATION: [{ key: '1', value: '1', text: '1 Month' }, { key: '2', value: '3', text: '3 Month' }, { key: '3', value: '6', text: '6 Month' }, { key: '4', value: '12', text: '12 Month' }],
+    MEMBERS: [{ key: '1', value: '1', text: '1 Member' }, { key: '2', value: '2', text: '2 Members' }, { key: '3', value: '3', text: '3 Members' }, { key: '4', value: '4', text: '4 Members' }, { key: '5', value: '5', text: '5 Members' }, { key: '6', value: '6', text: '6 Members' }, { key: '7', value: '7', text: '7 Members' }, { key: '8', value: '8', text: '8 Members' }, { key: '9', value: '9', text: '9 Members' }, { key: '10', value: '10', text: '10 Members' }]
 }
 
 

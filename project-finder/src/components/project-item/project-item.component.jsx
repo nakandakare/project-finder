@@ -12,16 +12,18 @@ import { selectCurrentUser } from '../../redux/user/user.selectors';
 const ProjectItem = ({ projectId, projectname, description, size, duration, members, language, proglanguage, created_at, name, img, flag, category, projectsFromUser, setShowApplyModal, setNotAllowedModal, setProjectName, currentUser, userId, setApplyProjectData, applyProjectData }) => {
 
     var showApplyButton = true;
-   
-    if (projectsFromUser.find(project => project.projectId === projectId)) {
-        showApplyButton = false;
+
+    if (!projectsFromUser === []) {
+        if (projectsFromUser.find(project => project.projectId === projectId)) {
+            showApplyButton = false;
+        }
     }
 
     const applyClicked = () => {
         if (currentUser) {
             setProjectName(projectname);
             setShowApplyModal(true);
-            setApplyProjectData({ ...applyProjectData, projectId, projectOwnerId: userId, requestUserId: currentUser.id, projectName: projectname})
+            setApplyProjectData({ ...applyProjectData, projectId, projectOwnerId: userId, requestUserId: currentUser.id, projectName: projectname })
         } else {
             setNotAllowedModal(true);
         }
@@ -45,7 +47,7 @@ const ProjectItem = ({ projectId, projectname, description, size, duration, memb
                         <div className='project-name-button-row'>
                             <div className='project-name'>
                                 <span className='project-label'>Project Name: </span>
-                                <span className='project-title'>{projectname}</span>
+                                <span className='project-title'>{projectname.charAt(0).toUpperCase() + projectname.substring(1)}</span>
                             </div>
                             <div className='project-created-button-end'>
                                 <div className='created-at'>
@@ -97,7 +99,7 @@ const ProjectItem = ({ projectId, projectname, description, size, duration, memb
                                     </div>
                                     <div className='second-row'>
                                         <span className='span-add-margin'>Language</span>
-                                        <span>{language}</span>
+                                        <span>{language.charAt(0).toUpperCase() + language.substring(1)}</span>
                                     </div>
                                 </div>
                                 <div className='third-column'>
@@ -107,7 +109,7 @@ const ProjectItem = ({ projectId, projectname, description, size, duration, memb
                                     </div>
                                     <div className='second-row'>
                                         <span className='span-add-margin'>Prog. Language</span>
-                                        <span>{proglanguage}</span>
+                                        <span>{proglanguage.charAt(0).toUpperCase() + proglanguage.substring(1)}</span>
                                     </div>
                                 </div>
                             </div>

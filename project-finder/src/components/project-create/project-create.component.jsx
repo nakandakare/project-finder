@@ -50,7 +50,7 @@ const ProjectCreate = ({ currentUser, projectAddStart, showProjectCreate, setSho
                             </div>
                             <div className='project-row'>
                                 <Select className='project-category project-input' placeholder='Project category' name='category' onChange={optionChange} options={OPTIONS.CATEGORY} />
-                                <TextField className='project-members project-input' onChange={handleChange} required name='members' label="Members for the project (Max 10)" variant="outlined" size="small" />
+                                <Select className='project-members project-input' placeholder='Members for the project (Max 10)' required name='members' onChange={optionChange} options={OPTIONS.MEMBERS} />
                             </div>
                             <div className='project-row'>
                                 <TextField className='project-language project-input' onChange={handleChange} required name='language' label="Conversation language" variant="outlined" size="small" />

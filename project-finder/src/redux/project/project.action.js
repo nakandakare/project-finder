@@ -24,8 +24,8 @@ export const projectFailure = (err) => ({
     payload: err
 }) 
 
-export const projectFilterAddStart = (projectFilter) => ({
-    type: ProjectActionTypes.PROJECT_FILTERED_ADD_START,
+export const projectFilterStart = (projectFilter) => ({
+    type: ProjectActionTypes.PROJECT_FILTER_START,
     payload: projectFilter
 })
 
@@ -43,6 +43,10 @@ export const emptyProjectMembers = () => ({
     type: ProjectActionTypes.EMPTY_PROJECT_MEMBERS
 })
 
+export const projectCountStart = () => ({
+    type: ProjectActionTypes.PROJECT_COUNT_START
+})
+
 export const projectCountSuccess = (count) => ({
     type: ProjectActionTypes.PROJECT_COUNT_SUCCESS,
     payload: count
@@ -52,8 +56,11 @@ export const projectApplyStart = (projectApplyData) => ({
     type: ProjectActionTypes.PROJECT_APPLY_START,
     payload: projectApplyData
 })
+
 export const projectApplySuccess = () => ({
     type: ProjectActionTypes.PROJECT_APPLY_SUCCESS
 })
+
+
 
 

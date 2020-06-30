@@ -3,13 +3,13 @@ import UserActionTypes from './user.types';
 const INITIAL_STATE = {
     currentUser: '',
     isFetching: false, //to show spinner.
-    userProjects: [],
+    userProjects: [''],
     filterValue: '',
     notificationCount: 0,
     showNotification: false,
     isNotificationLoading: false,
-    projectsApplied: [],
-    projectsRequest: []
+    projectsApplied: [''],
+    projectsRequest: ['']
 }
 
 const userReducer = (state = INITIAL_STATE, action) => {

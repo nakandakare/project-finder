@@ -3,17 +3,15 @@ import './filter.styles.scss';
 import { Icon, Search, Checkbox, Form, Button } from 'semantic-ui-react'
 import Slider from '@material-ui/core/Slider';
 import { MARKS_MEBMERS, MARKS_DURATION } from '../../constants/constants';
-import { projectFilterAddStart } from '../../redux/project/project.action';
+import { projectFilterStart } from '../../redux/project/project.action';
 import { connect } from 'react-redux';
 import _ from 'lodash';
-const Filter = ({ filterAddStart }) => {
+const Filter = ({projectFilterStart, projectFilterData, setProjectFilterData}) => {
 
-    const [projectData, setProjectData] = useState({ projectName: '', size: '', duration: '', category: '', members: '', language: '', progLanguage: '', durationSlider: '', membersSlider: '' })
-
-    const { projectName, size, category, language, progLanguage, durationSlider, membersSlider } = projectData;
+    const { projectName, size, category, language, progLanguage, durationSlider, membersSlider } = projectFilterData;
 
     const handleSearchChange = (e, { value, name }) => {
-        setProjectData({ ...projectData, [name]: value })
+        setProjectFilterData({ ...projectFilterData, [name]: value })
     }
 
     function valueLabelFormatMembers(value) {
@@ -27,21 +25,23 @@ const Filter = ({ filterAddStart }) => {
 
     const handleMemberChange = (e, value) => {
         const labelArray = ["", 1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-        setProjectData({ ...projectData, members: labelArray[MARKS_MEBMERS.findIndex((mark) => mark.value === value)].toString(), membersSlider: value });
+        setProjectFilterData({ ...projectFilterData, members: labelArray[MARKS_MEBMERS.findIndex((mark) => mark.value === value)].toString(), membersSlider: value });
     }
 
     const handleDurationChange = (e, value) => {
         const labelArray = ["", 1, 3, 6, 12];
-        setProjectData({ ...projectData, duration: labelArray[MARKS_DURATION.findIndex((mark) => mark.value === value)].toString(), durationSlider: value});
+        setProjectFilterData({ ...projectFilterData, duration: labelArray[MARKS_DURATION.findIndex((mark) => mark.value === value)].toString(), durationSlider: value});
     }
 
     const resetFilter = () => {
-        setProjectData({ projectName: '', size: '', duration: '', category: '', members: '', language: '', progLanguage: '', durationSlider: 0, membersSlider: 0});
+        setProjectFilterData({ projectName: '', size: '', duration: '', category: '', members: '', language: '', progLanguage: '', durationSlider: 0, membersSlider: 0});
+        projectFilterStart({ offset: 0 });
+        
     }
 
     const buttonClicked = () => {
-        const filteredProjectData = _.pickBy(projectData, _.identity); //remove all object if the value is "", null or undefined
-        filterAddStart(filteredProjectData);
+        const filteredProjectData = _.pickBy(projectFilterData, _.identity); //remove all object if the value is "", null or undefined
+        projectFilterStart({...filteredProjectData, offset: 0});
     }
 
     return (
@@ -237,7 +237,7 @@ const Filter = ({ filterAddStart }) => {
 }
 
 const mapDispatchToProps = dispatch => ({
-    filterAddStart: (filteredProjectData) => dispatch(projectFilterAddStart(filteredProjectData))
+    projectFilterStart: (filteredProjectData) => dispatch(projectFilterStart(filteredProjectData))
 })
 
 export default connect(null, mapDispatchToProps)(Filter);

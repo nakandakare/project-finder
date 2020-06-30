@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 import { sendContactData } from '../../redux/user/user.actions';
 import Swal from 'sweetalert2'; 
+import { Header, Icon } from 'semantic-ui-react'
 
 const ContactFrom = ({ currentUser, sendContactData }) => {
 
@@ -96,6 +97,10 @@ const ContactFrom = ({ currentUser, sendContactData }) => {
 
     return (
         <div className='contactForm'>
+            <Header className='contactHeader' as='h2'>
+                <Icon name='mail' />
+                <Header.Content>Contact me!</Header.Content>
+            </Header>
             <Form className='formInputs' onSubmit={handleSubmit}>
                 <Form.Group widths='equal'>
                     <Form.Field

@@ -30,11 +30,11 @@
             display: flex;
             justify-content: space-between;
         }
-        .project-duration , .project-category, .project-members, .project-language, .project-programming-language, .project-size{
+        .project-duration , .project-category, .project-language, .project-programming-language, .project-size{
             width: 100%;
         }
                 
-        .project-category {
+        .project-category, .project-members {
             width: 93%;
         }
     }

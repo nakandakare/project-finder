@@ -18,10 +18,10 @@ const projectReducer = (state = INITIAL_STATE, action) => {
                 ...state,
                 isFetching: true
             }
-        case ProjectActionTypes.PROJECT_FILTERED_ADD_START:
+        case ProjectActionTypes.PROJECT_FILTER_START:
             return {
                 ...state,
-                projectFilter: action.payload
+               isFetching: true
             }
         case ProjectActionTypes.PROJECT_ADD_SUCCESS:
             return {

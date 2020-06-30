@@ -7,13 +7,13 @@ import { useLocation } from 'react-router-dom'
 import { selectCurrentUser, selectNotificationCount} from '../../redux/user/user.selectors';
 import { connect } from 'react-redux';
 import { logoutStart, emptyNotificationCount, showHideNotification } from '../../redux/user/user.actions';
-import { projectFilterAddStart } from '../../redux/project/project.action';
+import { projectFetchStart } from '../../redux/project/project.action';
 import ProjectCreate from '../../components/project-create/project-create.component';
 import Badge from '@material-ui/core/Badge';
 import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
 import projectLogo from '../../assets/project-finder-logo.png';
 
-const Header = ({ currentUser, logoutStart, filterAddStart, notificationCount, emptyNotificationCount, showHideNotification }) => {
+const Header = ({ currentUser, logoutStart, filterAddStart, notificationCount, emptyNotificationCount, showHideNotification, projectFetchStart }) => {
     
     const { pathname } = useLocation();
     const path = pathname.replace('/', '');
@@ -22,10 +22,6 @@ const Header = ({ currentUser, logoutStart, filterAddStart, notificationCount, e
 
     const startSignOut = () => {
         logoutStart();
-    }
-
-    const filterReset = () => {
-        filterAddStart({});
     }
 
     const showProjectCreateHandler = () => {
@@ -37,16 +33,20 @@ const Header = ({ currentUser, logoutStart, filterAddStart, notificationCount, e
         emptyNotificationCount();
     }
 
+    const logoClickHandler = () => {
+        projectFetchStart( {offset: 0} );
+    }
+
     return (
     <div className='headerContainer'>
         <header className='header-p'>
             <div className='logoContainer'>
-                <Link to='/projects'>
+                <Link to='/projects' onClick={logoClickHandler}>
                     <img className='logo' src={projectLogo}/>
                 </Link>
             </div>
             <div className='options'>
-                <Link className='option-each' to='/projects' onClick={filterReset}>
+                <Link className='option-each' to='/projects'>
                     PROJECTS
                     <hr className={path === 'projects' ? 'hr-highlight' : <hr />} />
                 </Link>
@@ -106,9 +106,9 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
     logoutStart: () => dispatch(logoutStart()),
-    filterAddStart: (filteredProjectData) => dispatch(projectFilterAddStart(filteredProjectData)),
     emptyNotificationCount: () => dispatch(emptyNotificationCount()),
-    showHideNotification: () => dispatch(showHideNotification())
+    showHideNotification: () => dispatch(showHideNotification()),
+    projectFetchStart: (v) => dispatch(projectFetchStart(v))
 })
 
 export default connect(mapStateToProps, mapDispatchToProps)(Header);

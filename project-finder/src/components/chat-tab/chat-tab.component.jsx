@@ -15,8 +15,10 @@ let socket;
 const ChatTab = ({ projectsFromUser, currentUser, lastMessageStart, lastMessages, newLastMessage}) => {
     const [filterValue, setFilterValue] = useState('');
 
-    const filteredProjects = projectsFromUser.filter(project => project.projectname.toLowerCase().includes(filterValue));
-    
+    if(!projectsFromUser.length < 1){
+    var filteredProjects = projectsFromUser.filter(project => project.projectname.toLowerCase().includes(filterValue));
+    } 
+
     //Fetching last massage of chat when enter /chat.
     useEffect(() => {
     const { id } = currentUser;    
@@ -25,16 +27,20 @@ const ChatTab = ({ projectsFromUser, currentUser, lastMessageStart, lastMessages
 
     //Joining the user to all rooms of projects
     useEffect(() => {
+        if (!projectsFromUser.length < 1) {
         const projectsId = projectsFromUser.map(project => project.projectId)
         socket = io(ENDPOINT);
         socket.emit('join', { id: projectsId });
+        }
     }, []);
 
     //Setting new last message on message sent
     useEffect(() => {
+        if (!projectsFromUser === []) {
         socket.on('message', (message) => {
             newLastMessage([message]);
         })
+        }
     }, []);
 
     const projectSearchHandle = (event) => {
@@ -54,7 +60,7 @@ const ChatTab = ({ projectsFromUser, currentUser, lastMessageStart, lastMessages
             <div className='chatTabItem'>
                 <ScrollToBottom className='scrollStyles'>
                 {
-                    filteredProjects.map(({...otherProps }, i) => <ChatItem key={i} lastMessages={lastMessages} {...otherProps} />)
+                        filteredProjects ? filteredProjects.map(({ ...otherProps }, i) => <ChatItem key={i} lastMessages={lastMessages} {...otherProps} />) : null
                 }
                 </ScrollToBottom>
             </div>

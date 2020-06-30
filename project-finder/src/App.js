@@ -10,19 +10,20 @@ import Notification from './components/notificaction/notification.component';
 import ContactOverview from './components/contact-overview/contact-overview.component';
 import { createStructuredSelector } from 'reselect';
 import { checkUserSession} from './redux/user/user.actions';
-import {selectCurrentUser} from './redux/user/user.selectors';
-import { projectFetchStart} from './redux/project/project.action';
+import { selectCurrentUser } from './redux/user/user.selectors';
+import { projectFetchStart, projectCountStart} from './redux/project/project.action';
 import {connect} from 'react-redux';
 import {Route, useLocation, Redirect} from 'react-router-dom';
 import OutsideAlerter from './components/outside-alerter/outside-alerter.component';
 
-const App = ({ currentUser, checkUserSession, projectFetchStart}) => {
+const App = ({ currentUser, checkUserSession, projectFetchStart, projectCountStart}) => {
 
   const {pathname} = useLocation();
 
   useEffect(() => {
     checkUserSession();
     projectFetchStart({offset: 0}); //0 to 6 projects on initial render
+    projectCountStart();
   }, [checkUserSession, projectFetchStart, pathname])
   
   return (
@@ -56,7 +57,8 @@ const mapStateToProps = createStructuredSelector({
 
 const mapDispatchToProps = (dispatch) => ({
   checkUserSession: () => dispatch(checkUserSession()),
-  projectFetchStart: (offset) => dispatch(projectFetchStart(offset))
+  projectFetchStart: (offset) => dispatch(projectFetchStart(offset)),
+  projectCountStart: () => dispatch(projectCountStart())
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);
