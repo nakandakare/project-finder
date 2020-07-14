@@ -25,7 +25,9 @@ const ChatItem = ({ projectId, projectname, lastMessages }) => {
                     <Jdenticon size="48" value={projectId.toString()} />
                 </div>
                 <div className='chat-item-text'>
-                    <p className='chat-item-title'>{projectname}</p>
+                {
+                        projectname ? <p className='chat-item-title'>{projectname.split(' ').map(name => name.charAt(0).toUpperCase() + name.substring(1)).join(' ')}</p> : null 
+                }
                     {
                             lastMessages.map((lastMessage, i) => {
                                 return (lastMessage.projectId === projectId ? <p key={i} className='chat-item-message'><b>{lastMessage.messageName.split(' ').slice(0, -1).join(' ')}:</b> {lastMessage.text}</p> : null)

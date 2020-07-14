@@ -13,7 +13,7 @@ const ProjectItem = ({ projectId, projectname, description, size, duration, memb
 
     var showApplyButton = true;
 
-    if (!projectsFromUser === []) {
+    if (!projectsFromUser.length < 1) {
         if (projectsFromUser.find(project => project.projectId === projectId)) {
             showApplyButton = false;
         }
@@ -47,7 +47,7 @@ const ProjectItem = ({ projectId, projectname, description, size, duration, memb
                         <div className='project-name-button-row'>
                             <div className='project-name'>
                                 <span className='project-label'>Project Name: </span>
-                                <span className='project-title'>{projectname.charAt(0).toUpperCase() + projectname.substring(1)}</span>
+                                <span className='project-title'>{projectname.split(' ').map(name => name.charAt(0).toUpperCase() + name.substring(1)).join(' ')}</span>
                             </div>
                             <div className='project-created-button-end'>
                                 <div className='created-at'>

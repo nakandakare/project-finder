@@ -56,10 +56,7 @@ const ContactFrom = ({ currentUser, sendContactData }) => {
 
         let formIsValid = true;
         const { subjectType, email, name, message } = contactData;
-        let subjectTypeError = false;
-        let emailError = false;
-        let nameError = false;
-        let messageError = false;
+        let subjectTypeError, emailError, nameError, messageError = false;
         
         if (subjectType === ''){
             subjectTypeError = true;
@@ -99,7 +96,7 @@ const ContactFrom = ({ currentUser, sendContactData }) => {
         <div className='contactForm'>
             <Header className='contactHeader' as='h2'>
                 <Icon name='mail' />
-                <Header.Content>Contact me!</Header.Content>
+                <Header.Content>Contact & Support</Header.Content>
             </Header>
             <Form className='formInputs' onSubmit={handleSubmit}>
                 <Form.Group widths='equal'>
@@ -135,6 +132,7 @@ const ContactFrom = ({ currentUser, sendContactData }) => {
                     />
                 </Form.Group>
                 <Form.Field
+                    className='contactTextArea'
                     control={TextArea}
                     label='Message'
                     placeholder='Type your message here...'

@@ -14,9 +14,11 @@ const InfoBar = ({ room, projectId }) => {
             </div>
             <div className="leftInnerContainer">
                 {
-                    room ? <img className="onlineIcon" src={onlineIcon} alt="online icon" /> : null
+                room ? <img className="onlineIcon" src={onlineIcon} alt="online icon" /> : null
                 }
-                <h3>{room}</h3>
+                {
+                room ? <h3>{room.split(' ').map(name => name.charAt(0).toUpperCase() + name.substring(1)).join(' ')}</h3> : null
+                }
             </div>
             <div className="rightInnerContainer">
                 <a className="closeIcon" href="/projects"><img src={closeIcon} alt="close icon" /></a>

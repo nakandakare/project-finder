@@ -21,11 +21,8 @@ need to press 2 times to filter
 Reset Filter should show default projects. 0 -> 6.
 add no project found error
 change all try catch of saga to if(is array empty?)
-###IMPORTANT###
-cant post projects after register (notice that user id is sent as undefined to backend api "/addProject")
 
 Memo: 
-
 Cuando hace dispatch,  the wrapper component's callback is notified (connect) then run mapStateToProps, si hay diferencia con el state anterior, se re-renderiza sino no.
 
 projectId ownerId requestUserId note        active (middleware auth)
@@ -42,3 +39,7 @@ nothing
 and notificate
 
 Socket esta compartido entre notification.component y project-apply.component
+
+
+Bug fixed:
+- cant post projects after register (notice that user id is sent as undefined to backend api "/addProject") 

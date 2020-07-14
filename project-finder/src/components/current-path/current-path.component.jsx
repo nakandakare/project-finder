@@ -11,7 +11,7 @@ const CurrentPath = () => {
 
     return(
     <div className='current-path'>
-        <Link className='home-button' to='/'>
+        <Link className='home-button' to='/projects'>
             Home
         </Link>
         <Logo>

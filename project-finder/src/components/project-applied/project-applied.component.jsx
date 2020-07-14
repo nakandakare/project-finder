@@ -3,7 +3,7 @@ import './project-applied.styles.scss';
 import { Feed } from 'semantic-ui-react'
 import Jdenticon from 'react-jdenticon';
 
-const ProjectApplied = ({ project_id, project_name, accepted, owner_id }) => {
+const ProjectApplied = ({ project_id, project_name, accepted }) => {
   
     let feedText;
 

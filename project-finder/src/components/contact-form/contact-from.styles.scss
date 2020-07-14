@@ -1,20 +1,22 @@
 .contactHeader {
-    margin-bottom: 30px !important;
+    padding: 48px 0px 36px 0px!important;
 }
 
 .contactForm {
      width:50%;
-     margin:40px auto;
+     margin:0px auto;
      display:block;
 
      .contactSubmit {
          float: right;
      }
-
 }
-
 
 .swal-height {
     height: 60px;
     margin-top: 60px;
+}
+
+.contactTextArea {
+    padding-top: 12px;
 }

@@ -36,7 +36,7 @@ const ChatTab = ({ projectsFromUser, currentUser, lastMessageStart, lastMessages
 
     //Setting new last message on message sent
     useEffect(() => {
-        if (!projectsFromUser === []) {
+        if (!projectsFromUser.length < 1) {
         socket.on('message', (message) => {
             newLastMessage([message]);
         })

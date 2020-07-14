@@ -4,7 +4,6 @@
   justify-content: space-between;
   background: #FFFF;
   border: 2px solid rgba(0, 0, 0, 0.116);
-  border-left: 2px solid rgba(0, 0, 0, 0.116);
   border-right: none;
   height: 58px;
   width: 100%;
@@ -21,6 +20,7 @@
   align-items: center;
   margin-left: 1%;
   color: rgb(0, 126, 255);
+
 }
 
 .rightInnerContainer {
@@ -29,7 +29,6 @@
   justify-content: flex-end;
   margin-right: 5%;
   
-
   .closeIcon{
     position: absolute;
     right: 1.5%;
