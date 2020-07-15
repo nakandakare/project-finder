@@ -12,6 +12,7 @@ const Filter = ({projectFilterStart, projectFilterData, setProjectFilterData}) =
 
     const handleSearchChange = (e, { value, name }) => {
         setProjectFilterData({ ...projectFilterData, [name]: value })
+        console.log(size);
     }
 
     function valueLabelFormatMembers(value) {
@@ -86,6 +87,16 @@ const Filter = ({projectFilterStart, projectFilterData, setProjectFilterData}) =
                             <Form className='form'>
                                 <Form.Field>
                                     <Checkbox
+                                        checked={size === ''}
+                                        className='checkbox'
+                                        label='All'
+                                        name='size'
+                                        value={''}
+                                        onChange={handleSearchChange}
+                                    />
+                                </Form.Field>
+                                <Form.Field>
+                                    <Checkbox
                                         checked={size === 'Small'}
                                         className='checkbox'
                                         label='Small'
@@ -144,6 +155,16 @@ const Filter = ({projectFilterStart, projectFilterData, setProjectFilterData}) =
                         Project Category
                         </div>
                             <Form className='checkbox-options form'>
+                                <Form.Field>
+                                    <Checkbox
+                                        checked={category === ''}
+                                        className='checkbox'
+                                        label='All'
+                                        name='category'
+                                        value={''}
+                                        onChange={handleSearchChange}
+                                    />
+                                </Form.Field>
                                 <Form.Field>
                                     <Checkbox
                                         checked={category === 'Web Application'}
@@ -223,9 +244,9 @@ const Filter = ({projectFilterStart, projectFilterData, setProjectFilterData}) =
                         </div>
                     </div>
                     <div className='search-button'>
-                        <Button animated className='button'>
-                            <Button.Content visible onClick={buttonClicked}>FILTER PROJECTS</Button.Content>
-                            <Button.Content hidden onClick={buttonClicked}>
+                        <Button animated className='button' onClick={buttonClicked}>
+                            <Button.Content visible>FILTER PROJECTS</Button.Content>
+                            <Button.Content hidden>
                                 <Icon name='search' />
                             </Button.Content>
                         </Button>

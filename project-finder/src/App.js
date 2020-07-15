@@ -21,9 +21,9 @@ const App = ({ currentUser, checkUserSession, projectFetchStart, projectCountSta
   const {pathname} = useLocation();
 
   useEffect(() => {
-    checkUserSession();
-    projectFetchStart({offset: 0}); //0 to 6 projects on initial render
-    projectCountStart();
+      checkUserSession();
+      projectFetchStart({offset: 0}); //0 to 6 projects on initial render
+      projectCountStart();
   }, [checkUserSession, projectFetchStart, pathname])
   
   return (

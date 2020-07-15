@@ -25,7 +25,7 @@ const ProjectCreate = ({ currentUser, projectAddStart, showProjectCreate, setSho
         setProjectData({ ...projectData, [name]: value });
         setProjectDataError({ ...projectDataError, [name]: false })
     }
-
+    
     const handleSubmit = event => {
         event.preventDefault();
         if (validInformation()){

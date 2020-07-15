@@ -17,8 +17,10 @@ const ProjectsPage = ({ match, history, projectCount, projectFetchStart }) => {
         if (page > 1) {
             const offset = ((parseInt(page) - 1) * 6);
             projectFetchStart({ ...projectFilterData, offset });
+            window.scrollTo(0, 0);
         } else {
             projectFetchStart({ ...projectFilterData, offset: 0 });
+            window.scrollTo(0, 0);
         }
     }
     

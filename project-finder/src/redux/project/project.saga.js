@@ -9,7 +9,8 @@ import { postRequest, getRequest } from '../../utils/fetch-request';
 export function* projectAdd({ payload }) {
     try {
         const project = yield postRequest(URL.API_ADD_PROJECT, payload);
-        yield put(projectAddSuccess())
+        yield put(projectAddSuccess());
+        window.location.reload(false);
     } catch (err) {
         yield put(projectFailure(err));
     }
