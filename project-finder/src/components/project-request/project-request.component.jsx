@@ -33,7 +33,7 @@ const ProjectRequest = ({ name, img, project_name, note, requestUserId, projectI
                     src={img}
                 />
                 <Card.Header>{name}</Card.Header>
-                <Card.Meta className='requestSubtitle'>Project Name: <strong>{project_name}</strong></Card.Meta>
+                <Card.Meta className='requestSubtitle'>Project Name: <strong>{project_name.split(' ').map(name => name.charAt(0).toUpperCase() + name.substring(1)).join(' ')}</strong></Card.Meta>
                 <Card.Description>
                     {
                         note ? <p>{note}</p> : null

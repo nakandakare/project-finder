@@ -5,16 +5,19 @@ import ReadMoreAndLess from 'react-read-more-less';
 import Button from '@material-ui/core/Button';
 import Icon from '@material-ui/core/Icon';
 import UserPicture from '../user-picture/user-picture.component';
-import { selectProjectFromUser } from '../../redux/user/user.selectors';
+import { selectProjectFromUser, selectProjectsApplied } from '../../redux/user/user.selectors';
 import { connect } from 'react-redux';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
 
-const ProjectItem = ({ projectId, projectname, description, size, duration, members, language, proglanguage, created_at, name, img, flag, category, projectsFromUser, setShowApplyModal, setNotAllowedModal, setProjectName, currentUser, userId, setApplyProjectData, applyProjectData }) => {
+const ProjectItem = ({ projectId, projectname, description, size, duration, members, language, proglanguage, created_at, name, img, flag, category, projectsFromUser, setShowApplyModal, setNotAllowedModal, setProjectName, currentUser, userId, setApplyProjectData, applyProjectData, projectsApplied }) => {
 
     var showApplyButton = true;
 
-    if (!projectsFromUser.length < 1) {
-        if (projectsFromUser.find(project => project.projectId === projectId)) {
+    //Merging two array into one to find which projects user has Applied and Created, and then dont show apply button of that projects.
+    var noApplyButtonProject = [...projectsApplied, ...projectsFromUser];
+   
+    if (!noApplyButtonProject.length < 1) {
+        if (noApplyButtonProject.find(project => project.projectId === projectId)) {
             showApplyButton = false;
         }
     }
@@ -124,6 +127,8 @@ const ProjectItem = ({ projectId, projectname, description, size, duration, memb
 
 const mapStateToProps = state => ({
     projectsFromUser: selectProjectFromUser(state),
-    currentUser: selectCurrentUser(state)
+    currentUser: selectCurrentUser(state),
+    projectsApplied: selectProjectsApplied(state)
 })
+
 export default connect(mapStateToProps)(ProjectItem);

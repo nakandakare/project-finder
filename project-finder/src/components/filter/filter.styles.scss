@@ -1,8 +1,8 @@
 .filter-box {
     min-width: 280px; 
     background-color: white;
-    box-shadow: 0 0 2px 0 rgba(49,69,89,0.18);
-    height: 1050px;
+    box-shadow: 0 0 3px 0 rgba(49,69,89,0.18);
+    height: 1140px;
     .search-filter-container {
 
     .tab-container{
@@ -72,8 +72,12 @@
                 padding: 10px 10px 0px 10px;
             }
 
-            .checkbox{
-                margin-top: 8px;
+            .all{
+                margin-top: 16px;
+            }
+
+            .checkbox {
+                margin-bottom: 6px;
             }
 
             .slider {

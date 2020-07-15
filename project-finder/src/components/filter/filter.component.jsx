@@ -12,7 +12,6 @@ const Filter = ({projectFilterStart, projectFilterData, setProjectFilterData}) =
 
     const handleSearchChange = (e, { value, name }) => {
         setProjectFilterData({ ...projectFilterData, [name]: value })
-        console.log(size);
     }
 
     function valueLabelFormatMembers(value) {
@@ -88,7 +87,7 @@ const Filter = ({projectFilterStart, projectFilterData, setProjectFilterData}) =
                                 <Form.Field>
                                     <Checkbox
                                         checked={size === ''}
-                                        className='checkbox'
+                                        className='checkbox all'
                                         label='All'
                                         name='size'
                                         value={''}
@@ -158,7 +157,7 @@ const Filter = ({projectFilterStart, projectFilterData, setProjectFilterData}) =
                                 <Form.Field>
                                     <Checkbox
                                         checked={category === ''}
-                                        className='checkbox'
+                                        className='checkbox all'
                                         label='All'
                                         name='category'
                                         value={''}

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import './project-overview.styles.scss';
 import { createStructuredSelector } from 'reselect';
-import { selectProjects} from '../../redux/project/project.selectors';
+import { selectProjects,} from '../../redux/project/project.selectors';
 import { connect } from 'react-redux';
 import ProjectItem from '../project-item/project-item.component';
 import ProjectApply from '../project-apply-modal/project-apply.component';

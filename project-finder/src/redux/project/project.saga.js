@@ -48,6 +48,7 @@ export function* projectApplySave({ payload }) {
         alert('Error applying to project');
     } else {
         yield put(projectApplySuccess());
+        console.log(resp[0] + 'SIJDJOASDJDSAOJOADISJOIJADSOIJOIJAOIJDS')
         yield put(addProjectApplied(resp[0]));
         yield put(addNotificationCount());
     }

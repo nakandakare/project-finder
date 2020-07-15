@@ -95,7 +95,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
             return { 
                 ...state,
                 projectsApplied: state.projectsApplied.map(projectApplied => {
-                    if (projectApplied.request_user_id === requestUserId && projectApplied.project_id === projectId) {
+                    if (projectApplied.requestUserId === requestUserId && projectApplied.projectId === projectId) {
                         projectApplied.accepted = option;
                         return projectApplied;
                     } else {
