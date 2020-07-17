@@ -36,7 +36,6 @@ const Filter = ({projectFilterStart, projectFilterData, setProjectFilterData}) =
     const resetFilter = () => {
         setProjectFilterData({ projectName: '', size: '', duration: '', category: '', members: '', language: '', progLanguage: '', durationSlider: 0, membersSlider: 0});
         projectFilterStart({ offset: 0 });
-        
     }
 
     const buttonClicked = () => {
@@ -143,7 +142,7 @@ const Filter = ({projectFilterStart, projectFilterData, setProjectFilterData}) =
                             step={null}
                             valueLabelDisplay="auto"
                             marks={MARKS_DURATION}
-                            value={durationSlider}
+                            value={parseInt(durationSlider)}
                         />
                     </div>
 
@@ -213,7 +212,7 @@ const Filter = ({projectFilterStart, projectFilterData, setProjectFilterData}) =
                             step={null}
                             valueLabelDisplay="auto"
                             marks={MARKS_MEBMERS}
-                            value={membersSlider}
+                            value={parseInt(membersSlider)}
                         />
                     </div>
 

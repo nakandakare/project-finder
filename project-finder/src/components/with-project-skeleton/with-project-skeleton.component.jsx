@@ -4,13 +4,10 @@ import ProjectSkeleton from '../project-skeleton/project-skeleton';
 
 const WithProjectSkeleton = (WrappedComponent) => {
     const ProjectsSkeleton = ({ isFetching, ...otherProps }) => {
-        return isFetching ? (
+        return isFetching ? 
             <ProjectSkeleton />
-        )
             :
-            (
-                <WrappedComponent {...otherProps}/>
-            )
+            <WrappedComponent {...otherProps}/>
     }
 
     return ProjectsSkeleton;

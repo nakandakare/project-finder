@@ -7,31 +7,31 @@ import jwt_decode from 'jwt-decode';
 import { postRequest, getRequest } from '../../utils/fetch-request';
 
 export function* signInWithEmail({ payload }) {
-    const resp = yield postRequest(URL.API_SIGNIN, payload);
-    if (resp.error) {
+    const resp = yield call(postRequest, [URL.API_SIGNIN, payload]);
+    if (resp.id) {
+        yield put(signInSuccess(resp));
+    } else {
         alert('Error: some fields are empty or invalid');
         yield put(signInFailure(resp));
-    } else {
-        yield put(signInSuccess(resp));
     }
 }
 
 export function* registerWithEmail({ payload }) {
-    const resp = yield postRequest(URL.API_REGISTER, payload);
-    if (resp.error) {
-        alert('Error: some fields are empty or invalid');
-        yield put(signInFailure(resp))
-    } else {
+    const resp = yield call(postRequest, [URL.API_REGISTER, payload]);
+    if (resp.id) {
         yield put(signInSuccess(resp))
+    } else {
+        alert('Error: some fields are empty or invalid');
+        yield put(signInFailure(resp))  
     }
 }
 
 export function* logout() {
-    try {
-        yield getRequest(URL.API_LOGOUT);
+    const {message} = yield getRequest(URL.API_LOGOUT);
+    if(message) {
         yield put(logoutSuccess());
-    } catch (err) {
-        yield put(logoutFailure(err));
+    } else {
+        yield put(logoutFailure({err: 'logout failed'}));
     }
 }
 
@@ -42,37 +42,45 @@ export function* checkUserSession() {
         const decodedToken = jwt_decode(token);
         const { id } = decodedToken;
         //Getting projects of user
-        const userProjects = yield postRequest(URL.API_PROJECT_USER, decodedToken);
-        //Setting projects of user
-        yield put(projectFetchFromUserSuccess(userProjects));
+        yield getProjectsOfUser(decodedToken);
+        //Getting notification data of user
+        yield getNotificationsOfUser(id);
         //Setting user information
         yield put(setCurrentUser(decodedToken));
-        //Getting notification data of user
-        yield put(getNotificationDataStart());
-        const projectsApplied = yield postRequest(URL.API_PROJECT_APPLIED, { id });
-        const projectsRequest = yield postRequest(URL.API_PROJECT_REQUEST, { id });
-        yield put(getNotificationSuccess([projectsApplied, projectsRequest]));
     } else {
         return
     }
 }
 
+export function* getProjectsOfUser(decodedToken) {
+    const userProjects = yield call(postRequest, [URL.API_PROJECT_USER, decodedToken]);
+    //Setting projects of user
+    yield put(projectFetchFromUserSuccess(userProjects));
+}
+
+export function* getNotificationsOfUser(id) {
+    yield put(getNotificationDataStart());
+    const projectsApplied = yield call(postRequest, [URL.API_PROJECT_APPLIED, { id }]);
+    const projectsRequest = yield call(postRequest, [URL.API_PROJECT_REQUEST, { id }]);
+    yield put(getNotificationSuccess([projectsApplied, projectsRequest]));
+}
+
 export function* fetchProjectFromUser({payload}) {
-    const resp = yield postRequest(URL.API_PROJECT_USER, payload);
+    const resp = yield call(postRequest, [URL.API_PROJECT_USER, payload]);
     const projectsId = resp.map(projectId => projectId.projectId);
     yield put(projectFetchFromUserSuccess(projectsId));
 }
 
 export function* saveUserToProject({payload}) {
-    yield postRequest(URL.API_USER_TO_PROJECT, payload);
+    yield postRequest(null, URL.API_USER_TO_PROJECT, payload);
 }
 
 export function* declineRequest({payload}) {
-    yield postRequest(URL.API_DECLINE_REQUEST, payload);
+    yield postRequest(null, URL.API_DECLINE_REQUEST, payload);
 }
 
 export function* sendContactData({payload}) {
-    yield postRequest(URL.API_MAIL, payload);
+    yield postRequest(null, URL.API_MAIL, payload);
 }
 
 //WATCHERS

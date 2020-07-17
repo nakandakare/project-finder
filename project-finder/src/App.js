@@ -13,7 +13,7 @@ import { checkUserSession} from './redux/user/user.actions';
 import { selectCurrentUser } from './redux/user/user.selectors';
 import { projectFetchStart, projectCountStart} from './redux/project/project.action';
 import {connect} from 'react-redux';
-import {Route, useLocation, Redirect} from 'react-router-dom';
+import { Route, useLocation, Redirect } from 'react-router-dom';
 import OutsideAlerter from './components/outside-alerter/outside-alerter.component';
 
 const App = ({ currentUser, checkUserSession, projectFetchStart, projectCountStart}) => {
@@ -52,7 +52,7 @@ const App = ({ currentUser, checkUserSession, projectFetchStart, projectCountSta
 }
 
 const mapStateToProps = createStructuredSelector({
-  currentUser: selectCurrentUser,
+  currentUser: selectCurrentUser
 })
 
 const mapDispatchToProps = (dispatch) => ({

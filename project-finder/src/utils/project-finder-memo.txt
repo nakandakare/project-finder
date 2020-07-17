@@ -1,14 +1,6 @@
 - Bugs:
 
 - Tasks:
-loading(placeholder) on project at chat
-loading(placeholder) on last messages
-move Project-Create to better place to avoid using showHandler in saga
-optimize checkUserSession() saga
-Testear si notifySocket.on('projectRequest') funciona con varios request a la vez (por useEffect con [])
-Lo mismo con notifySocket.on('projectRequest')
-"All" button to checkbox in filter
-change all try catch of saga to if(is array empty?)
 
 - Memo: 
 Cuando hace dispatch,  the wrapper component's callback is notified (connect) then run mapStateToProps, si hay diferencia con el state anterior, se re-renderiza sino no.
@@ -29,5 +21,7 @@ and notificate
 Socket esta compartido entre notification.component y project-apply.component
 
 
-Bug fixed:
+Task completed:
 cant post projects after register (notice that user id is sent as undefined to backend api "/addProject") 
+Testear si notifySocket.on('projectRequest') funciona con varios request a la vez (por useEffect con []) ?
+Lo mismo con notifySocket.on('projectRequest') ?

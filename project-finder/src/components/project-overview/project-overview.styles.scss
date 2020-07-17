@@ -7,3 +7,17 @@
         }
 
 }
+
+.noProjectsWarning {
+    margin-left: 32px;
+}
+
+.projectsPage {
+    display: flex;
+    justify-content: center;
+}
+
+.resetFilterButton {
+    cursor: pointer;
+    color:  rgb(0, 128, 255);
+}

@@ -38,7 +38,7 @@ const ProjectSkeleton = () => {
             <div className='skeletonProject'>
                 {
                     m.map(i => {
-                    return <div>
+                    return <div key={i}>
                             <div className='skeletonProjectCount'>
                                 <Skeleton className={classes.countSize} animation="wave" />
                             </div>

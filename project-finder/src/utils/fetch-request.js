@@ -1,4 +1,7 @@
-export const postRequest = (url, payload) => {
+export const postRequest = (arr, url, payload) => {
+    if (arr) {
+        var [url, payload] = arr;
+    }
     return fetch(url, {
         method: 'POST',
         body: JSON.stringify(payload),

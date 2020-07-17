@@ -6,18 +6,8 @@ import { addNotificationCount } from '../user/user.actions';
 import { URL } from '../../constants/constants';
 import { postRequest, getRequest } from '../../utils/fetch-request';
 
-export function* projectAdd({ payload }) {
-    try {
-        const project = yield postRequest(URL.API_ADD_PROJECT, payload);
-        yield put(projectAddSuccess());
-        window.location.reload(false);
-    } catch (err) {
-        yield put(projectFailure(err));
-    }
-}
-
 export function* projectFetch({ payload }) {
-    const projects = yield postRequest(URL.API_PROJECT, payload);
+    const projects = yield call(postRequest, [URL.API_PROJECT, payload]);
     if (projects) {
         yield put(projectFetchSuccess(projects))
     } else {
@@ -33,7 +23,7 @@ export function* projectCount() {
 
 export function* projectMembersFetch({ payload }) {
     if (payload !== undefined) {
-        const resp = yield postRequest(URL.API_PROJECT_MEMBERS, { 'projectId': payload });
+        const resp = yield call(postRequest, [URL.API_PROJECT_MEMBERS, { 'projectId': payload }]);
         if (resp.error) {
             projectFailure(resp);
         }
@@ -42,7 +32,7 @@ export function* projectMembersFetch({ payload }) {
 }
 
 export function* projectApplySave({ payload }) {
-    const resp = yield postRequest(URL.API_PROJECT_APPLY, payload);
+    const resp = yield call(postRequest, [URL.API_PROJECT_APPLY, payload]);
     if (resp.name == "error") {
         yield put(projectFailure(resp));
         alert('Error applying to project');
@@ -54,6 +44,12 @@ export function* projectApplySave({ payload }) {
     }
 }
 
+export function* projectAdd({ payload }) {
+    const project = yield call(postRequest, [URL.API_ADD_PROJECT, payload]);
+    console.log(project);
+    yield put(projectAddSuccess());
+    window.location.reload(false);
+}
 //WATCHERS
 export function* onProjectAddStart() {
     yield takeLatest(ProjectActionTypes.PROJECT_ADD_START, projectAdd)

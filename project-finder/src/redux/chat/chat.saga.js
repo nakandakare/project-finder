@@ -6,16 +6,17 @@ import { postRequest } from '../../utils/fetch-request';
 
 export function* messagesFetch({payload}) {
     if(payload !== undefined){
-    const resp = yield postRequest(URL.API_CHAT_MESSAGES, {'projectId': payload });
+        const resp = yield call(postRequest, [URL.API_CHAT_MESSAGES, { 'projectId': payload }]);
     if(resp.error){
         chatError(resp.error);
-    }
+    } else {
     yield put(messagesFromProjectSuccess(resp));
+        }
     }
 }
 
 export function* lastMessageFetch({payload}) {
-    const resp = yield postRequest(URL.API_CHAT_LAST_MESSAGES, { 'id': payload });
+    const resp = yield call(postRequest, [URL.API_CHAT_LAST_MESSAGES, { 'id': payload }]);
     if (resp.error) {
         chatError(resp.error);
     }

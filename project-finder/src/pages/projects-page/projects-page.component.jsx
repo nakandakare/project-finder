@@ -7,8 +7,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import { selectProjectCount} from '../../redux/project/project.selectors';
 import { projectFetchStart } from '../../redux/project/project.action';
 import { connect } from 'react-redux';
+import { selectProjects } from '../../redux/project/project.selectors';
+import _ from 'lodash';
 
-const ProjectsPage = ({ match, history, projectCount, projectFetchStart }) => {
+const ProjectsPage = ({ match, history, projectCount, projectFetchStart, projects }) => {
 
     //projectFilterData is used in filter component and this pagination component.
     const [projectFilterData, setProjectFilterData] = useState({ projectName: '', size: '', duration: '', category: '', members: '', language: '', progLanguage: '', durationSlider: '', membersSlider: '' });
@@ -39,17 +41,24 @@ const ProjectsPage = ({ match, history, projectCount, projectFetchStart }) => {
         <div className='projects-page'>
             <Filter className='projects-filter' match={match} history={history} projectFilterData={projectFilterData} setProjectFilterData={setProjectFilterData}/>
             <div className='projectsView'>
-                <ProjectOverviewContainer projectCount={projectCount}/>
-                <div className={`${classes.root}`}>
-                    <Pagination onChange={pageChangeHandler} count={Math.ceil(projectCount[0].count / 6)} color="primary" size='medium' />
-                </div>
+                <ProjectOverviewContainer projectCount={projectCount} setProjectFilterData={setProjectFilterData}/>
+                {
+                    _.isEmpty(projects) ? 
+                        null
+                        :
+                        <div className={`${classes.root}`}>
+                            <Pagination onChange={pageChangeHandler} count={Math.ceil(projectCount[0].count / 6)} color="primary" size='medium' />
+                        </div>
+                }
+
             </div>
         </div>
     )
 }
 
 const mapStateToProps = state => ({
-    projectCount: selectProjectCount(state)
+    projectCount: selectProjectCount(state),
+    projects: selectProjects(state)
 })
 
 const mapDispatchToProps = (dispatch) => ({
