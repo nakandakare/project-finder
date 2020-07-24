@@ -1,29 +1,10 @@
 import { createSelector } from 'reselect';
-import {jsonToArray} from '../../utils/json-to-array';
-import _ from 'lodash';
 
 const selectProject = state => state.project;
 
 export const selectProjects = createSelector(
     [selectProject],
     project => project.projects
-    /*{
-        const {projects, projectFilter} = project;
-        const projectsArray = jsonToArray(projects)
-        const projectsArrayToFilter = projectsArray;
-        if(_.isEmpty(projectFilter)){
-            return projectsArray;
-        } else {
-            return projectsArrayToFilter.filter(project => {
-                for(let key in projectFilter){
-                    if(project[key] !== projectFilter[key]){
-                        return false;
-                    }
-                }
-                return true;
-            })
-        }
-    }*/
 )
 export const selectProjectCount = createSelector(
     [selectProject],

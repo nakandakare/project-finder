@@ -1,6 +1,6 @@
 import { takeLatest, put, all, call } from 'redux-saga/effects';
 import UserActionTypes from './user.types';
-import { signInFailure, signInSuccess, logoutSuccess, setCurrentUser, logoutFailure, projectFetchFromUserSuccess, getNotificationDataStart, getNotificationSuccess, getNotificationRequestSuccess } from './user.actions';
+import { signInFailure, signInSuccess, logoutSuccess, setCurrentUser, logoutFailure, projectFetchFromUserSuccess, getNotificationDataStart, getNotificationSuccess } from './user.actions';
 import { URL } from '../../constants/constants';
 import Cookies from 'universal-cookie';
 import jwt_decode from 'jwt-decode';

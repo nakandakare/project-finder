@@ -43,7 +43,7 @@ const App = ({ currentUser, checkUserSession, projectFetchStart, projectCountSta
           <Route path='/chat' render={() => currentUser ? (<ChatOverview />) : (<Redirect to='/signin' />)}/>
           <Route exact path='/contact' component={ContactOverview} />
           <OutsideAlerter>
-            <Notification />
+            <Notification/>
           </OutsideAlerter>
         </div>
       </div>
@@ -58,7 +58,7 @@ const mapStateToProps = createStructuredSelector({
 const mapDispatchToProps = (dispatch) => ({
   checkUserSession: () => dispatch(checkUserSession()),
   projectFetchStart: (offset) => dispatch(projectFetchStart(offset)),
-  projectCountStart: () => dispatch(projectCountStart())
+  projectCountStart: () => dispatch(projectCountStart()),
 })
 
 export default connect(mapStateToProps,mapDispatchToProps)(App);

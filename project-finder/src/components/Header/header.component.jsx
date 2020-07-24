@@ -42,7 +42,7 @@ const Header = ({ currentUser, logoutStart, filterAddStart, notificationCount, e
         <header className='header-p'>
             <div className='logoContainer'>
                 <Link to='/projects' onClick={logoClickHandler}>
-                    <img className='logo' src={projectLogo}/>
+                    <img className='logo' src={projectLogo} alt='project logo'/>
                 </Link>
             </div>
             <div className='options'>
@@ -71,9 +71,9 @@ const Header = ({ currentUser, logoutStart, filterAddStart, notificationCount, e
                         <div className='pencilIcon menuIcon' onClick={showProjectCreateHandler}>
                             <Icon size='large' name='pencil' title='Create Project'/>
                         </div>
-                            <Badge className='bellIcon menuIcon' color="secondary" badgeContent={notificationCount} onClick={notificationClickHandler} title='Notification'>
-                                <NotificationsActiveIcon />
-                            </Badge>
+                        <Badge className='bellIcon menuIcon' color="secondary" badgeContent={notificationCount} onClick={notificationClickHandler} title='Notification'>
+                            <NotificationsActiveIcon />
+                        </Badge>
                         <div className='logoutIcon menuIcon' title='Logout' onClick={startSignOut}>
                             <Icon size='large' name='log out' />
                         </div>

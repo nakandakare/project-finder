@@ -9,7 +9,7 @@ const ChatPlaceholder = () => {
         <div>
             <InfoBar/>
             <div className='noChatMessage'>
-            <img className='chatIcon' src={ChatIconPng} />
+            <img className='chatIcon' src={ChatIconPng} alt='chatIcon'/>
             <p className='chatIconText'>Select which project you want to start chatting...</p>
             </div>
             <div className='inputPlaceholder'>

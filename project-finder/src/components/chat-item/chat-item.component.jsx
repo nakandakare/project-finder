@@ -3,7 +3,6 @@ import './chat-item.styles.scss';
 import { useHistory, useLocation } from "react-router-dom";
 import queryString from 'query-string';
 import Jdenticon from 'react-jdenticon';
-import _ from 'lodash';
 
 const ChatItem = ({ projectId, projectname, lastMessages }) => {
     const history = useHistory();

@@ -33,12 +33,11 @@ export function* projectMembersFetch({ payload }) {
 
 export function* projectApplySave({ payload }) {
     const resp = yield call(postRequest, [URL.API_PROJECT_APPLY, payload]);
-    if (resp.name == "error") {
+    if (resp.name === "error") {
         yield put(projectFailure(resp));
         alert('Error applying to project');
     } else {
         yield put(projectApplySuccess());
-        console.log(resp[0] + 'SIJDJOASDJDSAOJOADISJOIJADSOIJOIJAOIJDS')
         yield put(addProjectApplied(resp[0]));
         yield put(addNotificationCount());
     }

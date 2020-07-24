@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import './filter.styles.scss';
 import { Icon, Search, Checkbox, Form, Button } from 'semantic-ui-react'
 import Slider from '@material-ui/core/Slider';

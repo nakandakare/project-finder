@@ -62,7 +62,7 @@ const Notification = ({ showNotification, projectsApplied, projectsRequest, curr
                                             projectsApplied.map(({ ...props }, i) => <ProjectApplied key={i} {...props} />)
                                             :
                                             <div className='noContent'>
-                                                <img className='notificationIcon' src={applyIcon} />
+                                                <img className='notificationIcon' src={applyIcon} alt='notificationIcon'/>
                                                 <p className='notificationIconText'>Notifications empty</p>
                                             </div>
                                     }
@@ -82,7 +82,7 @@ const Notification = ({ showNotification, projectsApplied, projectsRequest, curr
                                                 projectsRequest.map(({ ...props }, i) => <ProjectRequest key={i} {...props} setFilterValue={setFilterValue} index={i} />)
                                                 :
                                                 <div className='noContent secondNoContent'>
-                                                    <img className='notificationIcon' src={groupIcon} />
+                                                    <img className='notificationIcon' src={groupIcon} alt='notificationIcon'/>
                                                     <p className='notificationIconText'>Request empty</p>
                                                 </div>
                                         }

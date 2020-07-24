@@ -10,7 +10,7 @@ import queryString from 'query-string';
 import InfoBar from '../info-bar/info-bar.component';
 import Input from '../input/input.component';
 import Messages from '../messages/messages.component';
-import { messagesFromProjectStart, newMessage } from '../../redux/chat/chat.action';
+import { messagesFromProjectStart } from '../../redux/chat/chat.action';
 import { selectMessageOfProject, selectMessageLoading } from '../../redux/chat/chat.selectors';
 
 let socket;

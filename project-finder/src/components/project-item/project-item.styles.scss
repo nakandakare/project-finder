@@ -8,8 +8,6 @@
     border-radius: 4px;
     display: flex;
     flex-direction: row;
-    max-width: 100%;
-    max-width: 750px;
 
     .project-sidebar{
     display: flex;
@@ -142,4 +140,10 @@
         color: rgb(165, 188, 204);
     }
     }   
+}
+
+@media (max-width: 800px) {
+.project-item {
+    width: 200px;
+    }
 }

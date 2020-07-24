@@ -80,6 +80,7 @@ const userReducer = (state = INITIAL_STATE, action) => {
                 projectsApplied: [...state.projectsApplied, action.payload]
             }
         case UserActionTypes.ADD_PROJECT_REQUEST:
+            console.log("action" + action.payload[0]);
             return {
                 ...state,
                 projectsRequest: [...state.projectsRequest, action.payload]

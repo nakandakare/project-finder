@@ -5,7 +5,7 @@ import { saveUserToProject, declileRequest } from '../../redux/user/user.actions
 import { connect } from 'react-redux';
 import { notifySocket } from '../../constants/constants';
 
-const ProjectRequest = ({ name, img, project_name, note, requestUserId, projectId, saveUserToProject, declileRequest, setFilterValue, index}) => {
+const ProjectRequest = ({ name, img, projectName, note, requestUserId, projectId, saveUserToProject, declileRequest, setFilterValue, index}) => {
 
     const approveHandler = () => {
         saveUserToProject({ requestUserId, projectId })
@@ -33,7 +33,7 @@ const ProjectRequest = ({ name, img, project_name, note, requestUserId, projectI
                     src={img}
                 />
                 <Card.Header>{name}</Card.Header>
-                <Card.Meta className='requestSubtitle'>Project Name: <strong>{project_name.split(' ').map(name => name.charAt(0).toUpperCase() + name.substring(1)).join(' ')}</strong></Card.Meta>
+                {projectName ? <Card.Meta className='requestSubtitle'> Project Name: <strong>{projectName.split(' ').map(name => name.charAt(0).toUpperCase() + name.substring(1)).join(' ')}</strong> </Card.Meta> : null}
                 <Card.Description>
                     {
                         note ? <p>{note}</p> : null
