@@ -9,6 +9,7 @@ import { postRequest, getRequest } from '../../utils/fetch-request';
 export function* signInWithEmail({ payload }) {
     const resp = yield call(postRequest, [URL.API_SIGNIN, payload]);
     if (resp.id) {
+        yield storeUser(resp);
         yield put(signInSuccess(resp));
     } else {
         alert('Error: some fields are empty or invalid');
@@ -19,6 +20,7 @@ export function* signInWithEmail({ payload }) {
 export function* registerWithEmail({ payload }) {
     const resp = yield call(postRequest, [URL.API_REGISTER, payload]);
     if (resp.id) {
+        yield storeUser(resp);
         yield put(signInSuccess(resp))
     } else {
         alert('Error: some fields are empty or invalid');
@@ -26,9 +28,16 @@ export function* registerWithEmail({ payload }) {
     }
 }
 
+export function* storeUser(resp) {
+    const cookies = new Cookies();
+    cookies.set('us', resp, { expires: resp.keepSignIn ? new Date(Date.now() + 315360000000) : null });
+}
+
 export function* logout() {
+    const cookies = new Cookies();
     const {message} = yield getRequest(URL.API_LOGOUT);
     if(message) {
+        cookies.remove('us');
         yield put(logoutSuccess());
     } else {
         yield put(logoutFailure({err: 'logout failed'}));
@@ -37,23 +46,22 @@ export function* logout() {
 
 export function* checkUserSession() {
     const cookies = new Cookies();
-    const token = cookies.get('token')
-    if (token) {
-        const decodedToken = jwt_decode(token);
-        const { id } = decodedToken;
+    const user = cookies.get('us');
+    if (user) {
+        const { id } = user;
         //Getting projects of user
-        yield getProjectsOfUser(decodedToken);
+        yield getProjectsOfUser(user);
         //Getting notification data of user
         yield getNotificationsOfUser(id);
         //Setting user information
-        yield put(setCurrentUser(decodedToken));
+        yield put(setCurrentUser(user));
     } else {
         return
     }
 }
 
-export function* getProjectsOfUser(decodedToken) {
-    const userProjects = yield call(postRequest, [URL.API_PROJECT_USER, decodedToken]);
+export function* getProjectsOfUser(user) {
+    const userProjects = yield call(postRequest, [URL.API_PROJECT_USER, user]);
     //Setting projects of user
     yield put(projectFetchFromUserSuccess(userProjects));
 }

@@ -1,22 +1,22 @@
 import io from "socket.io-client";
 
 export const URL = {
-    API_SIGNIN: 'http://localhost:2500/users/signin',
-    API_REGISTER: 'http://localhost:2500/users/register',
-    API_LOGOUT: 'http://localhost:2500/users/logout',
-    API_PROJECT: 'http://localhost:2500/project',
-    API_ADD_PROJECT: 'http://localhost:2500/project/addProject',
-    API_PROJECT_COUNT: 'http://localhost:2500/project/count',
-    API_PROJECT_USER: 'http://localhost:2500/project/projectsFromUser',
-    API_CHAT_MESSAGES: 'http://localhost:2500/chat',
-    API_PROJECT_MEMBERS: 'http://localhost:2500/project/projectMembers',
-    API_PROJECT_APPLY: 'http://localhost:2500/project/apply',
-    API_CHAT_LAST_MESSAGES: 'http://localhost:2500/chat/lastMessage',
-    API_PROJECT_APPLIED: 'http://localhost:2500/users/projectApplied',
-    API_PROJECT_REQUEST: 'http://localhost:2500/users/projectRequest',
-    API_USER_TO_PROJECT: 'http://localhost:2500/users/acceptRequest',
-    API_DECLINE_REQUEST: 'http://localhost:2500/users/declineRequest',
-    API_MAIL: 'http://localhost:2500/email'
+    API_SIGNIN: 'https://project-finder-api.herokuapp.com/users/signin',
+    API_REGISTER: 'https://project-finder-api.herokuapp.com/users/register',
+    API_LOGOUT: 'https://project-finder-api.herokuapp.com/users/logout',
+    API_PROJECT: 'https://project-finder-api.herokuapp.com/project',
+    API_ADD_PROJECT: 'https://project-finder-api.herokuapp.com/project/addProject',
+    API_PROJECT_COUNT: 'https://project-finder-api.herokuapp.com/project/count',
+    API_PROJECT_USER: 'https://project-finder-api.herokuapp.com/project/projectsFromUser',
+    API_CHAT_MESSAGES: 'https://project-finder-api.herokuapp.com/chat',
+    API_PROJECT_MEMBERS: 'https://project-finder-api.herokuapp.com/project/projectMembers',
+    API_PROJECT_APPLY: 'https://project-finder-api.herokuapp.com/project/apply',
+    API_CHAT_LAST_MESSAGES: 'https://project-finder-api.herokuapp.com/chat/lastMessage',
+    API_PROJECT_APPLIED: 'https://project-finder-api.herokuapp.com/users/projectApplied',
+    API_PROJECT_REQUEST: 'https://project-finder-api.herokuapp.com/users/projectRequest',
+    API_USER_TO_PROJECT: 'https://project-finder-api.herokuapp.com/users/acceptRequest',
+    API_DECLINE_REQUEST: 'https://project-finder-api.herokuapp.com/users/declineRequest',
+    API_MAIL: 'https://project-finder-api.herokuapp.com/email'
 }
 
 export const OPTIONS = {
@@ -97,6 +97,6 @@ export const MARKS_DURATION = [
     }
 ]
 
-export const ENDPOINT = 'localhost:2500';
+export const ENDPOINT = 'https://project-finder-api.herokuapp.com';
 
 export let notifySocket = io(ENDPOINT);
