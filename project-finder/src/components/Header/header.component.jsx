@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React, { useState } from './node_modules/react';
 import './header.styles.scss';
-import { Link } from 'react-router-dom';
-import Button from '@material-ui/core/Button';
-import { Icon } from 'semantic-ui-react'
-import { useLocation } from 'react-router-dom'
+import { Link } from './node_modules/react-router-dom';
+import Button from './node_modules/@material-ui/core/Button';
+import { Icon } from './node_modules/semantic-ui-react'
+import { useLocation } from './node_modules/react-router-dom'
 import { selectCurrentUser, selectNotificationCount} from '../../redux/user/user.selectors';
-import { connect } from 'react-redux';
+import { connect } from './node_modules/react-redux';
 import { logoutStart, emptyNotificationCount, showHideNotification } from '../../redux/user/user.actions';
 import { projectFetchStart } from '../../redux/project/project.action';
-import ProjectCreate from '../../components/project-create/project-create.component';
-import Badge from '@material-ui/core/Badge';
-import NotificationsActiveIcon from '@material-ui/icons/NotificationsActive';
+import ProjectCreate from '../project-create/project-create.component';
+import Badge from './node_modules/@material-ui/core/Badge';
+import NotificationsActiveIcon from './node_modules/@material-ui/icons/NotificationsActive';
 import projectLogo from '../../assets/project-finder-logo.png';
 
 const Header = ({ currentUser, logoutStart, filterAddStart, notificationCount, emptyNotificationCount, showHideNotification, projectFetchStart }) => {

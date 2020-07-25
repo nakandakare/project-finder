@@ -1,6 +1,6 @@
 import React, {useEffect} from 'react';
 import './App.css';
-import Header from './components/header/header.component';
+import Header from './components/Header/header.component';
 import CurrentPath from './components/current-path/current-path.component';
 import ProjectsPage from './pages/projects-page/projects-page.component';
 import SignInPageContainer from './pages/sign-in-page/sign-in-page.container';
