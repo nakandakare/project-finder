@@ -1,6 +1,6 @@
 import React from 'react';
 import './chat-overview.styles.scss';
-import Chat from '../chat/chat.component';
+import Chat from '../Chat/chat.component';
 import ChatTab from '../chat-tab/chat-tab.component';
 import { withRouter } from 'react-router-dom';
 import queryString from 'query-string';

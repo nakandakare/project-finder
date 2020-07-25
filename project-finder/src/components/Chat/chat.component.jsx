@@ -1,12 +1,12 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from './node_modules/react';
 import './chat.styles.scss';
 import io from 'socket.io-client';
 import { ENDPOINT } from '../../constants/constants';
-import { connect } from 'react-redux';
-import { createStructuredSelector } from 'reselect';
+import { connect } from './node_modules/react-redux';
+import { createStructuredSelector } from './node_modules/reselect';
 import { selectCurrentUser } from '../../redux/user/user.selectors';
-import { withRouter } from 'react-router-dom';
-import queryString from 'query-string';
+import { withRouter } from './node_modules/react-router-dom';
+import queryString from './node_modules/query-string';
 import InfoBar from '../info-bar/info-bar.component';
 import Input from '../input/input.component';
 import Messages from '../messages/messages.component';
