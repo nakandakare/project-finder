@@ -2,17 +2,19 @@
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    height: 93vh;
 
     .chatTab{
-        min-width: 420px;
+        width: 22vw;
     }
 
     .chat, .chatPlaceholder {
-        width: 100%; 
+        z-index: 1;
+        width: 56vw; 
     }
     
     .chatProjectMembers {
-        min-width: 420px;
+        width: 22vw;
     }
 
 

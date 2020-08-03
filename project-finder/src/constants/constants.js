@@ -1,22 +1,24 @@
 import io from "socket.io-client";
 
+var endpoint = 'https://project-finder-api.herokuapp.com'
+
 export const URL = {
-    API_SIGNIN: 'https://project-finder-api.herokuapp.com/users/signin',
-    API_REGISTER: 'https://project-finder-api.herokuapp.com/users/register',
-    API_LOGOUT: 'https://project-finder-api.herokuapp.com/users/logout',
-    API_PROJECT: 'https://project-finder-api.herokuapp.com/project',
-    API_ADD_PROJECT: 'https://project-finder-api.herokuapp.com/project/addProject',
-    API_PROJECT_COUNT: 'https://project-finder-api.herokuapp.com/project/count',
-    API_PROJECT_USER: 'https://project-finder-api.herokuapp.com/project/projectsFromUser',
-    API_CHAT_MESSAGES: 'https://project-finder-api.herokuapp.com/chat',
-    API_PROJECT_MEMBERS: 'https://project-finder-api.herokuapp.com/project/projectMembers',
-    API_PROJECT_APPLY: 'https://project-finder-api.herokuapp.com/project/apply',
-    API_CHAT_LAST_MESSAGES: 'https://project-finder-api.herokuapp.com/chat/lastMessage',
-    API_PROJECT_APPLIED: 'https://project-finder-api.herokuapp.com/users/projectApplied',
-    API_PROJECT_REQUEST: 'https://project-finder-api.herokuapp.com/users/projectRequest',
-    API_USER_TO_PROJECT: 'https://project-finder-api.herokuapp.com/users/acceptRequest',
-    API_DECLINE_REQUEST: 'https://project-finder-api.herokuapp.com/users/declineRequest',
-    API_MAIL: 'https://project-finder-api.herokuapp.com/email'
+    API_SIGNIN: `${endpoint}/users/signin`,
+    API_REGISTER: `${endpoint}/users/register`,
+    API_LOGOUT: `${endpoint}/users/logout`,
+    API_PROJECT: `${endpoint}/project`,
+    API_ADD_PROJECT: `${endpoint}/project/addProject`,
+    API_PROJECT_COUNT: `${endpoint}/project/count`,
+    API_PROJECT_USER: `${endpoint}/project/projectsFromUser`,
+    API_CHAT_MESSAGES: `${endpoint}/chat`,
+    API_PROJECT_MEMBERS: `${endpoint}/project/projectMembers`,
+    API_PROJECT_APPLY: `${endpoint}/project/apply`,
+    API_CHAT_LAST_MESSAGES: `${endpoint}/chat/lastMessage`,
+    API_PROJECT_APPLIED: `${endpoint}/users/projectApplied`,
+    API_PROJECT_REQUEST: `${endpoint}/users/projectRequest`,
+    API_USER_TO_PROJECT: `${endpoint}/users/acceptRequest`,
+    API_DECLINE_REQUEST: `${endpoint}/users/declineRequest`,
+    API_MAIL: `${endpoint}/email`
 }
 
 export const OPTIONS = {
