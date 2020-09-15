@@ -1,24 +1,24 @@
 import io from "socket.io-client";
 
-var endpoint = 'https://project-finder-api.herokuapp.com'
+var API_ENDPOINT = 'http://localhost:2500'
 
 export const URL = {
-    API_SIGNIN: `${endpoint}/users/signin`,
-    API_REGISTER: `${endpoint}/users/register`,
-    API_LOGOUT: `${endpoint}/users/logout`,
-    API_PROJECT: `${endpoint}/project`,
-    API_ADD_PROJECT: `${endpoint}/project/addProject`,
-    API_PROJECT_COUNT: `${endpoint}/project/count`,
-    API_PROJECT_USER: `${endpoint}/project/projectsFromUser`,
-    API_CHAT_MESSAGES: `${endpoint}/chat`,
-    API_PROJECT_MEMBERS: `${endpoint}/project/projectMembers`,
-    API_PROJECT_APPLY: `${endpoint}/project/apply`,
-    API_CHAT_LAST_MESSAGES: `${endpoint}/chat/lastMessage`,
-    API_PROJECT_APPLIED: `${endpoint}/users/projectApplied`,
-    API_PROJECT_REQUEST: `${endpoint}/users/projectRequest`,
-    API_USER_TO_PROJECT: `${endpoint}/users/acceptRequest`,
-    API_DECLINE_REQUEST: `${endpoint}/users/declineRequest`,
-    API_MAIL: `${endpoint}/email`
+    API_SIGNIN: `${API_ENDPOINT}/users/signin`,
+    API_REGISTER: `${API_ENDPOINT}/users/register`,
+    API_LOGOUT: `${API_ENDPOINT}/users/logout`,
+    API_PROJECT: `${API_ENDPOINT}/project`,
+    API_ADD_PROJECT: `${API_ENDPOINT}/project/addProject`,
+    API_PROJECT_COUNT: `${API_ENDPOINT}/project/count`,
+    API_PROJECT_USER: `${API_ENDPOINT}/project/projectsFromUser`,
+    API_CHAT_MESSAGES: `${API_ENDPOINT}/chat`,
+    API_PROJECT_MEMBERS: `${API_ENDPOINT}/project/projectMembers`,
+    API_PROJECT_APPLY: `${API_ENDPOINT}/project/apply`,
+    API_CHAT_LAST_MESSAGES: `${API_ENDPOINT}/chat/lastMessage`,
+    API_PROJECT_APPLIED: `${API_ENDPOINT}/users/projectApplied`,
+    API_PROJECT_REQUEST: `${API_ENDPOINT}/users/projectRequest`,
+    API_USER_TO_PROJECT: `${API_ENDPOINT}/users/acceptRequest`,
+    API_DECLINE_REQUEST: `${API_ENDPOINT}/users/declineRequest`,
+    API_MAIL: `${API_ENDPOINT}/email`
 }
 
 export const OPTIONS = {
@@ -99,6 +99,6 @@ export const MARKS_DURATION = [
     }
 ]
 
-export const ENDPOINT = 'https://project-finder-api.herokuapp.com';
+export const ENDPOINT = 'http://localhost:2500';
 
 export let notifySocket = io(ENDPOINT);

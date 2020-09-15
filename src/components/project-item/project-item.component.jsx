@@ -16,7 +16,7 @@ const ProjectItem = ({ projectId, projectname, description, size, duration, memb
     //Merging two array into one to find which projects user has Applied and Created, and then dont show apply button of that projects.
     var noApplyButtonProject = [...projectsApplied, ...projectsFromUser];
    
-    if (!noApplyButtonProject.length < 1) {
+    if (!(noApplyButtonProject.length < 1)) {
         if (noApplyButtonProject.find(project => project.projectId === projectId)) {
             showApplyButton = false;
         }

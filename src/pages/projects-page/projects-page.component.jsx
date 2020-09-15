@@ -47,7 +47,7 @@ const ProjectsPage = ({ match, history, projectCount, projectFetchStart, project
                         null
                         :
                         <div className={`${classes.root}`}>
-                            <Pagination onChange={pageChangeHandler} count={Math.ceil(projectCount[0].count / 6)} color="primary" size='medium' />
+                            <Pagination onChange={pageChangeHandler} count={projectCount === undefined ? Math.ceil(projectCount[0].count / 6) : 0} color="primary" size='medium' />
                         </div>
                 }
 
