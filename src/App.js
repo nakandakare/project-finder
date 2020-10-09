@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react';
-import './App.css';
+import './App.scss';
 import Header from './components/Header/header.component';
 import CurrentPath from './components/current-path/current-path.component';
 import ProjectsPage from './pages/projects-page/projects-page.component';
@@ -24,7 +24,7 @@ const App = ({ currentUser, checkUserSession, projectFetchStart, projectCountSta
       checkUserSession();
       projectFetchStart({offset: 0}); //0 to 6 projects on initial render
       projectCountStart();
-  }, [checkUserSession, projectFetchStart, pathname])
+  }, [checkUserSession, projectFetchStart])
   
   return (
     <div className="App">

@@ -1,0 +1,13 @@
+@import '../../config';
+
+.MuiSkeleton-root {
+    background-color: $secondary !important;
+}
+
+.MuiCardHeader-root {
+    background-color: $primary !important;
+}
+
+.MuiCardContent-root {
+    background-color: $primary !important;
+}

@@ -1,34 +1,51 @@
-    .chat-item {
-    min-width: 300px;
-    padding: 20px;
-    background-color: #F2F6F9;
-    box-shadow: 0 0 2px 0 rgba(49,69,89,0.18);
+@import "../../config.scss";
+
+.chat-item {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+
     cursor: pointer;
 
     .chat-item-box {
         display: flex;
         align-items: center;
-        .jdenticon{
-            margin-right: 20px;
+        background-color: $primary;
+        border-radius: 8px;
+        width: $XVW3 + $XVW5;
+        height: $XVW6 + $XVW13;
+        margin: $XVW11 0;
+        transition:  ease 0.1s;
+        
+        .jdenticon {
+            margin: 0 ($XVW9 - $XVW13);
+        }
+        svg {
+            width: $XVW8 + $XVW9 + $XVW10;
         }
     }
 
     .chat-item-text {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        height: 100%;
+        
         .chat-item-title {
-        font-size: 18px;
-        font-weight: 600;
-        line-height: 16px;
-        margin: 0 !important;
-        color: rgb(0, 126, 255);
+            font-size: $XVW9 + $XVW13;
+            font-weight: 600;
+            margin: 0;
+            color: $alternateSecondary;
         }
 
         .chat-item-message {
-        margin-top: 18px;
+            margin-top: $XVW13;
+            font-size: $XVW10 + $XVW12;
+            color: white;
         }
     }
-
 }
 
 .selected {
-    background-color: #E6E6E6;
+    background-color: $background !important;
 }

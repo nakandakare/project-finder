@@ -16,7 +16,7 @@ const ProjectItem = ({ projectId, projectname, description, size, duration, memb
     //Merging two array into one to find which projects user has Applied and Created, and then dont show apply button of that projects.
     var noApplyButtonProject = [...projectsApplied, ...projectsFromUser];
    
-    if (!noApplyButtonProject.length < 1) {
+    if (!(noApplyButtonProject.length < 1)) {
         if (noApplyButtonProject.find(project => project.projectId === projectId)) {
             showApplyButton = false;
         }
@@ -35,35 +35,35 @@ const ProjectItem = ({ projectId, projectname, description, size, duration, memb
     const created = created_at.substring(0, created_at.indexOf('T'));
     return (
         <div className='project'>
-            <div className='project-item'>
-                <div className='project-sidebar'>
-                    <div className='user-section'>
-                        <UserPicture img={img} />
-                        <div className='user-name'>
+            <div className='projectItem'>
+                <div className='projectSidebar'>
+                    <div className='userSection'>
+                        <UserPicture img={img} width={'90px'} />
+                        <div className='userName'>
                             <span className='name'>{name.toUpperCase()}</span>
                             <FlagIcon className='flag' code={flag.toLowerCase()} />
                         </div>
                     </div>
                 </div>
                 <div>
-                    <div className='project-detail'>
-                        <div className='project-name-button-row'>
-                            <div className='project-name'>
-                                <span className='project-label'>Project Name: </span>
-                                <span className='project-title'>{projectname.split(' ').map(name => name.charAt(0).toUpperCase() + name.substring(1)).join(' ')}</span>
+                    <div className='projectDetail'>
+                        <div className='projectNameButtonRow'>
+                            <div className='projectName'>
+                                <span className='projectLabel'>Project Name: </span>
+                                <span className='projectTitle'>{projectname.split(' ').map(name => name.charAt(0).toUpperCase() + name.substring(1)).join(' ')}</span>
                             </div>
-                            <div className='project-created-button-end'>
-                                <div className='created-at'>
+                            <div className='projectCreatedButtonEnd'>
+                                <div className='createdAt'>
                                     {created}
                                 </div>
-                                <div className='apply-button'>
+                                <div className='applyButton'>
                                     {
                                         showApplyButton ?
                                             <Button
                                                 onClick={applyClicked}
                                                 variant="contained"
                                                 color="primary"
-                                                className='icon-button'
+                                                className='iconButton'
                                                 size='small'
                                                 endIcon={<Icon>group</Icon>}
                                             >
@@ -75,43 +75,43 @@ const ProjectItem = ({ projectId, projectname, description, size, duration, memb
                                 </div>
                             </div>
                         </div>
-                        <div className='project-description'>
-                            <span className='span-add-margin'>Description: </span>
-                            <div className='readmore-div'>
+                        <div className='projectDescription'>
+                            <span className='spanAddMargin'>Description: </span>
+                            <div className='readmoreDiv'>
                                 <ReadMoreAndLess charLimit={140}
                                     readMoreText="more"
                                     readLessText="less">{description}
                                 </ReadMoreAndLess>
                             </div>
-                            <div className='hr-div first-hr-div' />
-                            <div className='column-box'>
-                                <div className='first-column'>
-                                    <div className='first-row'>
-                                        <span className='span-add-margin'>Project Category</span>
+                            <div className='hrDiv firstHrDiv' />
+                            <div className='columnBox'>
+                                <div className='firstColumn'>
+                                    <div className='firstRow'>
+                                        <span className='spanAddMargin'>Project Category</span>
                                         <span>{category}</span>
                                     </div>
-                                    <div className='second-row'>
-                                        <span className='span-add-margin'>Looking For</span>
+                                    <div className='secondRow'>
+                                        <span className='spanAddMargin'>Looking For</span>
                                         <span>{members} Member(s)</span>
                                     </div>
                                 </div>
-                                <div className='second-column'>
-                                    <div className='first-row'>
-                                        <span className='span-add-margin'>Project Duration</span>
+                                <div className='secondColumn'>
+                                    <div className='firstRow'>
+                                        <span className='spanAddMargin'>Project Duration</span>
                                         <span>{duration} Month</span>
                                     </div>
-                                    <div className='second-row'>
-                                        <span className='span-add-margin'>Language</span>
+                                    <div className='secondRow'>
+                                        <span className='spanAddMargin'>Language</span>
                                         <span>{language.charAt(0).toUpperCase() + language.substring(1)}</span>
                                     </div>
                                 </div>
-                                <div className='third-column'>
-                                    <div className='first-row'>
-                                        <span className='span-add-margin'>Project Size</span>
+                                <div className='third-Column'>
+                                    <div className='firstRow'>
+                                        <span className='spanAddMargin'>Project Size</span>
                                         <span>{size}</span>
                                     </div>
-                                    <div className='second-row'>
-                                        <span className='span-add-margin'>Prog. Language</span>
+                                    <div className='secondRow'>
+                                        <span className='spanAddMargin'>Prog. Language</span>
                                         <span>{proglanguage.charAt(0).toUpperCase() + proglanguage.substring(1)}</span>
                                     </div>
                                 </div>

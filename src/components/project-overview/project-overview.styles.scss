@@ -1,9 +1,11 @@
-.available-header {
-    padding: 8px 0px 24px 32px;
-    .available-text{
+@import '../../config';
+
+.availableHeader {
+    padding: $XVW10 0px $XVW8 $XVW7;
+    .availableText{
         Font-size: 20px;
         Font-weight: 600;
-        color: rgb(49, 69, 89);
+        color: $alternate;
         }
 
 }

@@ -1,128 +1,171 @@
-.filter-box {
-    min-width: 280px; 
-    background-color: white;
-    box-shadow: 0 0 3px 0 rgba(49,69,89,0.18);
-    height: 1140px;
-    .search-filter-container {
+@import "../../config";
 
-    .tab-container{
-        display: flex;
-        justify-content: center;
-        padding: 0;
-        margin: 0;
-            .tab-project-search, .tab-member-search{
-                position: relative;
+.filterBox {
+    min-width: $XVW3 + $XVW11;
+    background-color: $secondary;
+    border-radius: 5px;
+    height: 100%;
+
+    .searchFilterContainer {
+        .tabContainer {
+            display: flex;
+            justify-content: center;
+            padding: 0;
+            margin: 0;
+            color: $alternateSecondary;
+            .tabProjectSearch,
+            .tabMemberSearch {
                 display: flex;
                 align-items: center;
                 justify-content: center;
                 width: 100%;
-                font-size: 14px;
-                height: 48px;
+                font-size: $XVW10 + $XVW12;
+                height: $YVH5 - $YVH10;
                 font-weight: 600;
-                text-transform: capitalize;
                 cursor: pointer;
-                max-width: 232px;
                 outline: none;
-                padding: 16px 16px;
-                border-radius: 2px;
+                padding: $XVW10 + $XVW11 $XVW10 + $XVW11;
+                border-top-right-radius: 5px;
+                border-bottom-left-radius: 5px;
             }
-            .tab-member-search{
-                color: #007eff;
-                background-color: #e8eff5;
+            .tabMemberSearch {
+                color: $alternate;
+                background-color: $primary;
             }
         }
-        
-        .tab-title {
+
+        .tabTitle {
             display: flex;
             flex-direction: row;
-            padding: 30px 0px 30px 10px;
+            height: $XVW6 + $XVW10;
+            align-items: center;
+            margin-left: $XVW9;
 
-            .filter-big-title{
-               font-size: 20px;
-               font-weight: 600;
-               line-height: 24px;
-               color: #0080ff;
-               align-items: center;
+            .logo {
+                font-size: $XVW9;
+                color: $alternateSecondary;
+            }
+            .filterBigTitle {
+                font-size: $XVW9 + $XVW12;
+                font-weight: 600;
+                line-height: 24px;
+                color: $alternateSecondary;
+                align-items: center;
             }
         }
-            .search-options{
+        .searchOptions {
             display: flex;
             flex-direction: column;
-            padding-left: 5px;
-
-            .tab-search-title {
-                display: flex;
-                flex-direction: column; 
-
-                .results {
-                    display: none !important;
-                }
-            }
-
-            .tab-search {
+            
+            .projectTitleSearch {
                 display: flex;
                 flex-direction: column;
-            }
-            
-            .search-input {
-                padding: 10px 10px 20px 10px;
+                justify-content: space-between;
             }
 
-            .search-type {
-                padding: 10px 10px 0px 10px;
-            }
+            .searchInput {
+                margin: $XVW12 0;
 
-            .all{
-                margin-top: 16px;
-            }
+                .searchType {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
 
-            .checkbox {
-                margin-bottom: 6px;
-            }
+                    .input {
+                        input {
+                            width: $XVW4 + $XVW6;
+                            padding: $XVW10 $XVW8;
+                            background-color: #4E4F50;
+                        }
+                    }
+                }
+                
+                .filterTitle {
+                    display: flex;
+                    flex-direction: row;
+                    font-size: $XVW10 + $XVW12;
+                    font-weight: 600;
+                    color: $font;
+                    margin: $XVW10 $XVW9;
+                }
 
-            .slider {
-                width: 85%;
-                margin-top: 8px;
-                margin-left: 15px;
-            }
+                .sliderContainer {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    margin-left: $XVW9;
 
-            .search-button {
-                display: flex;
-                justify-content: center;
-                margin-top: 10px;
-                margin-bottom: 20px;
-                position: sticky;   
-                bottom: 10px;  
+                    .slider {
+                        width: $XVW4 + $XVW7;
+                        color: $alternateSecondary;
+
+                        .MuiSlider-markLabel {
+                            color: $font;
+                            font-size: $XVW10;
+                        }
+                    }
+                }
+
+                .form {
+                    margin-left: $XVW8;
+
+                    .field {
+                        margin-bottom: $XVW9 + $XVW13 !important;
+                    }
+
+                    .checkbox {
+                        margin-bottom: 0;
+                        
+                        label {
+                            color: $font;
+                            font-size: $XVW9;
+                             
+                        }
+
+                        label::before {
+                            width: $XVW9 + $XVW13;
+                            height: $XVW9 + $XVW13;
+                        }
+
+                        label::after {
+                            width: $XVW9 + $XVW13;
+                            font-size: $XVW9;
+                        }
+                    }
+                } 
             }
+        }
+
+        .searchButton {
+            display: flex;
+            justify-content: center;
+            margin-top: $YVH7 + $YVH10;
+            position: sticky;
+            bottom: 10px;
 
             .button {
-                box-shadow: 0px 0px 102px 29px rgba(255,255,255,1);
-                background-color: #007EFF;
+                font-size: $XVW10 + $XVW12;
+                padding: $XVW9;
+                background-color: $alternate;
                 color: white;
-            }
-
-            .form {
-                padding-left: 8px;
             }
         }
     }
 
     .checkbox {
-        color: #007EFF;
-    }
-
-    .filter-title{
-        margin-bottom: 5px;
-        font-size: 14px;
-        font-weight: 600;
-        line-height:16px;
-        color:rgb(90, 96, 125);
+        color: #007eff;
     }
 }
 
-@media (max-width: 1000px) {
-.filter-box{
-   display: none;
-    }
+@media (max-width: 1440px) {
+    .form {
+        .checkbox {
+            label::after {
+                width: $XVW9 + $XVW13;
+                left: -0.5px;
+                top: -1.5px;
+                font-size: $XVW9;
+            }
+        }
+    } 
 }
-

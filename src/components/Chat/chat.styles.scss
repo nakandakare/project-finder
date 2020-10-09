@@ -1,7 +1,8 @@
+@import '../../config.scss';
+
 .container {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
-  background: #FFFFFF;  
+  background-color: $primary;  
 }
 

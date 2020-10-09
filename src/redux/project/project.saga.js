@@ -44,10 +44,8 @@ export function* projectApplySave({ payload }) {
 }
 
 export function* projectAdd({ payload }) {
-    const project = yield call(postRequest, [URL.API_ADD_PROJECT, payload]);
-    console.log(project);
+    const project = yield call(postRequest, [URL.API_ADD_PROJECT, payload]); // wait for the response blocking the code execution.
     yield put(projectAddSuccess());
-    window.location.reload(false);
 }
 //WATCHERS
 export function* onProjectAddStart() {

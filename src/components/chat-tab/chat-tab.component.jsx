@@ -8,7 +8,6 @@ import { Icon } from 'semantic-ui-react';
 import { lastMessageStart, newLastMessage } from '../../redux/chat/chat.action';
 import io from 'socket.io-client';
 import { ENDPOINT } from '../../constants/constants';
-import ScrollToBottom from 'react-scroll-to-bottom';
 
 let socket;
 
@@ -16,7 +15,7 @@ const ChatTab = ({ projectsFromUser, currentUser, lastMessageStart, lastMessages
     const [filterValue, setFilterValue] = useState('');
 
     if(!projectsFromUser.length < 1){
-    var filteredProjects = projectsFromUser.filter(project => project.projectname.toLowerCase().includes(filterValue));
+    var filteredProjects = projectsFromUser.filter(project => project ? project.projectname.toLowerCase().includes(filterValue) : 'loading');
     } 
 
     //Fetching last massage of chat when enter /chat.
@@ -49,20 +48,18 @@ const ChatTab = ({ projectsFromUser, currentUser, lastMessageStart, lastMessages
 
     return (
         <div className='chatTab'>
-            <div className='chat-tab-header'>
-                <Icon className='chat-tab-icon' inverted name='book' size='large' />
-                <p className='chat-tab-title'>Your Projects</p>
+            <div className='chatTabHeader'>
+                <Icon className='chatTabIcon' inverted name='book' size='large' />
+                <p className='chatTabTitle'>Your Projects</p>
             </div>
             <div className='chatTabSearch'>
                 <Icon className='chatTabSearchIcon' color='grey' name='search' size='large' />
                 <input placeholder='Search project...' className='chatTabSearchInput' onChange={projectSearchHandle}/>
             </div>
             <div className='chatTabItem'>
-                <ScrollToBottom className='scrollStyles'>
                 {
                         filteredProjects ? filteredProjects.map(({ ...otherProps }, i) => <ChatItem key={i} lastMessages={lastMessages} {...otherProps} />) : null
                 }
-                </ScrollToBottom>
             </div>
         </div>
     )

@@ -38,8 +38,8 @@ const ProjectsPage = ({ match, history, projectCount, projectFetchStart, project
     const classes = useStyles();
 
     return (
-        <div className='projects-page'>
-            <Filter className='projects-filter' match={match} history={history} projectFilterData={projectFilterData} setProjectFilterData={setProjectFilterData}/>
+        <div className='projectsPageContent'>
+            <Filter className='projectsFilter' match={match} history={history} projectFilterData={projectFilterData} setProjectFilterData={setProjectFilterData}/>
             <div className='projectsView'>
                 <ProjectOverviewContainer projectCount={projectCount} setProjectFilterData={setProjectFilterData}/>
                 {
@@ -47,10 +47,9 @@ const ProjectsPage = ({ match, history, projectCount, projectFetchStart, project
                         null
                         :
                         <div className={`${classes.root}`}>
-                            <Pagination onChange={pageChangeHandler} count={Math.ceil(projectCount[0].count / 6)} color="primary" size='medium' />
+                            <Pagination onChange={pageChangeHandler} count={projectCount ? Math.ceil(projectCount[0].count / 6) : 0} color="primary" size='medium' />
                         </div>
                 }
-
             </div>
         </div>
     )

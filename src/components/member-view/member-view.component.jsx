@@ -8,18 +8,17 @@ const MemberView = ({ id, name, project_owner, img }) => {
     return (
         <div className='projectMember'>
             <div className='innerProjectMember'>
-            <UserPicture img={img} />
+            <UserPicture className='userImg' img={img} width={'4vw'} />
             {
                 project_owner ?
                 <div className='projectMemberTitleOwner'> 
-                    <Icon  color='grey' size='large' title='Project Leader' name='chess king'/> 
+                    <Icon color='white' size='large' title='Project Leader' name='chess king'/> 
                     <p>{name}</p>
                 </div>
                     :
                 <div className='projectMemberTitle'>    
                     <p>{name}</p>
-                </div>
-                
+                </div>  
             }
             </div>
         </div>

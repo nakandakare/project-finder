@@ -23,9 +23,9 @@ const ProjectOverview = ({ projects, projectCount, setProjectFilterData, project
     }
 
     return (
-        <div className='project-overview'>
-            <header className='available-header'>
-                <span className='available-text'>{projectCount[0].count} Available Projects Found:</span>
+        <div className='projectOverview'>
+            <header className='availableHeader'>
+                <span className='availableText'>{projectCount ? projectCount[0].count : 0} Available Projects Found:</span>
             </header>
             {
                 _.isEmpty(projects) ? 
@@ -35,7 +35,7 @@ const ProjectOverview = ({ projects, projectCount, setProjectFilterData, project
                             <p className='resetFilterButton' onClick={resetFilter}>Reset Filter</p>
                     </Message>
                 </div>
-                :
+                :   
                 projects.map(({ ...otherCollectionProps }, i) => (<ProjectItem key={i} {...otherCollectionProps} setShowApplyModal={setShowApplyModal} setNotAllowedModal={setShowNotAllowedModal} setProjectName={setProjectName} setApplyProjectData={setApplyProjectData} applyProjectData={applyProjectData}/>))
             }
             <ProjectApply showApplyModal={showApplyModal} setShowApplyModal={setShowApplyModal} selectedProjectName={selectedProjectName} setApplyProjectData={setApplyProjectData} applyProjectData={applyProjectData} />

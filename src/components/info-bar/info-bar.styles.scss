@@ -1,43 +1,40 @@
+@import '../../config.scss';
+
 .infoBar {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  background: #FFFF;
-  border: 2px solid rgba(0, 0, 0, 0.116);
+  background: $primary;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   border-right: none;
-  height: 58px;
+  height: $chatHeaderHeight;
   width: 100%;
 }
 
 .jdenticonInfobar{
-  margin-left: 10px;
-  margin-right: 5px;
+  margin-left: $XVW9;
+  margin-right: $XVW11; 
 }
 
 .leftInnerContainer {
-  flex: 0.5;
+  width: 100%;
   display: flex;
   align-items: center;
   margin-left: 1%;
-  color: rgb(0, 126, 255);
+  color: $alternateSecondary;
 
+  .projectTitle {
+    font-size: $XVW9 + $XVW11;
+    font-weight: 500;
+    margin-left: $XVW10;
+  }
 }
 
 .rightInnerContainer {
   display: flex;
   flex: 0.5;
   justify-content: flex-end;
-  margin-right: 5%;
-  
-  .closeIcon{
-    position: absolute;
-    right: 1.5%;
-    top: 82px;
-  }
-}
 
-.onlineIcon {
-  margin-right: 4%;
 }
 
 h3 {

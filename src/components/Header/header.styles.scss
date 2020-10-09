@@ -1,143 +1,136 @@
+@import "../../config";
+
 .headerContainer {
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
     width: 100%;
-    min-height: 6.5vh;
-}
+    height: $headerHeight;
+    background-color: $primary;
 
-.header-p{
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 25px 0 25px;
-    box-shadow: 0px 1px 5px 0px rgba(209,209,209,1);
+    .headerInner {
+        width: 100%;
+        display: flex;
+        justify-content: space-between;
+        box-shadow: $shadow;
+        padding: 0 $XVW8;
 
-    .logoContainer {
-            width: 250px;
-            padding: 20px 0 0 5px;
+        .logoContainer {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: $XVW3;
+
             .logo {
-                width: 90%;
+                width: $X0;
                 align-items: center;
             }
-    }
+        }
 
-    .options{
-    height: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    font-size: 14px;
-    font-weight: 600;
-    line-height: 16px;
-    color: rgb(49, 69, 89);
-    }
-
-    .option-each{
-        padding: 0 25px 0 25px;
-    }
-
-    .user-header{
-        display: flex;
-        justify-content: space-evenly;
-        align-items: center;
-        width: 250px;
-
-        .menuIcons{ 
+        .options {
+            height: 100%;
+            width: $XVW3 + $XVW7;
             display: flex;
-            flex-direction: row;
-            margin-left: 18px;
-            .menuIcon {
-                cursor: pointer;
+            align-items: center;
+            justify-content: space-between;
+            font-size: $XVW9;
+            font-weight: 600;
+
+            .optionEach {
+                color: $font;
+            }
+        }
+
+        .userHeader {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: $XVW3;
+
+            .imageBorder {
                 display: flex;
-                border-radius: 50%;
-                width: 40px;
-                height: 40px;
-                margin-right: 10px;
                 align-items: center;
                 justify-content: center;
-                background-color: rgb(228, 231, 236);
+                border-radius: 50%;
+                min-width: $XVW8 + $XVW9 + $XVW13;
+                min-height: $YVH7 + $YVH8;
+                background-color: $secondary;
             }
-            .menuIcon:hover {
-                background-color: rgb(0, 128, 255);
+
+            .userImg {
+                border-radius: 50%;
+                width: $XVW7;
             }
-            .pencilIcon {
-                padding-left: 4px;
+
+            .userName {
+                font-size: $XVW9 + $XVW14;
+                color: $font;
             }
-            .bellIcon {
-                padding-left: 1px;
-                padding-bottom: 2px;
-            }
-            .logoutIcon {
-                padding-left: 6px;
+
+            .menuIcons {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-between;
+                width: $XVW4 - $XVW8;
+
+                .menuIcon {
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: 50%;
+                    min-width: $XVW7;
+                    min-height: $YVH6 + $YVH9;
+                    background-color: $secondary;
+                    transition: ease 0.5s;
+
+                    .large,
+                    .MuiSvgIcon-root {
+                        color: $font;
+                        font-size: $XVW9 + $XVW12 !important;
+                        margin: 0 !important;
+                    }
+                }
+
+                .menuIcon:hover {
+                    background-color: $alternate;
+                }
             }
         }
 
-        .image-border{
-            border-radius: 50%;
-            width: 50px;
-            height: 35px;
-            margin-right: 10px;
-            background-color: #EEF4F9;
+        .authOptions {
+            width: $XVW3;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+
+            .registerButton {
+                background-color: $alternate;
+                margin-left: $XVW10;
+            }
+            Button {
+                color: $font;
+                font-size: $XVW10 + $XVW13;
+                font-weight: 600;
+            }
         }
-        .user-img {
+
+        hr {
+            height: $YVH10;
+            width: 100%;
+            margin: 0;
+            background: $alternate;
+            border: none;
+            transition: 0.2s cubic-bezier(0.47, 0, 0.745, 0.715);
             position: relative;
-            border-radius: 50%;
-            width: 38px;
-            bottom: 3px;
+            top: $YVH7 + $YVH14;
+            opacity: 0;
         }
 
-        .user-name {
-            margin-right: 10px;
-            margin-bottom: 2px;
+        .optionEach:hover hr {
+            opacity: 1;
         }
 
-        .logout-button{
-            margin-right: 50px;
-            margin-bottom: 2px;
-
-            .ui.dropdown .menu{
-                top: 38px;
-                left: -110px !important;
-            }
+        .hrHighlight {
+            opacity: 1;
         }
-    }
-    
-    .auth-options{
-        width: 200px;
-        display: flex;
-        align-items: center;
-        justify-content: space-around;
-        margin-left: 40px;
-
-        .register-button {
-            background-color: rgb(0,126,255);
-        }
-
-        Button {
-            font-size: 12px;
-            font-weight: 600;
-        }
-    }
-
-    hr {
-        height: .25rem;
-        width: 100%;
-        margin: 0;
-        background: rgb(0,126,255);
-        border: none;
-        transition: .2s cubic-bezier(0.47, 0, 0.745, 0.715);
-        position: relative;
-        top: 22px;
-        left: 1px;
-        opacity: 0;
-    }
-
-    .option-each:hover  hr{
-        opacity: 1;
-    }
-
-    .hr-highlight{
-        opacity: 1;
     }
 }
