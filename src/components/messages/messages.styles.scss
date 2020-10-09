@@ -1,7 +1,11 @@
+@import '../../config';
+
 .messages {
-  height: 760px;
+  height: 100vh - ($chatHeaderHeight + $headerHeight + $inputHeight);
   padding: 3% 0;
   flex: auto;
   border-left: 2px solid rgba(0, 0, 0, 0.116);
   border-right: 2px solid rgba(0, 0, 0, 0.116);
+  background-color: $background;
+  overflow-y: scroll;
 }

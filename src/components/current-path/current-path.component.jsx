@@ -10,13 +10,13 @@ const CurrentPath = () => {
     const pathReplaced = pathname.replace("/","");
 
     return(
-    <div className='current-path'>
-        <Link className='home-button' to='/projects'>
+    <div className='currentPath'>
+        <Link className='homeButton' to='/projects'>
             Home
         </Link>
         <Logo>
         </Logo>
-        <span className='current-location'>
+        <span className='currentLocation'>
             {pathReplaced.charAt(0).toUpperCase() + pathReplaced.slice(1)}
         </span>
     </div>

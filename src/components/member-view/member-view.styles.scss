@@ -1,27 +1,34 @@
-.innerProjectMember {
-    display: flex;
-    flex-direction: row;
-    margin-top: 10px;
-    margin-left: 10px;
-    margin-bottom: 20px;
-}
+@import '../../config.scss';
 
-.projectMemberTitleOwner {
-    display: flex;
-    flex-direction: row;
-    margin-top: 40px;
-    margin-left: 10px;
-    font-size: 14px;
-    font-weight: 600;
-    color: rgb(91, 102, 109);
-    margin-right: auto;
-}
+.projectMember{
+    .innerProjectMember {
+        display: flex;
+        flex-direction: row;
+        margin-top: $XVW9;
+        margin-left: $XVW8;
+        margin-bottom: $XVW8;
+    }
 
-.projectMemberTitle {
-    margin-top: 40px;
-    margin-left: 20px;
-    font-size: 14px;
-    font-weight: 600;
-    color: rgb(91, 102, 109);
-    margin-right: auto;
+    .userImg {
+        width: 10px !important;
+    }
+    
+    .projectMemberTitleOwner {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        font-size: $XVW9;
+        font-weight: 600;
+        margin-left: $XVW8;
+        color: $font;
+    }
+    
+    .projectMemberTitle {
+        display: flex;
+        align-items: center;
+        font-size: $XVW9;
+        font-weight: 600;
+        margin-left: $XVW8;
+        color: $font;
+    }
 }

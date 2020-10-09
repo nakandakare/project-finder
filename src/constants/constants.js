@@ -1,6 +1,6 @@
 import io from "socket.io-client";
 
-var API_ENDPOINT = 'http://localhost:2500'
+var API_ENDPOINT = 'https://project-finder-api.herokuapp.com'
 
 export const URL = {
     API_SIGNIN: `${API_ENDPOINT}/users/signin`,
@@ -83,19 +83,19 @@ export const MARKS_DURATION = [
     },
     {
         value: 25,
-        label: '1 Month',
+        label: '1',
     },
     {
         value: 50,
-        label: '3 Month',
+        label: '3',
     },
     {
         value: 75,
-        label: '6 Month',
+        label: '6',
     },
     {
         value: 100,
-        label: '12 Month',
+        label: '12',
     }
 ]
 

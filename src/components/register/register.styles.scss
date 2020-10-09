@@ -1,3 +1,5 @@
+@import '../../config.scss';
+
 .register {
     display: flex;
     flex-direction: column;
@@ -11,7 +13,7 @@
         font-size: 20px;
         font-weight: 600;
         line-height: 24px;
-        color: rgb(49, 69, 89);
+        color: white;
     }
 
     .input-form {
@@ -31,18 +33,19 @@
         margin-top: 3px;
         width: 100%;
         padding: 10px;
-        background-color: #006FE2;
+        background-color: $alternate;
     }
 
     .no-account {
         margin-top: 50px;
         text-align: center;
+        color: $alternateSecondary;
     }
 
     .sign-in-button {
         width: 100%;
         padding: 10px;
-        background-color: #006FE2;
+        background-color: $alternate;
     }
     
     .twoInput {
@@ -52,5 +55,17 @@
         .fName{
             margin-right: 10px;
         }
+    }
+
+    .MuiTypography-root {
+        color: white;
+    }
+
+    .MuiFormLabel-root {
+        color: white;
+    }
+
+    .MuiFormControl-root {
+        border-radius: 5px;
     }
 }

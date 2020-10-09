@@ -1,22 +1,21 @@
+@import '../../config.scss';
+
 .chatOverview {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
-    height: 93vh;
+    height: 100vh - $headerHeight;
 
     .chatTab{
-        width: 22vw;
+        width: $chatSideWidth;
     }
 
     .chat, .chatPlaceholder {
         z-index: 1;
-        width: 56vw; 
+        width: 100vw - $chatSideWidth + $chatSideWidth; 
     }
     
     .chatProjectMembers {
-        width: 22vw;
+        width: $chatSideWidth;
     }
-
-
 }
 

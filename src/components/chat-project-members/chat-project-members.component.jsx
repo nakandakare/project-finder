@@ -7,38 +7,33 @@ import queryString from 'query-string';
 import { selectProjectMembers } from '../../redux/project/project.selectors';
 import MemberView from '../member-view/member-view.component';
 import { Icon } from 'semantic-ui-react'
-import ScrollToBottom from 'react-scroll-to-bottom';
 
 const ChatProjectMembers = ({ projectMemberFetchStart, location, projectMembers, emptyProjectMembers }) => {
-    
+
     //Fetching members of project selected.
     useEffect(() => {
         const { id } = queryString.parse(location.search);
         projectMemberFetchStart(id);
-        if(!location.search) {
+        if (!location.search) {
             emptyProjectMembers();
         }
     }, [location.search])
 
     return (
-        <div>
-            <div className="infoBarMembers" />
-            
+        <div className='projectMembersContainer'>
             <div className='headerMembers'>
                 <div className='innerHeaderMembers'>
                     <div className='headerIconMembers'>
                         <Icon color='grey' size='big' name='group' />
                     </div>
                     <div className='headerTitleMembers'>
-                        <h3>Project Members</h3>
+                        <p>Project Members</p>
                     </div>
                 </div>
             </div>
-            <ScrollToBottom className='scrollStyles'>
             {
                 projectMembers.map(({ ...props }, i) => <MemberView key={i} {...props} />)
             }
-            </ScrollToBottom>
         </div>
     )
 }

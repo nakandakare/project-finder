@@ -1,9 +1,11 @@
+@import '../../../config';
+
 .noChatMessage {
     display: flex;
     flex-direction: column;
     align-items: center;
-    height: 82vh !important;
-    background-color: white;
+    height: 100vh - ($chatHeaderHeight + $headerHeight + $inputHeight);;
+    background-color: $background;
     padding-top: 150px;
     border-left: 2px solid rgba(0, 0, 0, 0.116);
     border-right: 2px solid rgba(0, 0, 0, 0.116);

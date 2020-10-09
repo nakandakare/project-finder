@@ -39,32 +39,32 @@ const Header = ({ currentUser, logoutStart, filterAddStart, notificationCount, e
 
     return (
     <div className='headerContainer'>
-        <header className='header-p'>
+        <header className='headerInner'>
             <div className='logoContainer'>
                 <Link to='/projects' onClick={logoClickHandler}>
                     <img className='logo' src={projectLogo} alt='project logo'/>
                 </Link>
             </div>
             <div className='options'>
-                <Link className='option-each' to='/projects'>
+                <Link className='optionEach' to='/projects'>
                     PROJECTS
                     <hr className={path === 'projects' ? 'hr-highlight' : <hr />} />
                 </Link>
-                <Link className='option-each' to={`/chat`}>
+                <Link className='optionEach' to={`/chat`}>
                     CHAT
                     <hr className={path === 'chat' ? 'hr-highlight' : <hr />} />
                 </Link>
-                <Link className='option-each' to='/contact'>
+                <Link className='optionEach' to='/contact'>
                     CONTACT
                     <hr className={path === 'support' ? 'hr-highlight' : <hr />} />
                 </Link>
             </div>
             {currentUser ?
-                <div className='user-header'>
-                    <div className='image-border'>
-                        <img className='user-img' src={currentUser.img} alt='user-img' />
+                <div className='userHeader'>
+                    <div className='imageBorder'>
+                        <img className='userImg' src={currentUser.img} alt='userImg' />
                     </div>
-                    <div className='user-name'>
+                    <div className='userName'>
                         <span >{currentUser.name.split(' ').slice(0, -1).join(' ')}</span>
                     </div>
                     <div className='menuIcons'>
@@ -80,14 +80,14 @@ const Header = ({ currentUser, logoutStart, filterAddStart, notificationCount, e
                     </div>
                 </div>
                 :
-                <div className='auth-options'>
+                <div className='authOptions'>
                     <Link to='/signin'>
-                        <Button className="login-button" color="primary">
+                        <Button className="loginButton" color="primary">
                             SIGN IN
                         </Button>
                     </Link>
                     <Link to='/register'>
-                        <Button className="register-button" size="medium" variant="contained" color="primary">
+                        <Button className="registerButton" size="medium" variant="contained" color="primary">
                             REGISTER
                         </Button>
                     </Link>

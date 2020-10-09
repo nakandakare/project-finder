@@ -4,17 +4,16 @@ import { Icon } from 'semantic-ui-react'
 
 const Input = ({ message, setMessage, sendMessage}) => {
     return (
-    <form className="form-in">
+    <form className="formIn">
             <input
-                className="input-in"
+                className="inputIn"
                 type="text"
                 placeholder="Type a message..."
                 value={message}
                 onChange={(event) => setMessage(event.target.value)}
                 onKeyPress={event => event.key === 'Enter' ? sendMessage(event) : null}
             />
-            <button className="sendButton" onClick={e => sendMessage(e)}><Icon name='send' color='blue' size='big' /></button>
-            
+            <button className="sendButton" onClick={e => sendMessage(e)}><Icon name='send' size='big' /></button>
     </form>
     )
 }

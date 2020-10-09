@@ -1,21 +1,20 @@
-.current-path{  
-    padding: 16px 0 16px 0;
-    max-width: 1100px;
+@import "../../config";
+
+.currentPath {
+    padding: $XVW9 0 $XVW9 0;
+    width: 1040px;
     margin: 0 auto;
+       
+    .homeButton {
+        text-decoration: none;
+        color: $alternateSecondary;
+        font-size: $XVW9 - $XVW14;
+        font-weight: 600;
+    }
 
-.home-button{
-    text-decoration: none;
-    color: rgb(0, 126, 255);
-    font-size: 14px;
-    font-weight: 600;  
-    line-height: 16px;
-}
-
-.current-location{
-    font-size: 14px;
-    font-weight: 400;  
-    line-height: 16px;
-    color:  rgb(49, 69, 89);
-}
-
+    .currentLocation {
+        font-size: $XVW9 - $XVW14;
+        font-weight: 400;
+        color: $alternate;
+    }
 }

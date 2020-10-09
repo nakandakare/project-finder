@@ -1,14 +1,20 @@
+@import '../../config';
+
 .contactHeader {
     padding: 48px 0px 36px 0px!important;
 }
 
 .contactForm {
-     width:50%;
-     margin:0px auto;
-     display:block;
-
+    width:50%;
+    margin:0px auto;
+    display:block;
+    
      .contactSubmit {
          float: right;
+     }
+
+     label {
+         color: white !important;
      }
 }
 
@@ -19,4 +25,8 @@
 
 .contactTextArea {
     padding-top: 12px;
+}
+
+.content {
+    color: white !important;
 }

@@ -1,53 +1,62 @@
+@import "../../config.scss";
+
 .chatTab {
-    height: 100%;
+    max-height: 100%;
     width: 100%;
-    
-    .chat-tab-header {
+    background-color: $primary;
+    border-right: 1px solid rgba(255, 255, 255, 0.2);
+
+    .chatTabHeader {
         display: flex;
         flex-direction: row;
-        padding: 15px 0 15px 20px;
-        background: rgb(65, 65, 65);
+        justify-content: center;
+        align-items: center;
+        min-height: $chatHeaderHeight;
+        background: $primary;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-left: none;
+        border-right: none;
         
-        .chat-tab-icon {
-            margin-top:5px;
+        .chatTabIcon {
+            font-size: $XVW8 - $XVW12;
+            color: $font;
         }
-        .chat-tab-title{
-            margin-left: 5px;
-            font-size: 20px;
+        .chatTabTitle {
+            margin-left: $XVW12;
+            font-size: $XVW8 - $XVW12;
             font-weight: 500;
-            color: #FFFF;
+            color: $font;
         }
-        .chatTabItem{
-            display: flex !important;
-            z-index: 0;
-        }
-    }
-
-        .scrollStyles {
-        height: 730px !important;
-        width: 420px !important;
     }
 
     .chatTabSearch {
-        width: 420px;
+        width: 100%;
         display: flex;
         justify-content: center;
-        background-color: #e8edf1;
-        margin: 15px 0;
+        align-items: center;
+        background-color: $primary;
+        margin-top: $XVW10;
+        min-height: $YVH5;
 
         .chatTabSearchIcon {
             position: absolute;
-            left: 32px;
-            top: 145px;
+            left: $XVW8 + $XVW11;
+            top: $YVH3 + $YVH9 + $YVH11;
+            font-size: $XVW9 + $XVW12;
         }
 
         .chatTabSearchInput {
             background-color: rgb(230, 230, 230);
-            height: 38px;
+            height: $XVW7;
             width: 90%;
             border: none;
-            padding: 10px 0 10px 45px;
+            padding: $XVW10 0 $XVW10 ($XVW7 + $XVW10);
             border-radius: 20px;
         }
+    }
+
+    .chatTabItem {
+        height: 92vh - ($YVH5 + $chatHeaderHeight);
+        overflow-y: scroll;
     }
 }

@@ -23,9 +23,9 @@ const ProjectOverview = ({ projects, projectCount, setProjectFilterData, project
     }
 
     return (
-        <div className='project-overview'>
-            <header className='available-header'>
-                <span className='available-text'>{projectCount === undefined ? projectCount[0].count : 0} Available Projects Found:</span>
+        <div className='projectOverview'>
+            <header className='availableHeader'>
+                <span className='availableText'>{projectCount ? projectCount[0].count : 0} Available Projects Found:</span>
             </header>
             {
                 _.isEmpty(projects) ? 
