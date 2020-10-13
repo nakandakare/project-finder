@@ -99,6 +99,6 @@ export const MARKS_DURATION = [
     }
 ]
 
-export const ENDPOINT = 'http://localhost:2500';
+export const ENDPOINT = 'https://project-finder-api.herokuapp.com';
 
 export let notifySocket = io(ENDPOINT);
