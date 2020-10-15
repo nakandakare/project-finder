@@ -1,3 +1,5 @@
+@import '../../config.scss';
+
 .project-create {
     display: flex;
     flex-direction: column;
@@ -9,7 +11,7 @@
         .project-info{
         font-size: 24px;
         font-weight: 600;
-        color: rgb(49,69,89);
+        color: $alternateSecondary;
         }
 
     .project-create-form{
@@ -23,7 +25,7 @@
 
         .project-input {
             margin: 16px;
-            background: rgba(255,255,255,0.9);
+            background: $primary;
         }
 
         .project-row {
@@ -43,7 +45,7 @@
         width: 50%;
         padding: 10px;
         margin-top: 30px;
-        background-color: #006FE2;
+        background-color: $alternate;
     }
 
     .default {
@@ -55,4 +57,31 @@
 .description-pc {
     background-image: url('../../assets/bg1.jpg') !important; 
     background-size: cover !important;
+}
+
+.modal {
+    border-radius: 5px !important;
+}
+
+.description-pc {
+    background: $primary     !important;
+}
+
+.description {
+    background: $primary;
+    .MuiInputBase-input  {
+        background-color: $primary !important;
+    }
+
+    #outlined-multiline-static {
+        background-color: $primary !important;
+    }
+
+    label {
+        color: rgba(206, 206, 206, 0.644)
+    }
+
+    .text {
+        color:  rgba(206, 206, 206, 0.644) !important;
+    }
 }
