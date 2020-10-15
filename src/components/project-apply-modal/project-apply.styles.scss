@@ -1,10 +1,12 @@
+@import '../../config.scss';
+
 .applyModal {
     border-radius: 100px !important;
     width: 580px !important;
 }
 
 .projectApplyHeader {
-    background-color: #314559 !important;
+    background-color: $primary !important;
     color: #FFFF !important;
     display: flex !important;
     justify-content: center;
@@ -36,7 +38,7 @@
 
 .modalProjectName {
     margin-left: 8px;
-    color: #007EFF;
+    color: $alternate;
 }
 
 .modalFooter {
