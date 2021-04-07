@@ -1,6 +1,6 @@
 import io from "socket.io-client";
 
-var API_ENDPOINT = 'https://project-finder-api.herokuapp.com'
+var API_ENDPOINT = 'https://morning-ravine-26582.herokuapp.com/https://project-finder-api.herokuapp.com'
 
 export const URL = {
     API_SIGNIN: `${API_ENDPOINT}/users/signin`,
